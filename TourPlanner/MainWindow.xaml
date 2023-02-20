@@ -1,0 +1,225 @@
+﻿<Window x:Class="TourPlanner.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TourPlanner"
+        xmlns:ViewModel="clr-namespace:TourPlanner.MVVM.ViewModel"
+        mc:Ignorable="d"
+        Title="TourPlanner" 
+        Height="720" Width="1080"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        ResizeMode="CanResizeWithGrip">
+
+    <Window.DataContext>
+        <ViewModel:MainViewModel/>
+    </Window.DataContext>
+
+    <Border Background="#eff2f7" CornerRadius="10" MouseDown="Border_MouseDown">
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition/>
+
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <!-- Top Bar -->
+            <Border Grid.ColumnSpan="2" Background="#252525">
+                <Grid HorizontalAlignment="Stretch">
+                    <Label Content="TourPlanner"
+                           Foreground="Gray"
+                           FontWeight="SemiBold"/>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+
+                        <Button Height="20" Width="20" 
+                                Content="🗕" 
+                                Background="Transparent" 
+                                Foreground="Gray" 
+                                BorderThickness="0" 
+                                Margin="0 0 0 2"
+                                Click="ButtonMinimize_Click"/>
+                        <Button Height="20" Width="20"
+                                Content="⬜" 
+                                Background="Transparent" 
+                                Foreground="Gray" 
+                                BorderThickness="0"
+                                Click="WindowStateButton_Click"/>
+                        <Button Height="20" 
+                                Width="20" 
+                                Content="❌" 
+                                Background="Transparent" 
+                                Foreground="Gray" 
+                                BorderThickness="0"
+                                Click="CloseButton_Click"/>
+                    </StackPanel>
+
+                </Grid>
+                
+
+            </Border>
+            
+            <!-- Toolbar Left Buttons -->
+            <Border Grid.Row="1" 
+                    Grid.ColumnSpan="2" 
+                    Background="DimGray">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <Border Margin="2" >
+                        <TextBlock
+                            FontSize="12"
+                            Text="File"
+                            Foreground="FloralWhite"/>
+                    </Border>
+
+                    <Border Margin="15 2 2 2" >
+                        <TextBlock
+                            FontSize="12"
+                            Text="Edit"
+                            Foreground="FloralWhite"/>
+                    </Border>
+
+                    <Border Margin="15 2 2 2" >
+                        <TextBlock
+                            FontSize="12"
+                            Text="Options"
+                            Foreground="FloralWhite"/>
+                    </Border>
+                </StackPanel>
+            </Border>
+
+
+            <!-- Toolbar Right Buttons -->
+            <Border Grid.Row="1"
+                    Grid.Column="1">
+                <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center" 
+                            Orientation="Horizontal">
+                    <Border Margin="2 2 10 2" >
+                        <TextBlock
+                            FontSize="12"
+                            Text="Help"
+                            Foreground="FloralWhite"/>
+                    </Border>
+                </StackPanel>
+            </Border>
+
+
+            <!-- Left Panel -->
+            <Grid Background="#2f3136"
+                  Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition/>
+
+                </Grid.RowDefinitions>
+
+                <!-- Tour Searchbar -->
+                <Border Margin="5">
+                    <TextBox Style="{StaticResource ModernTextBox}"
+                             Text="Search"/>
+                </Border>
+
+                <!-- Add and remove tours panel -->
+                <Border Grid.Row="1"
+                        BorderThickness="2"
+                        BorderBrush="White">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Tours" 
+                               VerticalAlignment="Center"
+                               FontSize="20"
+                               Foreground="White"/>
+
+                        <Border Margin="0"
+                                Width="175">
+                            <TextBox 
+                                     Text="add or remove"
+                                     Style="{StaticResource ModernTextBox}"/>
+
+                        </Border>
+                        <Button Height="20" Width="20" 
+                                Content="＋" 
+                                Background="Transparent" 
+                                Foreground="WhiteSmoke" 
+                                BorderThickness="0" 
+                                Margin="0 0 0 0"                           />
+                        <Button Height="20" Width="20"
+                                Content="🗕" 
+                                Background="Transparent" 
+                                Foreground="WhiteSmoke" 
+                                BorderThickness="0"
+                                Margin="0 0 0 7"
+                                
+                                
+                                VerticalAlignment="Center"/>
+                        <Button Height="20" 
+                                Width="20" 
+                                Content="..." 
+                                Background="Transparent" 
+                                Foreground="WhiteSmoke" 
+                                BorderThickness="0"/>
+                    </StackPanel>
+
+                </Border>
+
+                <!-- Tour List -->
+                <Border Grid.Row="2"
+                        Margin="8"
+                        CornerRadius="5"
+                        BorderBrush="White"
+                        BorderThickness="3">
+                    <StackPanel>
+                        
+                    </StackPanel>
+                    
+                </Border>
+            </Grid>
+
+            <!-- Right Panel -->
+            <Grid Grid.Row="2"
+                  Grid.Column="1"
+                  Background="#2f3136">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                
+                <!-- Route Info Buttons -->
+                <Button Content="General" Style="{StaticResource RouteInfoButton}" Command="{Binding GeneralViewCommand}"/>
+                <Button Content="Route" Style="{StaticResource RouteInfoButton}" Command="{Binding RouteViewCommand}" Grid.Column="1"/>
+                <Button Content="Other" Style="{StaticResource RouteInfoButton}" Command="{Binding OtherViewCommand}" Grid.Column="2"/>
+
+
+                <ContentControl Grid.Row="1"
+                                Grid.ColumnSpan="3"
+                                Margin="10"
+                                Content="{Binding CurrentView}"/>
+
+            </Grid>
+
+        </Grid>
+
+        
+    </Border>
+
+
+
+
+
+
+</Window>

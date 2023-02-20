@@ -1,0 +1,30 @@
+﻿<Application x:Class="TourPlanner.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:TourPlanner"
+             xmlns:ViewModel="clr-namespace:TourPlanner.MVVM.ViewModel"
+             xmlns:View="clr-namespace:TourPlanner.MVVM.View"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Theme/TextBoxTheme.xaml"/>
+                <ResourceDictionary Source="Theme/RouteInfoButton.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <DataTemplate DataType="{x:Type ViewModel:GeneralViewModel}">
+                <View:GeneralView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type ViewModel:RouteViewModel}">
+                <View:RouteView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type ViewModel:OtherViewModel}">
+                <View:OtherView/>
+            </DataTemplate>
+
+        </ResourceDictionary>
+         
+    </Application.Resources>
+</Application>

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ZQdrrzcOp6fnORv34tkLLd/H8D3ZpluMwMKmh6xTYf0kGt1dx56n24lYdlii2ub6exXOyJIe7OeRmieKyczs7w==",
+  "dgSpecHash": "D+NbgprybGNN7I3B5NpcdfsBHeviHRzdnyF+NQmMIaiGE3uY7bnkAzWf+pzwT/hltjUwvKJ/bXLvJv0ECNf5nQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\wikto\\Desktop\\TourPlanner\\TourPlanner\\TourPlanner.csproj",
+  "projectFilePath": "C:\\TourPlanner\\TourPlanner\\TourPlanner.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

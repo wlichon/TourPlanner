@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ModernDesign.Core;
+using TourPlanner.MVVM.Model;
 
 namespace TourPlanner.MVVM.ViewModel
 {
@@ -21,6 +23,13 @@ namespace TourPlanner.MVVM.ViewModel
 
         public OtherViewModel OtherVM { get; set; }
 
+        public ObservableCollection<TourModel> Tours { get; set; }
+
+        public ObservableCollection<TourLogModel> TourLogs { get; set; }  
+
+        public TourModel SelectedTour { get; set; }
+
+
 
         private object _currentView;
 
@@ -36,6 +45,30 @@ namespace TourPlanner.MVVM.ViewModel
 
         public MainViewModel()
         {
+            Tours = new ObservableCollection<TourModel>();
+            TourLogs = new ObservableCollection<TourLogModel>();
+
+            for(int i= 0; i < 5; i++)
+            {
+                Tours.Add(new TourModel
+                {
+                    Tourname = "Exampletour"
+                });
+
+            }
+
+            for (int i = 0; i < 5; i++)
+            {
+                TourLogs.Add(new TourLogModel
+                {
+                    Date = DateTime.Now,
+                    Distance = 2500,
+                    Duration = TimeSpan.FromSeconds(600)
+                });
+
+            }
+
+
             GeneralVM = new GeneralViewModel();
 
             RouteVM = new RouteViewModel();

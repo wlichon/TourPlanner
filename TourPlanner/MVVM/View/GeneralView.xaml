@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:TourPlanner.MVVM.View"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="AntiqueWhite">
+    <Grid Background="#252525">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100"/>
             <ColumnDefinition/>
@@ -29,14 +29,16 @@
                 <Setter Property="VerticalContentAlignment" Value="Center"/>
                 <Setter Property="Content" Value="Center"/>
                 <Setter Property="Width" Value="100"/>
-                <Setter Property="HorizontalAlignment" Value="Left"/>
-                
-                
+                <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                <Setter Property="Foreground" Value="White"/>
+
+
+
             </Style>
 
             <Style TargetType="{x:Type Border}">
-                <Setter Property="Margin" Value="2"/>
-                <Setter Property="CornerRadius" Value="2"/>
+                <Setter Property="Margin" Value="4"/>
+                <Setter Property="CornerRadius" Value="5"/>
 
             </Style>
         </Grid.Resources>

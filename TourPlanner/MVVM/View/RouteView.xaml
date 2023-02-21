@@ -3,10 +3,77 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:TourPlanner.MVVM.View"
+             xmlns:local="clr-namespace:TourPlanner.MVVM.View" xmlns:viewmodel="clr-namespace:TourPlanner.MVVM.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:MainViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="Red">
+    <Grid Background="AntiqueWhite">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="225"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Border Margin="8"
+                CornerRadius="5"
+                BorderThickness="1"
+                BorderBrush="Black">
             
+        </Border>
+
+        <Border Margin="8"
+                Grid.Row="1"
+                CornerRadius="5"
+                BorderThickness="1"
+                BorderBrush="Black">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                
+                
+                <!-- Toolbar-->
+                <StackPanel Orientation="Horizontal"
+                            Background="#252525">
+                    <Label Content="Tours" 
+                               VerticalAlignment="Center"
+                               FontSize="20"
+                               Foreground="White"/>
+
+                    <Border Margin="0"
+                                Width="660">
+                        <TextBox 
+                                     Text="add or remove"
+                                     Style="{StaticResource ModernTextBox}"/>
+
+                    </Border>
+                    <Button Height="20" Width="20" 
+                                Content="＋" 
+                                Background="Transparent" 
+                                Foreground="WhiteSmoke" 
+                                BorderThickness="0" 
+                                Margin="0 0 0 0"                           />
+                    <Button Height="20" Width="20"
+                                Content="🗕" 
+                                Background="Transparent" 
+                                Foreground="WhiteSmoke" 
+                                BorderThickness="0"
+                                Margin="0 0 0 7"
+                                
+                                
+                                VerticalAlignment="Center"/>
+                    <Button Height="20" 
+                                Width="20" 
+                                Content="..." 
+                                Background="Transparent" 
+                                Foreground="WhiteSmoke" 
+                                BorderThickness="0"/>
+                </StackPanel>
+                
+                <!-- Tour logs-->
+                <ListView ItemsSource="{Binding TourLogs}"/>
+
+
+            </Grid>
+        </Border>
     </Grid>
 </UserControl>

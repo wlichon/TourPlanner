@@ -36,5 +36,11 @@
     <Page Update="Theme\TextBoxTheme.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Theme\TourCard.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Theme\TourLogCard.xaml">
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
 </Project>

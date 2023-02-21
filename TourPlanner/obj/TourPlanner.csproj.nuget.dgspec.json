@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\wikto\\Desktop\\TourPlanner\\TourPlanner\\TourPlanner.csproj": {}
+    "C:\\TourPlanner\\TourPlanner\\TourPlanner.csproj": {}
   },
   "projects": {
-    "C:\\Users\\wikto\\Desktop\\TourPlanner\\TourPlanner\\TourPlanner.csproj": {
+    "C:\\TourPlanner\\TourPlanner\\TourPlanner.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\wikto\\Desktop\\TourPlanner\\TourPlanner\\TourPlanner.csproj",
+        "projectUniqueName": "C:\\TourPlanner\\TourPlanner\\TourPlanner.csproj",
         "projectName": "TourPlanner",
-        "projectPath": "C:\\Users\\wikto\\Desktop\\TourPlanner\\TourPlanner\\TourPlanner.csproj",
+        "projectPath": "C:\\TourPlanner\\TourPlanner\\TourPlanner.csproj",
         "packagesPath": "C:\\Users\\wikto\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\wikto\\Desktop\\TourPlanner\\TourPlanner\\obj\\",
+        "outputPath": "C:\\TourPlanner\\TourPlanner\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\wikto\\AppData\\Roaming\\NuGet\\NuGet.Config",

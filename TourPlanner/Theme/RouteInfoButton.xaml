@@ -7,8 +7,22 @@
         <Style.Setters>
             <Setter Property="Margin" Value="2"/>
             <Setter Property="Foreground" Value="White"/>
-            <Setter Property="Background" Value="DarkRed"/>
+            <Setter Property="Background" Value="Green"/>
             <Setter Property="FontSize" Value="18"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
 
 
         </Style.Setters>

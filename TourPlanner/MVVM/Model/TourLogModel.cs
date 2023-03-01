@@ -8,6 +8,15 @@ namespace TourPlanner.MVVM.Model
 {
     internal class TourLogModel
     {
+        private int _tourID;
+
+        public int TourID
+        {
+            get { return _tourID; }
+            set { _tourID = value; }
+        }
+
+
         private DateTime _date;
 
         public DateTime Date

@@ -3,9 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:TourPlanner.MVVM.View"
+             xmlns:local="clr-namespace:TourPlanner.MVVM.View" 
+             xmlns:ViewModel="clr-namespace:TourPlanner.MVVM.ViewModel" 
+             d:DataContext="{d:DesignInstance Type=ViewModel:GeneralViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+
+
+
     <Grid Background="#252525">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100"/>
@@ -14,6 +19,7 @@
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
+            <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
@@ -36,9 +42,16 @@
 
             </Style>
 
+           
+            
             <Style TargetType="{x:Type Border}">
                 <Setter Property="Margin" Value="4"/>
                 <Setter Property="CornerRadius" Value="5"/>
+
+            </Style>
+
+            <Style TargetType="{x:Type TextBox}">
+                <Setter Property="IsEnabled" Value="{Binding TextboxesEnabled}"/>
 
             </Style>
         </Grid.Resources>
@@ -52,7 +65,7 @@
         <Border Grid.Row="0" Grid.Column="1" 
                 Margin="10">
 
-            <TextBox Style="{StaticResource ModernTextBox}" Text="Example"/>
+            <TextBox Style="{StaticResource ModernTextBox}" Tag="Example"/>
         </Border>
 
         <Border BorderBrush="Black"
@@ -66,7 +79,7 @@
         <Border Grid.Row="1" Grid.Column="1" 
                 Margin="10">
 
-            <TextBox Style="{StaticResource ModernTextBox}" Text="Example"/>
+            <TextBox Style="{StaticResource ModernTextBox}" Tag="Example"/>
         </Border>
 
         <Border BorderBrush="Black"
@@ -78,7 +91,7 @@
         <Border Grid.Row="2" Grid.Column="1" 
                 Margin="10">
 
-            <TextBox Style="{StaticResource ModernTextBox}" Text="Example"/>
+            <TextBox Style="{StaticResource ModernTextBox}" Tag="Example"/>
         </Border>
 
         <Border BorderBrush="Black"
@@ -91,7 +104,7 @@
         <Border Grid.Row="3" Grid.Column="1" 
                 Margin="10">
 
-            <TextBox Style="{StaticResource ModernTextBox}" Text="Example"/>
+            <TextBox Style="{StaticResource ModernTextBox}" Tag="Example"/>
         </Border>
 
         <Border BorderBrush="Black"
@@ -104,7 +117,7 @@
         <Border Grid.Row="4" Grid.Column="1" 
                 Margin="10">
 
-            <TextBox Style="{StaticResource ModernTextBox}" Text="Example"/>
+            <TextBox Style="{StaticResource ModernTextBox}" Tag="Example"/>
         </Border>
 
         <Border BorderBrush="Black"
@@ -117,7 +130,7 @@
         <Border Grid.Row="5" Grid.Column="1" 
                 Margin="10">
 
-            <TextBox Style="{StaticResource ModernTextBox}" Text="Example"/>
+            <TextBox Style="{StaticResource ModernTextBox}" Tag="Example"/>
         </Border>
 
         <Border BorderBrush="Black"
@@ -130,7 +143,12 @@
         <Border Grid.Row="6" Grid.Column="1" 
                 Margin="10">
 
-            <TextBox Style="{StaticResource ModernTextBox}" Text="Example"/>
+            <TextBox Style="{StaticResource ModernTextBox}" Tag="Example"/>
+        </Border>
+
+        <Border Grid.Row="7">
+            <Button Content="{Binding ButtonText}"
+                    Command="{Binding ToggleButtonsCommand}"/>
         </Border>
 
     </Grid>

@@ -1,5 +1,8 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    
+    
     <Style TargetType="{x:Type TextBox}"
            x:Key="ModernTextBox">
         <Setter Property="Template">
@@ -16,11 +19,12 @@
                                      Background="Transparent"
                                      VerticalAlignment="Center"
                                      Padding="5"
-                                     Foreground="#CFCFCF"
-                                     x:Name="SearchBox"/>
+                                     Foreground="Black"
+                                     x:Name="SearchBox"
+                                     Text="{TemplateBinding Text}"/>
 
                             <TextBlock IsHitTestVisible="False"
-                                       Text="{TemplateBinding Tag}"
+                                       Text="{TemplateBinding Tag}" 
                                        VerticalAlignment="Center"
                                        HorizontalAlignment="Left"
                                        Margin="5,0,0,0"

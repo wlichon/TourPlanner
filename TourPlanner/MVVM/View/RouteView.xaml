@@ -3,9 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:TourPlanner.MVVM.View" xmlns:viewmodel="clr-namespace:TourPlanner.MVVM.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:MainViewModel}"
-             mc:Ignorable="d" 
+             xmlns:local="clr-namespace:TourPlanner.MVVM.View" 
+             xmlns:ViewModel="clr-namespace:TourPlanner.MVVM.ViewModel"
+             d:DataContext="{d:DesignInstance Type=ViewModel:MainViewModel}"
+             mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.DataContext>
+        <ViewModel:RouteViewModel/>
+
+    </UserControl.DataContext>
+
+    
+
     <Grid Background="AntiqueWhite">
         <Grid.RowDefinitions>
             <RowDefinition Height="225"/>
@@ -42,7 +52,7 @@
                     <Border Margin="0"
                                 Width="660">
                         <TextBox 
-                                     Text="add or remove"
+                                     Tag="add or remove"
                                      Style="{StaticResource ModernTextBox}"/>
 
                     </Border>
@@ -51,7 +61,7 @@
                                 Background="Transparent" 
                                 Foreground="WhiteSmoke" 
                                 BorderThickness="0" 
-                                Margin="0 0 0 0"                           />
+                                Margin="0 0 0 0"/>
                     <Button Height="20" Width="20"
                                 Content="🗕" 
                                 Background="Transparent" 
@@ -70,7 +80,18 @@
                 </StackPanel>
                 
                 <!-- Tour logs-->
-                <ListView ItemsSource="{Binding TourLogs}"/>
+
+                <Border Grid.Row="1"
+                        Margin="5"
+                        BorderThickness="4"
+                        BorderBrush="Black">
+                    <ListView ItemsSource="{Binding TourLogs}"
+                              Background="Transparent"
+                              ItemContainerStyle="{StaticResource TourLogCard}">
+                        
+                    </ListView>
+                    
+                </Border>
 
 
             </Grid>

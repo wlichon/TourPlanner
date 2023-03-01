@@ -144,6 +144,7 @@
                                 Width="175">
                             <TextBox 
                                      Tag="add or remove"
+                                     Text="{Binding TourBoxContent}"
                                      Style="{StaticResource ModernTextBox}"/>
 
                         </Border>
@@ -152,15 +153,15 @@
                                 Background="Transparent" 
                                 Foreground="WhiteSmoke" 
                                 BorderThickness="0" 
-                                Margin="0 0 0 0"                           />
+                                Margin="0 0 0 0"
+                                Command="{Binding AddTourButton}"/>
                         <Button Height="20" Width="20"
                                 Content="🗕" 
                                 Background="Transparent" 
                                 Foreground="WhiteSmoke" 
                                 BorderThickness="0"
                                 Margin="0 0 0 7"
-                                
-                                
+                                Command="{Binding RemoveTourButton}"                                
                                 VerticalAlignment="Center"/>
                         <Button Height="20" 
                                 Width="20" 
@@ -206,7 +207,9 @@
 
                 
                 <!-- Route Info Buttons -->
+                
                 <Button Content="General" Style="{StaticResource RouteInfoButton}" Command="{Binding GeneralViewCommand}"/>
+                
                 <Button Content="Route" Style="{StaticResource RouteInfoButton}" Command="{Binding RouteViewCommand}" Grid.Column="1"/>
                 <Button Content="Other" Style="{StaticResource RouteInfoButton}" Command="{Binding OtherViewCommand}" Grid.Column="2"/>
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,23 @@ namespace TourPlanner.MVVM.ViewModel
 {
     internal class MainViewModel : ObservableObject
     {
+        private string _tourBoxContent;
+
+        private TourModel _selectedTour;
+
+        private ObservableCollection<TourModel> _tours;
+
+        public string TourBoxContent
+        {
+            get { return _tourBoxContent; }
+            set { 
+                _tourBoxContent = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public RelayCommand AddTourButton { get; set; }
+        public RelayCommand RemoveTourButton { get; set; }
         public RelayCommand GeneralViewCommand { get; set; }
 
         public RelayCommand RouteViewCommand { get; set; }
@@ -23,11 +41,23 @@ namespace TourPlanner.MVVM.ViewModel
 
         public OtherViewModel OtherVM { get; set; }
 
-        public ObservableCollection<TourModel> Tours { get; set; }
+        public ObservableCollection<TourModel> Tours {
+            get { return _tours; }
+            
+        }
 
-        public ObservableCollection<TourLogModel> TourLogs { get; set; }  
 
-        public TourModel SelectedTour { get; set; }
+        public TourModel SelectedTour { 
+            get { return _selectedTour; }
+            set
+            {
+                if(value != _selectedTour)
+                {
+                    _selectedTour = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
 
 
 
@@ -43,27 +73,45 @@ namespace TourPlanner.MVVM.ViewModel
             }
         }
 
+        private void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            //System.Windows.MessageBox.Show("Firing");
+        }
+
         public MainViewModel()
         {
-            Tours = new ObservableCollection<TourModel>();
-            TourLogs = new ObservableCollection<TourLogModel>();
+            _tours = new ObservableCollection<TourModel>();
+            _tours.CollectionChanged += OnCollectionChanged;
+
+            TourBoxContent = "";
+            
 
             for(int i= 0; i < 5; i++)
             {
                 Tours.Add(new TourModel
                 {
-                    Tourname = "Exampletour"
+                    TourID = 0,
+                    Tourname = "Andreaspark"
                 });
 
             }
 
             for (int i = 0; i < 5; i++)
             {
-                TourLogs.Add(new TourLogModel
+                Tours.Add(new TourModel
                 {
-                    Date = DateTime.Now,
-                    Distance = 2500,
-                    Duration = TimeSpan.FromSeconds(600)
+                    TourID = 1,
+                    Tourname = "Schoenbrunn"
+                });
+
+            }
+
+            for (int i = 0; i < 5; i++)
+            {
+                Tours.Add(new TourModel
+                {
+                    TourID = 2,
+                    Tourname = "Kahlenberg"
                 });
 
             }
@@ -74,6 +122,23 @@ namespace TourPlanner.MVVM.ViewModel
             RouteVM = new RouteViewModel();
 
             OtherVM = new OtherViewModel();
+
+            AddTourButton = new RelayCommand(o =>
+            {
+                Tours.Add(new TourModel { TourID = 0, Tourname = TourBoxContent });
+
+                TourBoxContent = "";
+            });
+
+            RemoveTourButton = new RelayCommand(o =>
+            {
+                var Tour = Tours.FirstOrDefault(x => x.Tourname == TourBoxContent);
+                if (Tour != null)
+                {
+                    Tours.Remove(Tour);
+                }
+                TourBoxContent = "";
+            });
 
             GeneralViewCommand = new RelayCommand(o =>
             {

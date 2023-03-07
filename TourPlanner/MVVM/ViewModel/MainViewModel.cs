@@ -14,9 +14,9 @@ namespace TourPlanner.MVVM.ViewModel
     {
         private string _tourBoxContent;
 
-        private TourModel _selectedTour;
+        private Tour _selectedTour;
 
-        private ObservableCollection<TourModel> _tours;
+        private ObservableCollection<Tour> _tours;
 
         public string TourBoxContent
         {
@@ -41,13 +41,13 @@ namespace TourPlanner.MVVM.ViewModel
 
         public OtherViewModel OtherVM { get; set; }
 
-        public ObservableCollection<TourModel> Tours {
+        public ObservableCollection<Tour> Tours {
             get { return _tours; }
             
         }
 
 
-        public TourModel SelectedTour { 
+        public Tour SelectedTour { 
             get { return _selectedTour; }
             set
             {
@@ -80,7 +80,7 @@ namespace TourPlanner.MVVM.ViewModel
 
         public MainViewModel()
         {
-            _tours = new ObservableCollection<TourModel>();
+            _tours = new ObservableCollection<Tour>();
             _tours.CollectionChanged += OnCollectionChanged;
 
             TourBoxContent = "";
@@ -88,9 +88,9 @@ namespace TourPlanner.MVVM.ViewModel
 
             for(int i= 0; i < 5; i++)
             {
-                Tours.Add(new TourModel
+                Tours.Add(new Tour
                 {
-                    TourID = 0,
+                    TourId = 0,
                     Tourname = "Andreaspark"
                 });
 
@@ -98,9 +98,9 @@ namespace TourPlanner.MVVM.ViewModel
 
             for (int i = 0; i < 5; i++)
             {
-                Tours.Add(new TourModel
+                Tours.Add(new Tour
                 {
-                    TourID = 1,
+                    TourId = 1,
                     Tourname = "Schoenbrunn"
                 });
 
@@ -108,9 +108,9 @@ namespace TourPlanner.MVVM.ViewModel
 
             for (int i = 0; i < 5; i++)
             {
-                Tours.Add(new TourModel
+                Tours.Add(new Tour
                 {
-                    TourID = 2,
+                    TourId = 2,
                     Tourname = "Kahlenberg"
                 });
 
@@ -125,7 +125,7 @@ namespace TourPlanner.MVVM.ViewModel
 
             AddTourButton = new RelayCommand(o =>
             {
-                Tours.Add(new TourModel { TourID = 0, Tourname = TourBoxContent });
+                Tours.Add(new Tour { TourId = 0, Tourname = TourBoxContent });
 
                 TourBoxContent = "";
             });

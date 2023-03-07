@@ -54,7 +54,7 @@ namespace TourPlanner.MVVM.View {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/TourPlanner;V1.0.0.0;component/mvvm/view/routeview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/TourPlanner;component/mvvm/view/routeview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\MVVM\View\RouteView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

@@ -13,11 +13,11 @@ namespace TourPlanner.MVVM.ViewModel
     internal class RouteViewModel : ObservableObject
     {
 
-        public ObservableCollection<TourLogModel> TourLogs { get; set; }
+        public ObservableCollection<TourLog> TourLogs { get; set; }
 
-        private TourModel _selectedTour;
+        private Tour _selectedTour;
 
-        public TourModel SelectedTour
+        public Tour SelectedTour
         {
             get { return _selectedTour; }
             set { 
@@ -35,11 +35,11 @@ namespace TourPlanner.MVVM.ViewModel
             //_mainViewModel = new MainViewModel();
             //_mainViewModel.PropertyChanged += MainViewModel_PropertyChanged;
 
-            TourLogs = new ObservableCollection<TourLogModel>();
+            TourLogs = new ObservableCollection<TourLog>();
 
             for (int i = 0; i < 5; i++)
             {
-                TourLogs?.Add(new TourLogModel
+                TourLogs?.Add(new TourLog
                 {
                     TourID = 0,
                     Date = DateTime.Now,
@@ -51,7 +51,7 @@ namespace TourPlanner.MVVM.ViewModel
 
             for (int i = 0; i < 5; i++)
             {
-                TourLogs?.Add(new TourLogModel
+                TourLogs?.Add(new TourLog
                 {
                     TourID = 1,
                     Date = DateTime.Now,

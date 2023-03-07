@@ -61,7 +61,7 @@ namespace TourPlanner {
             
             #line default
             #line hidden
-            System.Uri resourceLocater = new System.Uri("/TourPlanner;V1.0.0.0;component/app.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/TourPlanner;component/app.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\App.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

@@ -7,17 +7,17 @@ using System.Collections.ObjectModel;
 
 namespace TourPlanner.MVVM.Model
 {
-    internal class TourModel
+    internal class Tour
     {
-        private int _tourID;
+        private int _tourId;
 
-        public int TourID
+        public int TourId
         {
-            get { return _tourID; }
-            set { _tourID = value; }
+            get { return _tourId; }
+            set { _tourId = value; }
         }
 
-        private string _tourname;
+        private string? _tourname;
 
         public string Tourname
         {

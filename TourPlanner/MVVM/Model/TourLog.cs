@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TourPlanner.MVVM.Model
 {
-    internal class TourLogModel
+    internal class TourLog
     {
         private int _tourID;
 

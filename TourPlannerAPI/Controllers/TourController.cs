@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace TourPlannerAPI.Controllers
 {
@@ -7,62 +8,30 @@ namespace TourPlannerAPI.Controllers
     [ApiController]
     public class TourController : ControllerBase
     {
+        private DataContext _context;
+
+        public TourController(DataContext context)
+        {
+            _context = context;
+        }
 
         private static List<Tour> tours = new List<Tour>();
 
         private static bool ToursFilled = false;
-        static private void FillTours()
-        {
 
-            for (int i = 0; i < 5; i++)
-            {
-                tours.Add(new Tour
-                {
-                    TourId = i,
-                    TourName = "Andreaspark"
-                });
 
-            }
-
-            for (int i = 0; i < 5; i++)
-            {
-                tours.Add(new Tour
-                {
-                    TourId = i + 5,
-                    TourName = "Schoenbrunn"
-                });
-
-            }
-
-            for (int i = 0; i < 5; i++)
-            {
-                tours.Add(new Tour
-                {
-                    TourId = i + 10,
-                    TourName = "Kahlenberg"
-                });
-
-            }
-
-            ToursFilled = true;
-        }
-
-        public TourController() : base()
-        {
-            if (!ToursFilled)
-                FillTours();
-        }
-
+      
         [HttpGet]
         public async Task<ActionResult<List<Tour>>> Get()
         {
-            return Ok(tours);
+
+            return Ok(await _context.Tours.ToListAsync());
         }
 
         [HttpGet("{tourId}")]
         public async Task<ActionResult<Tour>> Get(int tourId)
         {
-            var tour = tours.Find(tour => tour.TourId == tourId);
+            var tour = await _context.Tours.FindAsync(tourId);
             if (tour == null)
                 return BadRequest("tour not found");
             return Ok(tour);
@@ -73,18 +42,22 @@ namespace TourPlannerAPI.Controllers
 
         public async Task<ActionResult<List<Tour>>> AddTour(Tour tour)
         {
-            tours.Add(tour);
-            return Ok(tours);
+            _context.Tours.Add(tour);
+            await _context.SaveChangesAsync();
+
+            return Ok(_context.Tours);
         }
 
         [HttpPut]
-        public async Task<ActionResult<List<Tour>>> UpdateTour(Tour request)
+        public async Task<ActionResult<Tour>> UpdateTour(Tour request)
         {
-            var tour = tours.Find(tour => tour.TourId == request.TourId);
+            var tour = await _context.Tours.FindAsync(request.TourId);
             if (tour == null)
                 return BadRequest("tour not found");
 
             tour.TourName = request.TourName;
+
+            await _context.SaveChangesAsync();
 
             return Ok(tour);
         }
@@ -93,11 +66,12 @@ namespace TourPlannerAPI.Controllers
 
         public async Task<ActionResult<List<Tour>>> Delete(int tourId)
         {
-            var tour = tours.Find(tour => tour.TourId == tourId);
+            var tour = await _context.Tours.FindAsync(tourId);
             if (tour == null)
                 return BadRequest("tour not found");
 
-            tours.Remove(tour);
+            _context.Tours.Remove(tour);
+            await _context.SaveChangesAsync();
             return Ok(tours);
         }
 

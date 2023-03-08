@@ -1,8 +1,25 @@
+global using TourPlannerAPI.Data;
+global using Npgsql.EntityFrameworkCore.PostgreSQL;
+using Microsoft.EntityFrameworkCore;
+using System.Data.SqlClient;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+
+/*using (SqlConnection conn = new SqlConnection(builder.Configuration.GetConnectionString("TourPlannerDB")))
+{
+    conn.Open(); // throws if invalid
+}
+*/
+
+
 builder.Services.AddControllers();
+builder.Services.AddDbContext<DataContext>(options =>
+{
+    options.UseNpgsql(builder.Configuration.GetConnectionString("TourPlannerDB"));
+});
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

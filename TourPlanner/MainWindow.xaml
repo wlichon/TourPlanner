@@ -144,8 +144,7 @@
                                 Width="175">
                             <TextBox 
                                      Tag="add or remove"
-                                     Text="{Binding TourBoxContent}"
-                                     Style="{StaticResource ModernTextBox}"/>
+                                     Text="{Binding TourBoxContent}"/>
 
                         </Border>
                         <Button Height="20" Width="20" 
@@ -205,7 +204,7 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                
+               
                 <!-- Route Info Buttons -->
                 
                 <Button Content="General" Style="{StaticResource RouteInfoButton}" Command="{Binding GeneralViewCommand}"/>

@@ -5,16 +5,12 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TourPlanner.MVVM.View" 
              xmlns:ViewModel="clr-namespace:TourPlanner.MVVM.ViewModel"
-             d:DataContext="{d:DesignInstance Type=ViewModel:MainViewModel}"
              mc:Ignorable="d"
-             d:DesignHeight="450" d:DesignWidth="800">
-
-    <UserControl.DataContext>
-        <ViewModel:RouteViewModel/>
-
-    </UserControl.DataContext>
+             d:DesignHeight="450" d:DesignWidth="800"
+             d:DataContext="{d:DesignInstance Type=ViewModel:RouteViewModel}">
 
     
+
 
     <Grid Background="AntiqueWhite">
         <Grid.RowDefinitions>
@@ -86,9 +82,13 @@
                         BorderThickness="4"
                         BorderBrush="Black">
                     <ListView ItemsSource="{Binding TourLogs}"
-                              Background="Transparent"
-                              ItemContainerStyle="{StaticResource TourLogCard}">
-                        
+                              Background="Transparent">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Date" DisplayMemberBinding="{Binding Date}"/>
+                                <GridViewColumn Header="Duration" DisplayMemberBinding="{Binding Duration}"/>
+                            </GridView>
+                        </ListView.View>
                     </ListView>
                     
                 </Border>

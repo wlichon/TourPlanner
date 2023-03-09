@@ -5,13 +5,15 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ModernDesign.Core;
+using System.Windows;
+using TourPlanner.Core;
 using TourPlanner.MVVM.Model;
 
 namespace TourPlanner.MVVM.ViewModel
 {
     internal class MainViewModel : ObservableObject
     {
+
         private string _tourBoxContent;
 
         private Tour _selectedTour;
@@ -53,8 +55,11 @@ namespace TourPlanner.MVVM.ViewModel
             {
                 if(value != _selectedTour)
                 {
+                    RouteVM.SelectedTour = value;
+                    GeneralVM.SelectedTour = value;
                     _selectedTour = value;
                     OnPropertyChanged();
+                    
                 }
             }
         }
@@ -80,18 +85,56 @@ namespace TourPlanner.MVVM.ViewModel
 
         public MainViewModel()
         {
-            _tours = new ObservableCollection<Tour>();
-            _tours.CollectionChanged += OnCollectionChanged;
 
-            TourBoxContent = "";
+            _tours = new ObservableCollection<Tour>();
+
+            //_tours.CollectionChanged += OnCollectionChanged;
             
 
-            for(int i= 0; i < 5; i++)
+            TourBoxContent = "";
+
+
+            var andreasLogs = new ObservableCollection<TourLog>();
+
+            //andreasLogs.CollectionChanged += OnCollectionChanged;
+
+            for (int i = 0; i < 5; i++)
+            {
+                andreasLogs.Add(new TourLog
+                {
+                    TourID = 0,
+                    Date = DateTime.Now,
+                    Distance = 1500,
+                    Duration = TimeSpan.FromSeconds(900)
+                });
+
+            }
+
+            var schoenbrunnLogs = new ObservableCollection<TourLog>();
+
+            //schoenbrunnLogs.CollectionChanged += OnCollectionChanged;
+
+
+            for (int i = 0; i < 5; i++)
+            {
+                schoenbrunnLogs.Add(new TourLog
+                {
+                    TourID = 1,
+                    Date = DateTime.Now,
+                    Distance = 2500,
+                    Duration = TimeSpan.FromSeconds(600)
+                });
+
+            }
+
+            for (int i= 0; i < 5; i++)
             {
                 Tours.Add(new Tour
                 {
                     TourId = 0,
-                    Tourname = "Andreaspark"
+                    TourName = "Andreaspark",
+                    TourInfo = new TourInfo { TransportType = "Car"},
+                    TourLogs = andreasLogs
                 });
 
             }
@@ -101,7 +144,9 @@ namespace TourPlanner.MVVM.ViewModel
                 Tours.Add(new Tour
                 {
                     TourId = 1,
-                    Tourname = "Schoenbrunn"
+                    TourName = "Schoenbrunn",
+                    TourInfo = new TourInfo { To = "Wien"},
+                    TourLogs = schoenbrunnLogs
                 });
 
             }
@@ -111,7 +156,7 @@ namespace TourPlanner.MVVM.ViewModel
                 Tours.Add(new Tour
                 {
                     TourId = 2,
-                    Tourname = "Kahlenberg"
+                    TourName = "Kahlenberg"
                 });
 
             }
@@ -123,16 +168,18 @@ namespace TourPlanner.MVVM.ViewModel
 
             OtherVM = new OtherViewModel();
 
+
+
             AddTourButton = new RelayCommand(o =>
             {
-                Tours.Add(new Tour { TourId = 0, Tourname = TourBoxContent });
+                Tours.Add(new Tour { TourId = 0, TourName = TourBoxContent });
 
                 TourBoxContent = "";
             });
 
             RemoveTourButton = new RelayCommand(o =>
             {
-                var Tour = Tours.FirstOrDefault(x => x.Tourname == TourBoxContent);
+                var Tour = Tours.FirstOrDefault(x => x.TourName == TourBoxContent);
                 if (Tour != null)
                 {
                     Tours.Remove(Tour);

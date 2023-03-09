@@ -1,4 +1,4 @@
-﻿using ModernDesign.Core;
+﻿using TourPlanner.Core;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -7,68 +7,51 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TourPlanner.MVVM.Model;
+using System.Windows;
 
 namespace TourPlanner.MVVM.ViewModel
 {
     internal class RouteViewModel : ObservableObject
     {
 
-        public ObservableCollection<TourLog> TourLogs { get; set; }
 
         private Tour _selectedTour;
+        private ObservableCollection<TourLog> _tourLogs = new ObservableCollection<TourLog>();
 
         public Tour SelectedTour
         {
             get { return _selectedTour; }
             set { 
-                _selectedTour = value;
-                OnPropertyChanged();
+                if (_selectedTour != value)
+                {
+                    _selectedTour = value;
+                    TourLogs = _selectedTour?.TourLogs ?? new ObservableCollection<TourLog>();
+                    OnPropertyChanged();
+
+                }
 
             }
         }
+        
 
-        private MainViewModel _mainViewModel;
-
-
+        public ObservableCollection<TourLog> TourLogs
+        {
+            get { return _tourLogs; }
+            set 
+            { 
+                _tourLogs = value;
+                OnPropertyChanged();
+            }
+        }
+        
         public RouteViewModel()
         {
-            //_mainViewModel = new MainViewModel();
-            //_mainViewModel.PropertyChanged += MainViewModel_PropertyChanged;
+      
 
             TourLogs = new ObservableCollection<TourLog>();
+            
+    
 
-            for (int i = 0; i < 5; i++)
-            {
-                TourLogs?.Add(new TourLog
-                {
-                    TourID = 0,
-                    Date = DateTime.Now,
-                    Distance = 1500,
-                    Duration = TimeSpan.FromSeconds(900)
-                });
-
-            }
-
-            for (int i = 0; i < 5; i++)
-            {
-                TourLogs?.Add(new TourLog
-                {
-                    TourID = 1,
-                    Date = DateTime.Now,
-                    Distance = 2500,
-                    Duration = TimeSpan.FromSeconds(600)
-                });
-
-            }
-        }
-
-        private void MainViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName == nameof(MainViewModel.SelectedTour))
-            {
-                // Update the value of MyField in the other class
-                SelectedTour = _mainViewModel.SelectedTour;
-            }
         }
 
     }

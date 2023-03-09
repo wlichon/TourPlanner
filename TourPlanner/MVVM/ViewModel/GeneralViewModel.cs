@@ -1,9 +1,10 @@
-﻿using ModernDesign.Core;
+﻿using TourPlanner.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TourPlanner.MVVM.Model;
 
 namespace TourPlanner.MVVM.ViewModel
 {
@@ -12,6 +13,21 @@ namespace TourPlanner.MVVM.ViewModel
         private bool _textboxesEnabled = false;
 
         private string _buttonText;
+
+        private Tour _selectedTour;
+
+
+        public Tour SelectedTour { 
+            get { return _selectedTour; }
+            set
+            {
+                if(value != _selectedTour)
+                {
+                    _selectedTour = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
 
         public string ButtonText
         {

@@ -5,10 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TourPlanner.MVVM.View" 
              xmlns:ViewModel="clr-namespace:TourPlanner.MVVM.ViewModel" 
-             d:DataContext="{d:DesignInstance Type=ViewModel:GeneralViewModel}"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-
+             d:DesignHeight="450" d:DesignWidth="800"
+             d:DataContext="{d:DesignInstance Type=ViewModel:GeneralViewModel}">
 
 
     <Grid Background="#252525">
@@ -65,7 +64,7 @@
         <Border Grid.Row="0" Grid.Column="1" 
                 Margin="10">
 
-            <TextBox Style="{StaticResource ModernTextBox}" Tag="Example"/>
+            <TextBox Style="{StaticResource ModernTextBox}" Tag="Example" Text="{Binding SelectedTour.TourName}"/>
         </Border>
 
         <Border BorderBrush="Black"
@@ -79,7 +78,7 @@
         <Border Grid.Row="1" Grid.Column="1" 
                 Margin="10">
 
-            <TextBox Style="{StaticResource ModernTextBox}" Tag="Example"/>
+            <TextBox Style="{StaticResource ModernTextBox}" Tag="Example" Text="{Binding SelectedTour.TourInfo.Description}"/>
         </Border>
 
         <Border BorderBrush="Black"
@@ -91,7 +90,7 @@
         <Border Grid.Row="2" Grid.Column="1" 
                 Margin="10">
 
-            <TextBox Style="{StaticResource ModernTextBox}" Tag="Example"/>
+            <TextBox Style="{StaticResource ModernTextBox}" Tag="Example" Text="{Binding SelectedTour.TourInfo.From}"/>
         </Border>
 
         <Border BorderBrush="Black"
@@ -104,7 +103,7 @@
         <Border Grid.Row="3" Grid.Column="1" 
                 Margin="10">
 
-            <TextBox Style="{StaticResource ModernTextBox}" Tag="Example"/>
+            <TextBox Style="{StaticResource ModernTextBox}" Tag="Example" Text="{Binding SelectedTour.TourInfo.To}"/>
         </Border>
 
         <Border BorderBrush="Black"
@@ -117,7 +116,7 @@
         <Border Grid.Row="4" Grid.Column="1" 
                 Margin="10">
 
-            <TextBox Style="{StaticResource ModernTextBox}" Tag="Example"/>
+            <TextBox Style="{StaticResource ModernTextBox}" Tag="Example" Text="{Binding SelectedTour.TourInfo.TransportType}"/>
         </Border>
 
         <Border BorderBrush="Black"
@@ -130,7 +129,7 @@
         <Border Grid.Row="5" Grid.Column="1" 
                 Margin="10">
 
-            <TextBox Style="{StaticResource ModernTextBox}" Tag="Example"/>
+            <TextBox Style="{StaticResource ModernTextBox}" Tag="Example" Text="{Binding SelectedTour.TourInfo.Distance}"/>
         </Border>
 
         <Border BorderBrush="Black"
@@ -143,7 +142,7 @@
         <Border Grid.Row="6" Grid.Column="1" 
                 Margin="10">
 
-            <TextBox Style="{StaticResource ModernTextBox}" Tag="Example"/>
+            <TextBox Style="{StaticResource ModernTextBox}" Tag="Example" Text="{Binding SelectedTour.TourInfo.EstimatedTime}"/>
         </Border>
 
         <Border Grid.Row="7">

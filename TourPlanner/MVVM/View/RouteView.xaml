@@ -9,7 +9,7 @@
              d:DesignHeight="450" d:DesignWidth="800"
              d:DataContext="{d:DesignInstance Type=ViewModel:RouteViewModel}">
 
-    
+
 
 
     <Grid Background="AntiqueWhite">
@@ -22,7 +22,6 @@
                 CornerRadius="5"
                 BorderThickness="1"
                 BorderBrush="Black">
-            
         </Border>
 
         <Border Margin="8"
@@ -81,14 +80,10 @@
                         Margin="5"
                         BorderThickness="4"
                         BorderBrush="Black">
-                    <ListView ItemsSource="{Binding TourLogs}"
-                              Background="Transparent">
-                        <ListView.View>
-                            <GridView>
-                                <GridViewColumn Header="Date" DisplayMemberBinding="{Binding Date}"/>
-                                <GridViewColumn Header="Duration" DisplayMemberBinding="{Binding Duration}"/>
-                            </GridView>
-                        </ListView.View>
+                    <ListView ItemsSource="{Binding SelectedTour.TourLogs}"
+                              Background="Transparent"
+                              ItemContainerStyle="{StaticResource TourLogCard}">
+                        
                     </ListView>
                     
                 </Border>

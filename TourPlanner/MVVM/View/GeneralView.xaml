@@ -23,9 +23,7 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
+            
         </Grid.RowDefinitions>
         
         <Grid.Resources>
@@ -78,7 +76,7 @@
         <Border Grid.Row="1" Grid.Column="1" 
                 Margin="10">
 
-            <TextBox Style="{StaticResource ModernTextBox}" Tag="Example" Text="{Binding SelectedTour.TourInfo.Description}"/>
+            <TextBox Style="{StaticResource ModernTextBox}" Tag="Describe your tour" Text="{Binding SelectedTour.TourInfo.Description}"/>
         </Border>
 
         <Border BorderBrush="Black"
@@ -90,7 +88,7 @@
         <Border Grid.Row="2" Grid.Column="1" 
                 Margin="10">
 
-            <TextBox Style="{StaticResource ModernTextBox}" Tag="Example" Text="{Binding SelectedTour.TourInfo.From}"/>
+            <TextBox Style="{StaticResource ModernTextBox}" Tag="Enter your starting point" Text="{Binding SelectedTour.TourInfo.From}"/>
         </Border>
 
         <Border BorderBrush="Black"
@@ -103,52 +101,54 @@
         <Border Grid.Row="3" Grid.Column="1" 
                 Margin="10">
 
-            <TextBox Style="{StaticResource ModernTextBox}" Tag="Example" Text="{Binding SelectedTour.TourInfo.To}"/>
+            <TextBox Style="{StaticResource ModernTextBox}" Tag="Enter your destination" Text="{Binding SelectedTour.TourInfo.To}"/>
         </Border>
 
         <Border BorderBrush="Black"
                 BorderThickness="2"
                 Grid.Row="4">
-            <Label Content="Transport type:"/>
+            <ComboBox Style="{DynamicResource ComboBoxTheme}"
+                      VerticalContentAlignment="Center"
+                      HorizontalContentAlignment="Center"
+                      FontSize="18">
+                <ComboBoxItem IsSelected="True">Car</ComboBoxItem>
+                <ComboBoxItem>Bicycle</ComboBoxItem>
+                <ComboBoxItem>On Foot</ComboBoxItem>
+            </ComboBox>
 
         </Border>
-        
+
         <Border Grid.Row="4" Grid.Column="1" 
                 Margin="10">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="0.5*"/>
+                </Grid.ColumnDefinitions>
 
-            <TextBox Style="{StaticResource ModernTextBox}" Tag="Example" Text="{Binding SelectedTour.TourInfo.TransportType}"/>
-        </Border>
+                <Border Grid.Column="0" 
+                Margin="0 0 5 0">
 
-        <Border BorderBrush="Black"
-                BorderThickness="2"
-                Grid.Row="5">
-            <Label Content="Distance:"/>
+                    <TextBox IsEnabled="False" Style="{StaticResource ModernTextBox}" Tag="From or To is not specified" Text="{Binding SelectedTour.TourInfo.Distance}"/>
 
-        </Border>
+                </Border>
 
-        <Border Grid.Row="5" Grid.Column="1" 
-                Margin="10">
 
-            <TextBox Style="{StaticResource ModernTextBox}" Tag="Example" Text="{Binding SelectedTour.TourInfo.Distance}"/>
-        </Border>
+                <Border  Grid.Column="1" Margin="5 0 0 0">
 
-        <Border BorderBrush="Black"
-                BorderThickness="2"
-                Grid.Row="6">
-            <Label Content="Estimated time:"/>
+                    <TextBox IsEnabled="False" Style="{StaticResource ModernTextBox}" Tag="From or To is not specified" Text="{Binding SelectedTour.TourInfo.EstimatedTime}"/>
+                </Border>
 
-        </Border>
-
-        <Border Grid.Row="6" Grid.Column="1" 
-                Margin="10">
-
-            <TextBox Style="{StaticResource ModernTextBox}" Tag="Example" Text="{Binding SelectedTour.TourInfo.EstimatedTime}"/>
-        </Border>
-
-        <Border Grid.Row="7">
-            <Button Content="{Binding ButtonText}"
+                <Border Grid.Column="2"
+                        CornerRadius="20">
+                    <Button Content="{Binding ButtonText}"
                     Command="{Binding ToggleButtonsCommand}"/>
+                </Border>
+
+            </Grid>
         </Border>
+
 
     </Grid>
 </UserControl>

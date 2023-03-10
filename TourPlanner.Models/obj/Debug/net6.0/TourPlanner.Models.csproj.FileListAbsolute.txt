@@ -1,0 +1,12 @@
+C:\Users\wikto\OneDrive\Desktop\GitProjects\TourPlanner\TourPlanner.Models\obj\Debug\net6.0\TourPlanner.Models.csproj.AssemblyReference.cache
+C:\Users\wikto\OneDrive\Desktop\GitProjects\TourPlanner\TourPlanner.Models\obj\Debug\net6.0\TourPlanner.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\wikto\OneDrive\Desktop\GitProjects\TourPlanner\TourPlanner.Models\obj\Debug\net6.0\TourPlanner.Models.AssemblyInfoInputs.cache
+C:\Users\wikto\OneDrive\Desktop\GitProjects\TourPlanner\TourPlanner.Models\obj\Debug\net6.0\TourPlanner.Models.AssemblyInfo.cs
+C:\Users\wikto\OneDrive\Desktop\GitProjects\TourPlanner\TourPlanner.Models\obj\Debug\net6.0\TourPlanner.Models.csproj.CoreCompileInputs.cache
+C:\Users\wikto\OneDrive\Desktop\GitProjects\TourPlanner\TourPlanner.Models\bin\Debug\net6.0\TourPlanner.Models.deps.json
+C:\Users\wikto\OneDrive\Desktop\GitProjects\TourPlanner\TourPlanner.Models\bin\Debug\net6.0\TourPlanner.Models.dll
+C:\Users\wikto\OneDrive\Desktop\GitProjects\TourPlanner\TourPlanner.Models\bin\Debug\net6.0\TourPlanner.Models.pdb
+C:\Users\wikto\OneDrive\Desktop\GitProjects\TourPlanner\TourPlanner.Models\obj\Debug\net6.0\TourPlanner.Models.dll
+C:\Users\wikto\OneDrive\Desktop\GitProjects\TourPlanner\TourPlanner.Models\obj\Debug\net6.0\refint\TourPlanner.Models.dll
+C:\Users\wikto\OneDrive\Desktop\GitProjects\TourPlanner\TourPlanner.Models\obj\Debug\net6.0\TourPlanner.Models.pdb
+C:\Users\wikto\OneDrive\Desktop\GitProjects\TourPlanner\TourPlanner.Models\obj\Debug\net6.0\ref\TourPlanner.Models.dll

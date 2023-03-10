@@ -30,6 +30,9 @@
     <Page Update="MVVM\View\RouteView.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Theme\ComboBoxTheme.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Theme\RouteInfoButton.xaml">
       <SubType>Designer</SubType>
     </Page>

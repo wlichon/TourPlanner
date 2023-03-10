@@ -12,4 +12,8 @@
     <Folder Include="Images\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\TourPlanner.Models\TourPlanner.Models.csproj" />
+  </ItemGroup>
+
 </Project>

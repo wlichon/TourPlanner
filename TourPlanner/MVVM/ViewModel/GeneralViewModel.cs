@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TourPlanner.MVVM.Model;
+using TourPlanner.Models;
 
 namespace TourPlanner.MVVM.ViewModel
 {
@@ -73,6 +73,7 @@ namespace TourPlanner.MVVM.ViewModel
                 else
                 {
                     ButtonText = "Save";
+
                 }
 
                 TextboxesEnabled = !TextboxesEnabled;

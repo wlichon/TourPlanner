@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using TourPlanner.Core;
-using TourPlanner.MVVM.Model;
+using TourPlanner.Models;
 
 namespace TourPlanner.MVVM.ViewModel
 {
@@ -102,7 +102,7 @@ namespace TourPlanner.MVVM.ViewModel
             {
                 andreasLogs.Add(new TourLog
                 {
-                    TourID = 0,
+                    TourLogId = 0,
                     Date = DateTime.Now,
                     Distance = 1500,
                     Duration = TimeSpan.FromSeconds(900)
@@ -119,7 +119,7 @@ namespace TourPlanner.MVVM.ViewModel
             {
                 schoenbrunnLogs.Add(new TourLog
                 {
-                    TourID = 1,
+                    TourLogId = 1,
                     Date = DateTime.Now,
                     Distance = 2500,
                     Duration = TimeSpan.FromSeconds(600)

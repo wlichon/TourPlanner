@@ -1,11 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.33328.57
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32328.378
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TourPlanner", "TourPlanner\TourPlanner.csproj", "{A9541AA8-219A-4B28-8B25-D2A18783DE3C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TourPlannerAPI", "TourPlannerAPI\TourPlannerAPI.csproj", "{F34413F0-92DF-4E07-BE7E-0661CFD80FE8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TourPlannerAPI", "TourPlannerAPI\TourPlannerAPI.csproj", "{F34413F0-92DF-4E07-BE7E-0661CFD80FE8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TourPlanner.UnitTests", "TourPlanner.UnitTests\TourPlanner.UnitTests.csproj", "{5381A95A-1AC4-4E13-9CD3-846BF2A5B4D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TourPlanner.Models", "TourPlanner.Models\TourPlanner.Models.csproj", "{FA9ADC43-C77B-4646-B0E4-708F9F4FF78D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{F34413F0-92DF-4E07-BE7E-0661CFD80FE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F34413F0-92DF-4E07-BE7E-0661CFD80FE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F34413F0-92DF-4E07-BE7E-0661CFD80FE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5381A95A-1AC4-4E13-9CD3-846BF2A5B4D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5381A95A-1AC4-4E13-9CD3-846BF2A5B4D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5381A95A-1AC4-4E13-9CD3-846BF2A5B4D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5381A95A-1AC4-4E13-9CD3-846BF2A5B4D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA9ADC43-C77B-4646-B0E4-708F9F4FF78D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA9ADC43-C77B-4646-B0E4-708F9F4FF78D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA9ADC43-C77B-4646-B0E4-708F9F4FF78D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA9ADC43-C77B-4646-B0E4-708F9F4FF78D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

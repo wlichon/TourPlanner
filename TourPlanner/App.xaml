@@ -12,6 +12,7 @@
                 <ResourceDictionary Source="Theme/RouteInfoButton.xaml"/>
                 <ResourceDictionary Source="Theme/TourCard.xaml"/>
                 <ResourceDictionary Source="Theme/TourLogCard.xaml"/>
+                <ResourceDictionary Source="Theme/ComboBoxTheme.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
             <DataTemplate DataType="{x:Type ViewModel:GeneralViewModel}">

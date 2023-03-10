@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "DEtg5NIf6f5jtK/NSXYAnjncVa+EZ+I3iXNOVL2Boe4xKsvEjYlbM7vKgwhipt6lotUFREi31nKAb3pczLIxHA==",
+  "dgSpecHash": "4uWtqizvHto6QOelTqh2RFlZXsm6rt3UsK78+lCsjPu0TYl3mQrE3ys6mbfm12qtinjOqIswlSrT4guoKJS2uQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\wikto\\Desktop\\GitProjects\\TourPlanner\\TourPlanner\\TourPlanner.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\wikto\\OneDrive\\Desktop\\GitProjects\\TourPlanner\\TourPlanner\\TourPlanner.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\wikto\\.nuget\\packages\\microsoft.win32.systemevents\\7.0.0\\microsoft.win32.systemevents.7.0.0.nupkg.sha512",
+    "C:\\Users\\wikto\\.nuget\\packages\\system.drawing.common\\7.0.0\\system.drawing.common.7.0.0.nupkg.sha512"
+  ],
   "logs": []
 }

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
+using TourPlanner.Models;
+using System.Text.Json.Serialization;
 
 namespace TourPlanner.Models
 {
@@ -31,9 +33,9 @@ namespace TourPlanner.Models
             bool f = (obj1.TourInfo.To == obj2.TourInfo.To);
             bool g = (obj1.TourInfo.Description == obj2.TourInfo.Description);
             bool h = (obj1.TourInfo.EstimatedTime == obj2.TourInfo.EstimatedTime);
-            bool i = (obj1.TourInfo.ImageData == obj2.TourInfo.ImageData);
+            //bool i = (obj1.TourInfo.ImageData == obj2.TourInfo.ImageData);
 
-            return a && b && c && d && e && f && g && h && i;
+            return a && b && c && d && e && f && g && h;
         }
 
         public static bool operator !=(Tour obj1, Tour obj2)
@@ -59,6 +61,7 @@ namespace TourPlanner.Models
 
         private TourInfo _tourInfo;
 
+   
         public TourInfo TourInfo
         {
             get { return _tourInfo; }
@@ -66,7 +69,7 @@ namespace TourPlanner.Models
         }
 
         private ObservableCollection<TourLog> _tourLogs = new ObservableCollection<TourLog>();
-
+     
         public ObservableCollection<TourLog> TourLogs
         {
             get { return _tourLogs; }
@@ -75,5 +78,8 @@ namespace TourPlanner.Models
             }
         }
 
+
+
+      
     }
 }

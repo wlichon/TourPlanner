@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\wikto\\OneDrive\\Desktop\\GitProjects\\TourPlanner\\TourPlanner.UnitTests\\TourPlanner.UnitTests.csproj": {}
+    "C:\\Users\\wikto\\Desktop\\GitProjects\\TourPlanner\\TourPlanner.UnitTests\\TourPlanner.UnitTests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\wikto\\OneDrive\\Desktop\\GitProjects\\TourPlanner\\TourPlanner.Models\\TourPlanner.Models.csproj": {
+    "C:\\Users\\wikto\\Desktop\\GitProjects\\TourPlanner\\TourPlanner.Models\\TourPlanner.Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\wikto\\OneDrive\\Desktop\\GitProjects\\TourPlanner\\TourPlanner.Models\\TourPlanner.Models.csproj",
+        "projectUniqueName": "C:\\Users\\wikto\\Desktop\\GitProjects\\TourPlanner\\TourPlanner.Models\\TourPlanner.Models.csproj",
         "projectName": "TourPlanner.Models",
-        "projectPath": "C:\\Users\\wikto\\OneDrive\\Desktop\\GitProjects\\TourPlanner\\TourPlanner.Models\\TourPlanner.Models.csproj",
+        "projectPath": "C:\\Users\\wikto\\Desktop\\GitProjects\\TourPlanner\\TourPlanner.Models\\TourPlanner.Models.csproj",
         "packagesPath": "C:\\Users\\wikto\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\wikto\\OneDrive\\Desktop\\GitProjects\\TourPlanner\\TourPlanner.Models\\obj\\",
+        "outputPath": "C:\\Users\\wikto\\Desktop\\GitProjects\\TourPlanner\\TourPlanner.Models\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\wikto\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -40,6 +40,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            },
             "System.Drawing.Common": {
               "target": "Package",
               "version": "[7.0.0, )"
@@ -51,7 +55,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -60,18 +65,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\wikto\\OneDrive\\Desktop\\GitProjects\\TourPlanner\\TourPlanner.UnitTests\\TourPlanner.UnitTests.csproj": {
+    "C:\\Users\\wikto\\Desktop\\GitProjects\\TourPlanner\\TourPlanner.UnitTests\\TourPlanner.UnitTests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\wikto\\OneDrive\\Desktop\\GitProjects\\TourPlanner\\TourPlanner.UnitTests\\TourPlanner.UnitTests.csproj",
+        "projectUniqueName": "C:\\Users\\wikto\\Desktop\\GitProjects\\TourPlanner\\TourPlanner.UnitTests\\TourPlanner.UnitTests.csproj",
         "projectName": "TourPlanner.UnitTests",
-        "projectPath": "C:\\Users\\wikto\\OneDrive\\Desktop\\GitProjects\\TourPlanner\\TourPlanner.UnitTests\\TourPlanner.UnitTests.csproj",
+        "projectPath": "C:\\Users\\wikto\\Desktop\\GitProjects\\TourPlanner\\TourPlanner.UnitTests\\TourPlanner.UnitTests.csproj",
         "packagesPath": "C:\\Users\\wikto\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\wikto\\OneDrive\\Desktop\\GitProjects\\TourPlanner\\TourPlanner.UnitTests\\obj\\",
+        "outputPath": "C:\\Users\\wikto\\Desktop\\GitProjects\\TourPlanner\\TourPlanner.UnitTests\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\wikto\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -88,8 +93,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\wikto\\OneDrive\\Desktop\\GitProjects\\TourPlanner\\TourPlanner.Models\\TourPlanner.Models.csproj": {
-                "projectPath": "C:\\Users\\wikto\\OneDrive\\Desktop\\GitProjects\\TourPlanner\\TourPlanner.Models\\TourPlanner.Models.csproj"
+              "C:\\Users\\wikto\\Desktop\\GitProjects\\TourPlanner\\TourPlanner.Models\\TourPlanner.Models.csproj": {
+                "projectPath": "C:\\Users\\wikto\\Desktop\\GitProjects\\TourPlanner\\TourPlanner.Models\\TourPlanner.Models.csproj"
               }
             }
           }
@@ -127,7 +132,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -136,7 +142,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }

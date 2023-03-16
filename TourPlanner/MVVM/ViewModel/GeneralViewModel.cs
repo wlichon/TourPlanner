@@ -5,6 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TourPlanner.Models;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Net.Http.Json;
+using TourPlanner.Models.Models;
 
 namespace TourPlanner.MVVM.ViewModel
 {
@@ -16,14 +20,18 @@ namespace TourPlanner.MVVM.ViewModel
 
         private Tour _selectedTour;
 
+        private bool _selectedTourHasChanged = false;
 
-        public Tour SelectedTour { 
+        private TourProcessor _tp;
+
+        public Tour SelectedTour {
             get { return _selectedTour; }
             set
             {
                 if(value != _selectedTour)
                 {
                     _selectedTour = value;
+                    _selectedTourHasChanged = true;
                     OnPropertyChanged();
                 }
             }
@@ -60,25 +68,36 @@ namespace TourPlanner.MVVM.ViewModel
                 }
             }
         }
+
+        public async Task ToggleButtonAsync()
+        {
+            
+            if (TextboxesEnabled)
+            {
+                if (_selectedTourHasChanged)
+                {
+                    _selectedTourHasChanged = false;
+                    Tour response = await _tp.UpdateTour(_selectedTour);
+                    Console.WriteLine(response.TourName);
+                }
+                ButtonText = "Edit";
+            }
+            else
+            {
+                ButtonText = "Save";
+
+            }
+
+            TextboxesEnabled = !TextboxesEnabled;
+
+            
+        }
         public GeneralViewModel()
         {
+
             ButtonText = "Edit";
 
-            ToggleButtonsCommand = new RelayCommand(o =>
-            {
-                if (TextboxesEnabled)
-                {
-                    ButtonText = "Edit";
-                }
-                else
-                {
-                    ButtonText = "Save";
-
-                }
-
-                TextboxesEnabled = !TextboxesEnabled;
-
-            });
+            ToggleButtonsCommand = new RelayCommand(o => ToggleButtonAsync());
         }
 
 

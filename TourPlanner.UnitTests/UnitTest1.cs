@@ -25,7 +25,6 @@ namespace TourPlanner.UnitTests
             {
                 logs1.Add(new TourLog
                 {
-                    TourLogId = 1,
                     Date = DateTime.Now,
                     Distance = 2500,
                     Duration = TimeSpan.FromSeconds(600)
@@ -37,7 +36,6 @@ namespace TourPlanner.UnitTests
             {
                 logs2.Add(new TourLog
                 {
-                    TourLogId = 0,
                     Date = DateTime.Now,
                     Distance = 1500,
                     Duration = TimeSpan.FromSeconds(900)

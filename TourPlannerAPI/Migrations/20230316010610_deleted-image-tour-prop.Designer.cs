@@ -12,8 +12,8 @@ using TourPlannerAPI.Data;
 namespace TourPlannerAPI.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230310094719_migration-2")]
-    partial class migration2
+    [Migration("20230316010610_deleted-image-tour-prop")]
+    partial class deletedimagetourprop
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -68,10 +68,6 @@ namespace TourPlannerAPI.Migrations
                     b.Property<string>("From")
                         .IsRequired()
                         .HasColumnType("text");
-
-                    b.Property<byte[]>("ImageData")
-                        .IsRequired()
-                        .HasColumnType("bytea");
 
                     b.Property<string>("To")
                         .IsRequired()

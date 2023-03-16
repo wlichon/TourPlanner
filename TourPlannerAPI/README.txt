@@ -1,0 +1,1 @@
+To perform migration enter:"Update-Database" into package manager console

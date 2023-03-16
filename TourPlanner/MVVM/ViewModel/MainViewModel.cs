@@ -94,72 +94,21 @@ namespace TourPlanner.MVVM.ViewModel
             TourBoxContent = "";
 
 
-            var andreasLogs = new ObservableCollection<TourLog>();
 
             //andreasLogs.CollectionChanged += OnCollectionChanged;
 
-            for (int i = 0; i < 5; i++)
-            {
-                andreasLogs.Add(new TourLog
-                {
-                    TourLogId = 0,
-                    Date = DateTime.Now,
-                    Distance = 1500,
-                    Duration = TimeSpan.FromSeconds(900)
-                });
 
-            }
+            
 
-            var schoenbrunnLogs = new ObservableCollection<TourLog>();
 
             //schoenbrunnLogs.CollectionChanged += OnCollectionChanged;
 
 
-            for (int i = 0; i < 5; i++)
-            {
-                schoenbrunnLogs.Add(new TourLog
-                {
-                    TourLogId = 1,
-                    Date = DateTime.Now,
-                    Distance = 2500,
-                    Duration = TimeSpan.FromSeconds(600)
-                });
+           
 
-            }
+            
 
-            for (int i= 0; i < 5; i++)
-            {
-                Tours.Add(new Tour
-                {
-                    TourId = 0,
-                    TourName = "Andreaspark",
-                    TourInfo = new TourInfo { TransportType = "Car"},
-                    TourLogs = andreasLogs
-                });
-
-            }
-
-            for (int i = 0; i < 5; i++)
-            {
-                Tours.Add(new Tour
-                {
-                    TourId = 1,
-                    TourName = "Schoenbrunn",
-                    TourInfo = new TourInfo { To = "Wien"},
-                    TourLogs = schoenbrunnLogs
-                });
-
-            }
-
-            for (int i = 0; i < 5; i++)
-            {
-                Tours.Add(new Tour
-                {
-                    TourId = 2,
-                    TourName = "Kahlenberg"
-                });
-
-            }
+            
 
 
             GeneralVM = new GeneralViewModel();

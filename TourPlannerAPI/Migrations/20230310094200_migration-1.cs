@@ -1,7 +1,6 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-
 #nullable disable
 
 namespace TourPlannerAPI.Migrations
@@ -12,6 +11,7 @@ namespace TourPlannerAPI.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+
             migrationBuilder.CreateTable(
                 name: "TourInfo",
                 columns: table => new

@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\Users\wikto\OneDrive\Desktop\GitProjects\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\
+C:\Users\wikto\Desktop\GitProjects\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\
 TourPlanner
 none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
-C:\Users\wikto\OneDrive\Desktop\GitProjects\TourPlanner\TourPlanner\App.xaml
+C:\Users\wikto\Desktop\GitProjects\TourPlanner\TourPlanner\App.xaml
 9-227159534
 
 16-1390247015
-1961113510805
+197-1269440763
 MainWindow.xaml;MVVM\View\GeneralView.xaml;MVVM\View\OtherView.xaml;MVVM\View\RouteView.xaml;Theme\ComboBoxTheme.xaml;Theme\RouteInfoButton.xaml;Theme\TextBoxTheme.xaml;Theme\TourCard.xaml;Theme\TourLogCard.xaml;
 
 True

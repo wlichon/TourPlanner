@@ -66,10 +66,6 @@ namespace TourPlannerAPI.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<byte[]>("ImageData")
-                        .IsRequired()
-                        .HasColumnType("bytea");
-
                     b.Property<string>("To")
                         .IsRequired()
                         .HasColumnType("text");
@@ -100,7 +96,7 @@ namespace TourPlannerAPI.Migrations
                     b.Property<TimeSpan>("Duration")
                         .HasColumnType("interval");
 
-                    b.Property<int?>("TourId")
+                    b.Property<int>("TourId")
                         .HasColumnType("integer");
 
                     b.HasKey("TourLogId");
@@ -125,7 +121,9 @@ namespace TourPlannerAPI.Migrations
                 {
                     b.HasOne("TourPlanner.Models.Tour", null)
                         .WithMany("TourLogs")
-                        .HasForeignKey("TourId");
+                        .HasForeignKey("TourId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("TourPlanner.Models.Tour", b =>

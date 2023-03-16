@@ -159,3 +159,12 @@ C:\Users\wikto\OneDrive\Desktop\GitProjects\TourPlanner\TourPlanner\bin\Debug\ne
 C:\Users\wikto\OneDrive\Desktop\GitProjects\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\System.Drawing.Common.dll
 C:\Users\wikto\OneDrive\Desktop\GitProjects\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
 C:\Users\wikto\OneDrive\Desktop\GitProjects\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\runtimes\win\lib\net6.0\System.Drawing.Common.dll
+C:\Users\wikto\Desktop\GitProjects\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\Microsoft.Win32.SystemEvents.dll
+C:\Users\wikto\Desktop\GitProjects\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\System.Drawing.Common.dll
+C:\Users\wikto\Desktop\GitProjects\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\wikto\Desktop\GitProjects\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\runtimes\win\lib\net6.0\System.Drawing.Common.dll
+C:\Users\wikto\Desktop\GitProjects\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\TourPlanner.Models.dll
+C:\Users\wikto\Desktop\GitProjects\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\TourPlanner.Models.pdb
+C:\Users\wikto\Desktop\GitProjects\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\Theme\ComboBoxTheme.baml
+C:\Users\wikto\Desktop\GitProjects\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\TourPlanner.csproj.CopyComplete
+C:\Users\wikto\Desktop\GitProjects\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\Newtonsoft.Json.dll

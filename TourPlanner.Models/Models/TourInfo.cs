@@ -14,7 +14,7 @@ namespace TourPlanner.Models
         public TourInfo() { }
         public TourInfo(Bitmap bitmap, string from, string to, float distance, string description, string transportType, int estimatedTime)
         {
-            SetImage(bitmap);
+            //SetImage(bitmap);
             From = from;
             To = to;
             Distance = distance;
@@ -22,6 +22,10 @@ namespace TourPlanner.Models
             TransportType = transportType;
             EstimatedTime = estimatedTime;
         }
+        /*
+         * 
+         * 
+         IMPLEMENT LATER
 
         public Bitmap GetImage()
         {
@@ -40,10 +44,11 @@ namespace TourPlanner.Models
                 ImageData = ms.ToArray();
             }
         }
+        public byte[] ImageData { get; set; }
+
+        */
 
         public int TourInfoId { get; set; }
-
-        public byte[] ImageData { get; set; }
         public string From { get; set; }
         public string To { get; set; }
         public float Distance { get; set; }

@@ -18,8 +18,7 @@ namespace TourPlanner.Models
 
         public override bool Equals(object obj) => Equals(obj as TourLog);
 
-        private int _tourId;
-        public override int GetHashCode() => (_tourId, _distance).GetHashCode();
+        public override int GetHashCode() => (_distance).GetHashCode();
         public static bool operator ==(TourLog obj1, TourLog obj2)
         {
 
@@ -46,14 +45,7 @@ namespace TourPlanner.Models
             return !(obj1 == obj2);
         }
 
-
-
-        public int TourLogId
-        {
-            get { return _tourId; }
-            set { _tourId = value; }
-        }
-
+        public int TourLogId { get; set; }
 
         private DateTime _date;
 
@@ -62,6 +54,7 @@ namespace TourPlanner.Models
             get { return _date; }
             set { _date = value; }
         }
+       
 
         private TimeSpan _duration;
 
@@ -70,6 +63,7 @@ namespace TourPlanner.Models
             get { return _duration; }
             set { _duration = value; }
         }
+       
 
         private int _distance;
 
@@ -78,6 +72,8 @@ namespace TourPlanner.Models
             get { return _distance; }
             set { _distance = value; }
         }
+
+        public int TourId { get; set; }
 
 
 

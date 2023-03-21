@@ -3,15 +3,19 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
 using TourPlanner.Core;
 using TourPlanner.Models;
+using TourPlanner.Models.Models;
 
 namespace TourPlanner.MVVM.ViewModel
 {
-    internal class MainViewModel : ObservableObject
+    public class MainViewModel : ObservableObject
     {
 
         private string _tourBoxContent;
@@ -19,6 +23,8 @@ namespace TourPlanner.MVVM.ViewModel
         private Tour _selectedTour;
 
         private ObservableCollection<Tour> _tours;
+
+        private TourProcessor _tp;
 
         public string TourBoxContent
         {
@@ -43,9 +49,10 @@ namespace TourPlanner.MVVM.ViewModel
 
         public OtherViewModel OtherVM { get; set; }
 
+        
+
         public ObservableCollection<Tour> Tours {
             get { return _tours; }
-            
         }
 
 
@@ -53,14 +60,13 @@ namespace TourPlanner.MVVM.ViewModel
             get { return _selectedTour; }
             set
             {
-                if(value != _selectedTour)
-                {
-                    RouteVM.SelectedTour = value;
-                    GeneralVM.SelectedTour = value;
-                    _selectedTour = value;
-                    OnPropertyChanged();
+                
+                RouteVM.SelectedTour = value;
+                GeneralVM.SelectedTour = value;
+                _selectedTour = value;
+                OnPropertyChanged();
                     
-                }
+                
             }
         }
 
@@ -78,38 +84,68 @@ namespace TourPlanner.MVVM.ViewModel
             }
         }
 
-        private void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        private async Task Test(string json)
         {
-            //System.Windows.MessageBox.Show("Firing");
+            var data = new StringContent(json, Encoding.UTF8, "application/json");
+            await ApiHelper.ApiClient.PostAsync("http://localhost:7136/api/tour", data);
+
+            //var data = new StringContent(json, Encoding.UTF8, "application/json");
+            //var response = await ApiHelper.ApiClient.GetAsync("http://localhost:7136/api/tour");
+
+            //var cont = response.Content;
+
+        }
+
+        private async Task AddTour()
+        {
+            var newTour = new Tour { TourName = _tourBoxContent};
+            bool success = await _tp.AddTour(newTour);
+
+            if (success)
+            {
+                var updatedTours = await _tp.LoadTours();
+                Tours.Clear();
+                foreach (var tour in updatedTours)
+                {
+                    Tours.Add(tour);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Something went wrong");
+            }
+
+            TourBoxContent = "";
+        }
+
+        public async Task DeleteTour(int? tourId)
+        {
+            bool success = await _tp.DeleteTour(tourId);
+
+            if (success)
+            {
+                var updatedTours = await _tp.LoadTours();
+                Tours.Clear();
+                foreach (var tour in updatedTours)
+                {
+                    Tours.Add(tour);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Something went wrong");
+            }
+
+            TourBoxContent = "";
         }
 
         public MainViewModel()
         {
+            _tp = new TourProcessor();
 
             _tours = new ObservableCollection<Tour>();
 
-            //_tours.CollectionChanged += OnCollectionChanged;
-            
-
             TourBoxContent = "";
-
-
-
-            //andreasLogs.CollectionChanged += OnCollectionChanged;
-
-
-            
-
-
-            //schoenbrunnLogs.CollectionChanged += OnCollectionChanged;
-
-
-           
-
-            
-
-            
-
 
             GeneralVM = new GeneralViewModel();
 
@@ -119,21 +155,14 @@ namespace TourPlanner.MVVM.ViewModel
 
 
 
-            AddTourButton = new RelayCommand(o =>
-            {
-                Tours.Add(new Tour { TourId = 0, TourName = TourBoxContent });
-
-                TourBoxContent = "";
+            AddTourButton = new RelayCommand(async o => {
+                await AddTour();
             });
 
-            RemoveTourButton = new RelayCommand(o =>
+            RemoveTourButton = new RelayCommand(async o =>
             {
-                var Tour = Tours.FirstOrDefault(x => x.TourName == TourBoxContent);
-                if (Tour != null)
-                {
-                    Tours.Remove(Tour);
-                }
-                TourBoxContent = "";
+                
+                await DeleteTour(_selectedTour?.TourId);
             });
 
             GeneralViewCommand = new RelayCommand(o =>

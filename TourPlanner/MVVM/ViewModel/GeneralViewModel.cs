@@ -9,10 +9,12 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using TourPlanner.Models.Models;
+using System.Windows.Input;
+using System.Windows;
 
 namespace TourPlanner.MVVM.ViewModel
 {
-    internal class GeneralViewModel : ObservableObject
+    public class GeneralViewModel : ObservableObject
     {
         private bool _textboxesEnabled = false;
 
@@ -24,6 +26,8 @@ namespace TourPlanner.MVVM.ViewModel
 
         private TourProcessor _tp;
 
+        private Tour _oldTour;
+
         public Tour SelectedTour {
             get { return _selectedTour; }
             set
@@ -31,6 +35,7 @@ namespace TourPlanner.MVVM.ViewModel
                 if(value != _selectedTour)
                 {
                     _selectedTour = value;
+                    //_oldTour = (Tour)_selectedTour.Clone();
                     _selectedTourHasChanged = true;
                     OnPropertyChanged();
                 }
@@ -77,8 +82,17 @@ namespace TourPlanner.MVVM.ViewModel
                 if (_selectedTourHasChanged)
                 {
                     _selectedTourHasChanged = false;
-                    Tour response = await _tp.UpdateTour(_selectedTour);
-                    Console.WriteLine(response.TourName);
+                    int? selectedTourId = _selectedTour.TourId;
+                    bool success = await _tp.UpdateTour(_selectedTour);
+                    if (success)
+                    {
+                        
+                    }
+                    else
+                    {
+                        //_selectedTour = (Tour)_oldTour.Clone();
+                        MessageBox.Show("Saving error");
+                    }
                 }
                 ButtonText = "Edit";
             }
@@ -94,6 +108,7 @@ namespace TourPlanner.MVVM.ViewModel
         }
         public GeneralViewModel()
         {
+            _tp = new TourProcessor();
 
             ButtonText = "Edit";
 

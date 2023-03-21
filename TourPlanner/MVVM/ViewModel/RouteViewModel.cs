@@ -11,7 +11,7 @@ using System.Windows;
 
 namespace TourPlanner.MVVM.ViewModel
 {
-    internal class RouteViewModel : ObservableObject
+    public class RouteViewModel : ObservableObject
     {
 
 

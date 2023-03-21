@@ -6,11 +6,43 @@ using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using TourPlanner.Models;
 using System.Text.Json.Serialization;
+using System.ComponentModel.DataAnnotations;
+using Newtonsoft.Json;
+using System.Drawing;
 
 namespace TourPlanner.Models
 {
-    public class Tour
+    public class Tour : ICloneable
     {
+        public Tour()
+        {
+            //{
+            //  "tourId": 0,
+            //  "tourName": "string",
+            //  "tourInfo": {
+            //    "tourInfoId": 0,
+            //    "from": "string",
+            //    "to": "string",
+            //    "distance": 0,
+            //    "description": "string",
+            //    "transportType": "string",
+            //    "estimatedTime": 0
+            //  },
+            //  "tourLogs": [
+            //    {
+            //      "tourLogId": 0,
+            //      "date": "2023-03-20T22:40:41.312Z",
+            //      "duration": "1.12:23:34",
+            //      "distance": 0,
+            //      "tourId": 0
+            //    }
+            //  ]
+            //}
+            
+            //TourInfo = new TourInfo { From = "default", To = "default", Distance = 0, Description = "default", TransportType = "default", EstimatedTime = 0 };
+            
+
+        }
         public static bool operator ==(Tour obj1, Tour obj2)
         {
 
@@ -43,34 +75,32 @@ namespace TourPlanner.Models
             return !(obj1 == obj2);
         }
 
-        private int _tourId;
-
-        public int TourId
+        private int? _tourId;
+        public int? TourId
         {
             get { return _tourId; }
             set { _tourId = value; }
         }
 
         private string? _tourName;
-
         public string TourName
         {
             get { return _tourName; }
             set { _tourName = value; }
         }
 
-        private TourInfo _tourInfo;
+        private TourInfo? _tourInfo;
 
-   
-        public TourInfo TourInfo
+        
+        public TourInfo? TourInfo
         {
             get { return _tourInfo; }
             set { _tourInfo = value; }
         }
 
-        private ObservableCollection<TourLog> _tourLogs = new ObservableCollection<TourLog>();
-     
-        public ObservableCollection<TourLog> TourLogs
+        private ObservableCollection<TourLog>? _tourLogs = new ObservableCollection<TourLog>();
+
+        public ObservableCollection<TourLog>? TourLogs
         {
             get { return _tourLogs; }
             set { 
@@ -78,8 +108,20 @@ namespace TourPlanner.Models
             }
         }
 
+        public object Clone()
+        {
+            Tour tourCopy = (Tour)this.MemberwiseClone();
+            tourCopy.TourInfo = new TourInfo
+            {
+                From = this.TourInfo?.From,
+                To = this.TourInfo?.To,
+                Distance = this.TourInfo.Distance,
+                Description = this.TourInfo.Description,
+                TransportType = this.TourInfo.TransportType,
+                EstimatedTime = this.TourInfo.EstimatedTime
+            };
 
-
-      
+            return tourCopy;
+        }
     }
 }

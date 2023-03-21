@@ -24,13 +24,13 @@ namespace TourPlannerAPI.Migrations
 
             modelBuilder.Entity("TourPlanner.Models.Tour", b =>
                 {
-                    b.Property<int>("TourId")
+                    b.Property<int?>("TourId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("TourId"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int?>("TourId"));
 
-                    b.Property<int>("TourInfoId")
+                    b.Property<int?>("TourInfoId")
                         .HasColumnType("integer");
 
                     b.Property<string>("TourName")
@@ -46,32 +46,28 @@ namespace TourPlannerAPI.Migrations
 
             modelBuilder.Entity("TourPlanner.Models.TourInfo", b =>
                 {
-                    b.Property<int>("TourInfoId")
+                    b.Property<int?>("TourInfoId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("TourInfoId"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int?>("TourInfoId"));
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<float>("Distance")
+                    b.Property<float?>("Distance")
                         .HasColumnType("real");
 
-                    b.Property<float>("EstimatedTime")
+                    b.Property<float?>("EstimatedTime")
                         .HasColumnType("real");
 
                     b.Property<string>("From")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("To")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("TransportType")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("TourInfoId");
@@ -110,9 +106,7 @@ namespace TourPlannerAPI.Migrations
                 {
                     b.HasOne("TourPlanner.Models.TourInfo", "TourInfo")
                         .WithMany()
-                        .HasForeignKey("TourInfoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("TourInfoId");
 
                     b.Navigation("TourInfo");
                 });

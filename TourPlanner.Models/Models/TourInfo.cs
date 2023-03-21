@@ -12,7 +12,7 @@ namespace TourPlanner.Models
     public class TourInfo
     {
         public TourInfo() { }
-        public TourInfo(Bitmap bitmap, string from, string to, float distance, string description, string transportType, int estimatedTime)
+        public TourInfo(string from, string to, float distance, string description, string transportType, int estimatedTime)
         {
             //SetImage(bitmap);
             From = from;
@@ -48,13 +48,13 @@ namespace TourPlanner.Models
 
         */
 
-        public int TourInfoId { get; set; }
-        public string From { get; set; }
-        public string To { get; set; }
-        public float Distance { get; set; }
-        public string Description { get; set; }
-        public string TransportType { get; set; }
-        public float EstimatedTime{ get; set; }
+        public int? TourInfoId { get; set; }
+        public string? From { get; set; }
+        public string? To { get; set; }
+        public float? Distance { get; set; }
+        public string? Description { get; set; }
+        public string? TransportType { get; set; }
+        public float? EstimatedTime{ get; set; }
 
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TourPlanner.MVVM.ViewModel
 {
-    internal class OtherViewModel
+    public class OtherViewModel
     {
     }
 }

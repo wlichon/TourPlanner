@@ -7,6 +7,10 @@ using TourPlanner.Models;
 using TourPlanner.Models.Models;
 using Newtonsoft.Json;
 using System.Linq;
+using System.Threading.Tasks;
+using System.Net.Http;
+using System.Text;
+using TourPlanner.MVVM.ViewModel;
 
 namespace TourPlanner
 {
@@ -21,89 +25,100 @@ namespace TourPlanner
             InitializeComponent();
             ApiHelper.InitializeClient();
 
-            
-            /*
-           string json = @"{
-                      ""tourId"": 0,
-                      ""tourName"": ""string""
-                      
-                    }";
 
-            Tour tr = JsonConvert.DeserializeObject<Tour>(json);
-            */
-            FillDatabase();
+            //Task.Run(() => GetTours());
         }
 
-        private void FillDatabase()
+        private async void WhenLoaded(object sender, EventArgs e)
         {
+            var mainViewModel = (MainViewModel)Application.Current.MainWindow.DataContext;
+
+            var tp = new TourProcessor();
+
+            ObservableCollection<Tour> tours = await tp.LoadTours();
+
             
-            var schoenbrunnLogs = new ObservableCollection<TourLog>();
-            var andreasLogs = new ObservableCollection<TourLog>();
-            var Tours = new ObservableCollection<Tour>();
-
-            for (int i = 0; i < 5; i++)
+            mainViewModel.Tours.Clear();
+            foreach (var tour in tours)
             {
-                andreasLogs.Add(new TourLog
-                {
-                    Date = DateTime.Now,
-                    Distance = 1500,
-                    Duration = TimeSpan.FromSeconds(900)
-                });
-
+                mainViewModel.Tours.Add(tour);
             }
+            
+        }
 
-            for (int i = 0; i < 5; i++)
-            {
-                schoenbrunnLogs.Add(new TourLog
-                {
-                    Date = DateTime.Now,
-                    Distance = 2500,
-                    Duration = TimeSpan.FromSeconds(600)
-                });
+        private async void GetTours()
+        {
+            var tp = new TourProcessor();
 
-            }
+            tp.LoadTours();
+            
+            //var schoenbrunnLogs = new ObservableCollection<TourLog>();
+            //var andreasLogs = new ObservableCollection<TourLog>();
+            //var Tours = new ObservableCollection<Tour>();
 
-            for (int i = 0; i < 5; i++)
-            {
-                Tours.Add(new Tour
-                {
-                    TourId = 0,
-                    TourName = "Andreaspark",
-                    TourInfo = new TourInfo { TransportType = "Car" },
-                    TourLogs = andreasLogs
-                });
+            //for (int i = 0; i < 5; i++)
+            //{
+            //    andreasLogs.Add(new TourLog
+            //    {
+            //        Date = DateTime.Now,
+            //        Distance = 1500,
+            //        Duration = TimeSpan.FromSeconds(900)
+            //    });
 
-            }
+            //}
 
-            for (int i = 0; i < 5; i++)
-            {
-                Tours.Add(new Tour
-                {
-                    TourId = 1,
-                    TourName = "Schoenbrunn",
-                    TourInfo = new TourInfo { To = "Wien" },
-                    TourLogs = schoenbrunnLogs
-                });
+            //for (int i = 0; i < 5; i++)
+            //{
+            //    schoenbrunnLogs.Add(new TourLog
+            //    {
+            //        Date = DateTime.Now,
+            //        Distance = 2500,
+            //        Duration = TimeSpan.FromSeconds(600)
+            //    });
 
-            }
+            //}
 
-            for (int i = 0; i < 5; i++)
-            {
-                Tours.Add(new Tour
-                {
-                    TourId = 2,
-                    TourName = "Kahlenberg"
-                });
+            //for (int i = 0; i < 5; i++)
+            //{
+            //    Tours.Add(new Tour
+            //    {
+            //        TourId = 0,
+            //        TourName = "Andreaspark",
+            //        TourInfo = new TourInfo { TransportType = "Car" },
+            //        TourLogs = andreasLogs
+            //    });
 
-            }
+            //}
+
+            //for (int i = 0; i < 5; i++)
+            //{
+            //    Tours.Add(new Tour
+            //    {
+            //        TourId = 1,
+            //        TourName = "Schoenbrunn",
+            //        TourInfo = new TourInfo { To = "Wien" },
+            //        TourLogs = schoenbrunnLogs
+            //    });
+
+            //}
+
+            //for (int i = 0; i < 5; i++)
+            //{
+            //    Tours.Add(new Tour
+            //    {
+            //        TourId = 2,
+            //        TourName = "Kahlenberg"
+            //    });
+
+            //}
 
 
-            foreach(Tour t in Tours)
-            {
-                var tp = new TourProcessor();
+            //foreach(Tour t in Tours)
+            //{
+            //    var tp = new TourProcessor();
 
-                tp.AddTour(t);
-            }
+            //    tp.AddTour(t);
+            //}
             
         }
 

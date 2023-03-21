@@ -11,7 +11,8 @@
         WindowStyle="None"
         AllowsTransparency="True"
         Background="Transparent"
-        ResizeMode="CanResizeWithGrip">
+        ResizeMode="CanResizeWithGrip"
+        Loaded="WhenLoaded">
 
     <Window.DataContext>
         <ViewModel:MainViewModel/>

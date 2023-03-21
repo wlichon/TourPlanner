@@ -84,18 +84,17 @@ namespace TourPlannerAPI.Controllers
             if (existingTourInfo == null)
                 return BadRequest("tour info not found");
 
+            
             existingTourInfo.From = request.TourInfo.From;
             existingTourInfo.To = request.TourInfo.To;
             existingTourInfo.Distance = request.TourInfo.Distance;
             existingTourInfo.Description = request.TourInfo.Description;
             existingTourInfo.TransportType = request.TourInfo.TransportType;
             existingTourInfo.EstimatedTime = request.TourInfo.EstimatedTime;
-
+            tour.TourName = request.TourName;
             tour.TourInfo = existingTourInfo;
 
             tour.TourLogs = request.TourLogs;
-
-            await _context.SaveChangesAsync();
 
 
             await _context.SaveChangesAsync();

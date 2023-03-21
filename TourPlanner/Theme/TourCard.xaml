@@ -24,10 +24,10 @@
                                    FontSize="20"/>
 
                         </StackPanel>
-                        
-                        
+
+
                     </Border>
-                    
+
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

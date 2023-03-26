@@ -83,15 +83,15 @@ namespace TourPlanner.MVVM.ViewModel
                 {
                     _selectedTourHasChanged = false;
                     int? selectedTourId = _selectedTour.TourId;
-                    bool success = await _tp.UpdateTour(_selectedTour);
+                    (bool success, string updateMessage) = await _tp.UpdateTour(_selectedTour);
                     if (success)
                     {
-                        
+                        MessageBox.Show(updateMessage);
                     }
                     else
                     {
                         //_selectedTour = (Tour)_oldTour.Clone();
-                        MessageBox.Show("Saving error");
+                        MessageBox.Show(updateMessage);
                     }
                 }
                 ButtonText = "Edit";

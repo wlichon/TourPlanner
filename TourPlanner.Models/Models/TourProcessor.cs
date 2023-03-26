@@ -11,121 +11,136 @@ namespace TourPlanner.Models.Models
 {
     public class TourProcessor
     {
-        public async Task<ObservableCollection<Tour>> LoadTours()
+        public async Task<(ObservableCollection<Tour>? tours, string message)> LoadTours()
         {
-            using (HttpResponseMessage response = await ApiHelper.ApiClient.GetAsync(ApiHelper.ApiClient.BaseAddress + $"api/tour"))
+            ObservableCollection<Tour>? tours = null;
+            try
             {
 
-                ObservableCollection<Tour>? tours = null;
-                if (response.IsSuccessStatusCode)
+                using (HttpResponseMessage response = await ApiHelper.ApiClient.GetAsync(ApiHelper.ApiClient.BaseAddress + $"api/tour"))
                 {
-                    tours = await response.Content.ReadFromJsonAsync<ObservableCollection<Tour>>();
+
+                    
+                    if (response.IsSuccessStatusCode)
+                    {
+                    
+                        tours = await response.Content.ReadFromJsonAsync<ObservableCollection<Tour>>();
+
+                    
+                    
+                    }
+                
+
+                    return (tours, "Tours loaded successfully");
                 }
 
-                return tours;
+            }
+            catch (HttpRequestException ex)
+            {
+                return (tours, "Tours loaded unsuccessfully");
             }
         }
 
-        public async Task<bool> LoadTour(int? tourId)
+        public async Task<(bool success, string message)> LoadTour(int? tourId)
         {
-            HttpResponseMessage response = await ApiHelper.ApiClient.GetAsync(
-                $"api/tour/{tourId}");
-
+            HttpResponseMessage response;
             try
             {
+                response = await ApiHelper.ApiClient.GetAsync(
+                    $"api/tour/{tourId}");
+
                 response.EnsureSuccessStatusCode();
 
             }
-            catch (Exception ex)
+            catch(HttpRequestException ex)
             {
-                return false;
+                return (false, "Tour loading connection error");
+            }
+            catch(Exception ex)
+            {
+                return (false, "Tour loading unkown error");
             }
 
-            return true;
+            
+            
+
+            return (true, "Tour loaded successfully");
         }
 
-        public async Task<bool> AddTour(Tour? tour)
-        {
-            //string json = @"{
-            //  ""tourId"": 0,
-            //  ""tourName"": ""Testing"",
-            //  ""tourInfo"": {
-            //    ""tourInfoId"": 0,
-            //    ""from"": ""Bla"",
-            //    ""to"": ""asd"",
-            //    ""distance"": 0,
-            //    ""description"": ""string"",
-            //    ""transportType"": ""string"",
-            //    ""estimatedTime"": 0
-            //  },
-            //  ""tourLogs"": [
-            //    {
-            //      ""tourLogId"": 0,
-            //      ""date"": ""2023-03-20T17:24:00.344Z"",
-            //      ""duration"": ""1.12:54:56"",
-            //      ""distance"": 0,
-            //      ""tourId"": 0
-            //    }
-            //  ]
-            //}";
-            var json = JsonConvert.SerializeObject(tour);
-            var data = new StringContent(json, Encoding.UTF8, "application/json");
-            var response = await ApiHelper.ApiClient.PostAsync("https://localhost:7136/api/tour", data);
-
-            //HttpResponseMessage response = await ApiHelper.ApiClient.PostAsJsonAsync(
-            //    $"api/tour", tour);
-            try
-            {
-                response.EnsureSuccessStatusCode();
-
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-
-            return true;
-
-        }
-        public async Task<bool> UpdateTour(Tour? tour)
+        public async Task<(bool success, string message)> AddTour(Tour? tour)
         {
             
-            HttpResponseMessage response = await ApiHelper.ApiClient.PutAsJsonAsync(
-                $"api/tour", tour);
-            response.EnsureSuccessStatusCode();
-
+            var json = JsonConvert.SerializeObject(tour);
+            var data = new StringContent(json, Encoding.UTF8, "application/json");
+            HttpResponseMessage response;
             try
             {
+                response = await ApiHelper.ApiClient.PostAsync("https://localhost:7136/api/tour", data);
                 response.EnsureSuccessStatusCode();
 
+
+            }
+            catch (HttpRequestException ex)
+            {
+                return (false, "Tour adding connection error");
             }
             catch (Exception ex)
             {
-                return false;
+                return (false, "Tour adding unknown error");
             }
 
-            return true;
+            return (true, "Tour added successfully");
+
+        }
+        public async Task<(bool success, string message)> UpdateTour(Tour? tour)
+        {
+
+
+            HttpResponseMessage response;
+
+            try
+            {
+                response = await ApiHelper.ApiClient.PutAsJsonAsync(
+                $"api/tour", tour);
+                response.EnsureSuccessStatusCode();
+            }
+            catch (HttpRequestException ex)
+            {
+                return (false, "Update connection error");
+            }
+            catch (Exception ex)
+            {
+                return (false, "Update unknown error");
+            }
+
+            return (true, "Update successful");
 
 
 
         }
 
-        public async Task<bool> DeleteTour(int? tourId)
+        public async Task<(bool success, string message)> DeleteTour(int? tourId)
         {
-            HttpResponseMessage response = await ApiHelper.ApiClient.DeleteAsync(
-                $"api/tour/{tourId}");
+            HttpResponseMessage response;
 
             try
             {
+
+                response = await ApiHelper.ApiClient.DeleteAsync(
+                $"api/tour/{tourId}");
                 response.EnsureSuccessStatusCode();
 
             }
+            catch(HttpRequestException ex)
+            {
+                return (false, "Delete connection error");
+            }
             catch (Exception ex)
             {
-                return false;
+                return (false, "Delete unknown error");
             }
 
-            return true;
+            return (true, "Deleted successfully");
         }
     }
 }

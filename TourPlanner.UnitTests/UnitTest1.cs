@@ -45,8 +45,8 @@ namespace TourPlanner.UnitTests
 
             var Tours = new List<Tour>()
             {
-                new Tour(){TourId = 0, TourInfo = new TourInfo(null, "Wien", "Berlin", 400, "fun little tour", "Car", 6), TourLogs = logs1, TourName = "WienToBerlin"},
-                new Tour(){TourId = 1, TourInfo = new TourInfo(null, "Denver", "Chicago", 600, "example tour", "Bicycle", 50), TourLogs = logs2, TourName = "LongBicycleTour"}
+                new Tour(){TourId = 0, TourInfo = new TourInfo("Wien", "Berlin", 400, "fun little tour", "Car", 6), TourLogs = logs1, TourName = "WienToBerlin"},
+                new Tour(){TourId = 1, TourInfo = new TourInfo("Denver", "Chicago", 600, "example tour", "Bicycle", 50), TourLogs = logs2, TourName = "LongBicycleTour"}
             };
 
 

@@ -168,3 +168,4 @@ C:\Users\wikto\Desktop\GitProjects\TourPlanner\TourPlanner\bin\Debug\net6.0-wind
 C:\Users\wikto\Desktop\GitProjects\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\Theme\ComboBoxTheme.baml
 C:\Users\wikto\Desktop\GitProjects\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\TourPlanner.csproj.CopyComplete
 C:\Users\wikto\Desktop\GitProjects\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\Newtonsoft.Json.dll
+C:\Users\wikto\OneDrive\Desktop\GitProjects\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\Newtonsoft.Json.dll

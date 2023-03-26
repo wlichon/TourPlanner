@@ -29,98 +29,34 @@ namespace TourPlanner
             //Task.Run(() => GetTours());
         }
 
+        
         private async void WhenLoaded(object sender, EventArgs e)
         {
             var mainViewModel = (MainViewModel)Application.Current.MainWindow.DataContext;
 
             var tp = new TourProcessor();
 
-            ObservableCollection<Tour> tours = await tp.LoadTours();
-
+            ObservableCollection<Tour>? tours = null;
             
+            (tours, string loadMessage) = await tp.LoadTours();
+
+            if(tours == null)
+            {
+                MessageBox.Show(loadMessage);
+                return;
+            }
+                
+            
+
             mainViewModel.Tours.Clear();
             foreach (var tour in tours)
             {
                 mainViewModel.Tours.Add(tour);
             }
+            MessageBox.Show(loadMessage);
             
         }
 
-        private async void GetTours()
-        {
-            var tp = new TourProcessor();
-
-            tp.LoadTours();
-            
-            //var schoenbrunnLogs = new ObservableCollection<TourLog>();
-            //var andreasLogs = new ObservableCollection<TourLog>();
-            //var Tours = new ObservableCollection<Tour>();
-
-            //for (int i = 0; i < 5; i++)
-            //{
-            //    andreasLogs.Add(new TourLog
-            //    {
-            //        Date = DateTime.Now,
-            //        Distance = 1500,
-            //        Duration = TimeSpan.FromSeconds(900)
-            //    });
-
-            //}
-
-            //for (int i = 0; i < 5; i++)
-            //{
-            //    schoenbrunnLogs.Add(new TourLog
-            //    {
-            //        Date = DateTime.Now,
-            //        Distance = 2500,
-            //        Duration = TimeSpan.FromSeconds(600)
-            //    });
-
-            //}
-
-            //for (int i = 0; i < 5; i++)
-            //{
-            //    Tours.Add(new Tour
-            //    {
-            //        TourId = 0,
-            //        TourName = "Andreaspark",
-            //        TourInfo = new TourInfo { TransportType = "Car" },
-            //        TourLogs = andreasLogs
-            //    });
-
-            //}
-
-            //for (int i = 0; i < 5; i++)
-            //{
-            //    Tours.Add(new Tour
-            //    {
-            //        TourId = 1,
-            //        TourName = "Schoenbrunn",
-            //        TourInfo = new TourInfo { To = "Wien" },
-            //        TourLogs = schoenbrunnLogs
-            //    });
-
-            //}
-
-            //for (int i = 0; i < 5; i++)
-            //{
-            //    Tours.Add(new Tour
-            //    {
-            //        TourId = 2,
-            //        TourName = "Kahlenberg"
-            //    });
-
-            //}
-
-
-            //foreach(Tour t in Tours)
-            //{
-            //    var tp = new TourProcessor();
-
-            //    tp.AddTour(t);
-            //}
-            
-        }
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -152,5 +88,6 @@ namespace TourPlanner
         {
             Application.Current.Shutdown();
         }
+
     }
 }

@@ -129,3 +129,7 @@ C:\Users\wikto\Desktop\GitProjects\TourPlanner\TourPlannerAPI\bin\Debug\net6.0\N
 C:\Users\wikto\Desktop\GitProjects\TourPlanner\TourPlannerAPI\bin\Debug\net6.0\Microsoft.AspNetCore.JsonPatch.dll
 C:\Users\wikto\Desktop\GitProjects\TourPlanner\TourPlannerAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 C:\Users\wikto\Desktop\GitProjects\TourPlanner\TourPlannerAPI\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
+C:\Users\wikto\OneDrive\Desktop\GitProjects\TourPlanner\TourPlannerAPI\bin\Debug\net6.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\wikto\OneDrive\Desktop\GitProjects\TourPlanner\TourPlannerAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\wikto\OneDrive\Desktop\GitProjects\TourPlanner\TourPlannerAPI\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\wikto\OneDrive\Desktop\GitProjects\TourPlanner\TourPlannerAPI\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll

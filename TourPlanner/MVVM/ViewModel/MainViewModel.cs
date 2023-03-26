@@ -84,35 +84,30 @@ namespace TourPlanner.MVVM.ViewModel
             }
         }
 
-        private async Task Test(string json)
-        {
-            var data = new StringContent(json, Encoding.UTF8, "application/json");
-            await ApiHelper.ApiClient.PostAsync("http://localhost:7136/api/tour", data);
-
-            //var data = new StringContent(json, Encoding.UTF8, "application/json");
-            //var response = await ApiHelper.ApiClient.GetAsync("http://localhost:7136/api/tour");
-
-            //var cont = response.Content;
-
-        }
-
         private async Task AddTour()
         {
             var newTour = new Tour { TourName = _tourBoxContent};
-            bool success = await _tp.AddTour(newTour);
+            (bool success, string addMessage) = await _tp.AddTour(newTour);
 
             if (success)
             {
-                var updatedTours = await _tp.LoadTours();
+                (var updatedTours, string loadMessage) = await _tp.LoadTours();
+                if(updatedTours == null)
+                {
+                    MessageBox.Show(loadMessage);
+                    return;
+                }
                 Tours.Clear();
                 foreach (var tour in updatedTours)
                 {
                     Tours.Add(tour);
                 }
+
+                MessageBox.Show(loadMessage);
             }
             else
             {
-                MessageBox.Show("Something went wrong");
+                MessageBox.Show(addMessage);
             }
 
             TourBoxContent = "";
@@ -120,20 +115,27 @@ namespace TourPlanner.MVVM.ViewModel
 
         public async Task DeleteTour(int? tourId)
         {
-            bool success = await _tp.DeleteTour(tourId);
+            (bool success, string deleteMessage) = await _tp.DeleteTour(tourId);
 
             if (success)
             {
-                var updatedTours = await _tp.LoadTours();
+                (var updatedTours, var loadMessage) = await _tp.LoadTours();
+                if (updatedTours == null)
+                {
+                    MessageBox.Show(loadMessage);
+                    return;
+                }
                 Tours.Clear();
                 foreach (var tour in updatedTours)
                 {
                     Tours.Add(tour);
                 }
+
+                MessageBox.Show(deleteMessage);
             }
             else
             {
-                MessageBox.Show("Something went wrong");
+                MessageBox.Show(deleteMessage);
             }
 
             TourBoxContent = "";

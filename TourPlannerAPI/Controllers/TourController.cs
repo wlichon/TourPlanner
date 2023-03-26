@@ -121,7 +121,8 @@ namespace TourPlannerAPI.Controllers
 
             var tourInfo = tour.TourInfo;
 
-            _context.TourInfo.Remove(tourInfo);
+            if(tourInfo != null)
+                _context.TourInfo.Remove(tourInfo);
 
             _context.Tours.Remove(tour);
             await _context.SaveChangesAsync();

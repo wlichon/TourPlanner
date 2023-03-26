@@ -80,17 +80,17 @@ namespace TourPlannerAPI.Controllers
             if (tour == null)
                 return BadRequest("tour not found");
 
-            var existingTourInfo = await _context.TourInfo.FindAsync(request.TourInfo.TourInfoId);
+            var existingTourInfo = await _context.TourInfo.FindAsync(request.TourInfo?.TourInfoId);
             if (existingTourInfo == null)
                 return BadRequest("tour info not found");
 
             
-            existingTourInfo.From = request.TourInfo.From;
-            existingTourInfo.To = request.TourInfo.To;
-            existingTourInfo.Distance = request.TourInfo.Distance;
-            existingTourInfo.Description = request.TourInfo.Description;
-            existingTourInfo.TransportType = request.TourInfo.TransportType;
-            existingTourInfo.EstimatedTime = request.TourInfo.EstimatedTime;
+            existingTourInfo.From = request.TourInfo?.From;
+            existingTourInfo.To = request.TourInfo?.To;
+            existingTourInfo.Distance = request.TourInfo?.Distance;
+            existingTourInfo.Description = request.TourInfo?.Description;
+            existingTourInfo.TransportType = request.TourInfo?.TransportType;
+            existingTourInfo.EstimatedTime = request.TourInfo?.EstimatedTime;
             tour.TourName = request.TourName;
             tour.TourInfo = existingTourInfo;
 

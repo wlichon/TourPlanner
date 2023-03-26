@@ -62,7 +62,7 @@
         <Border Grid.Row="0" Grid.Column="1" 
                 Margin="10">
 
-            <TextBox Style="{StaticResource ModernTextBox}" Tag="Example" Text="{Binding SelectedTour.TourName}"/>
+            <TextBox Text="{Binding SelectedTour.TourName,Mode=TwoWay}"/>
         </Border>
 
         <Border BorderBrush="Black"
@@ -76,7 +76,7 @@
         <Border Grid.Row="1" Grid.Column="1" 
                 Margin="10">
 
-            <TextBox Style="{StaticResource ModernTextBox}" Tag="Describe your tour" Text="{Binding SelectedTour.TourInfo.Description}"/>
+            <TextBox Text="{Binding SelectedTour.TourInfo.Description,Mode=TwoWay}"/>
         </Border>
 
         <Border BorderBrush="Black"
@@ -88,7 +88,7 @@
         <Border Grid.Row="2" Grid.Column="1" 
                 Margin="10">
 
-            <TextBox Style="{StaticResource ModernTextBox}" Tag="Enter your starting point" Text="{Binding SelectedTour.TourInfo.From}"/>
+            <TextBox Text="{Binding SelectedTour.TourInfo.From,Mode=TwoWay}"/>
         </Border>
 
         <Border BorderBrush="Black"
@@ -101,7 +101,7 @@
         <Border Grid.Row="3" Grid.Column="1" 
                 Margin="10">
 
-            <TextBox Style="{StaticResource ModernTextBox}" Tag="Enter your destination" Text="{Binding SelectedTour.TourInfo.To}"/>
+            <TextBox Text="{Binding SelectedTour.TourInfo.To,Mode=TwoWay}"/>
         </Border>
 
         <Border BorderBrush="Black"

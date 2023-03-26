@@ -28,12 +28,21 @@ namespace TourPlanner.MVVM.ViewModel
 
         private Tour _oldTour;
 
+        public string FormTourNameField { get; set; }
+
+        public string FormDescriptionField { get; set; }
+        public string FormFromField { get; set; }
+
+        public string FormToField { get; set; }
+
         public Tour SelectedTour {
             get { return _selectedTour; }
             set
             {
                 if(value != _selectedTour)
                 {
+
+
                     _selectedTour = value;
                     //_oldTour = (Tour)_selectedTour.Clone();
                     _selectedTourHasChanged = true;

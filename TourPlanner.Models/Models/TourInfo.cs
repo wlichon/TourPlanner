@@ -49,7 +49,8 @@ namespace TourPlanner.Models
         */
 
         public int? TourInfoId { get; set; }
-        public string? From { get; set; }
+        public string? From { get; 
+            set; }
         public string? To { get; set; }
         public float? Distance { get; set; }
         public string? Description { get; set; }

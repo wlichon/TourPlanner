@@ -16,6 +16,7 @@ namespace TourPlanner.Models
     {
         public Tour()
         {
+            _tourInfo = new TourInfo();
             //{
             //  "tourId": 0,
             //  "tourName": "string",
@@ -57,6 +58,8 @@ namespace TourPlanner.Models
                 return false;
             }
 
+            /*
+
             bool a = (obj1.TourName == obj2.TourName);
             bool b = obj1.TourLogs.SequenceEqual(obj2.TourLogs);
             bool c = (obj1.TourInfo.TransportType == obj2.TourInfo.TransportType);
@@ -67,7 +70,9 @@ namespace TourPlanner.Models
             bool h = (obj1.TourInfo.EstimatedTime == obj2.TourInfo.EstimatedTime);
             //bool i = (obj1.TourInfo.ImageData == obj2.TourInfo.ImageData);
 
-            return a && b && c && d && e && f && g && h;
+            */
+
+            return obj1.TourId == obj2.TourId;
         }
 
         public static bool operator !=(Tour obj1, Tour obj2)
@@ -89,10 +94,10 @@ namespace TourPlanner.Models
             set { _tourName = value; }
         }
 
-        private TourInfo? _tourInfo;
+        private TourInfo _tourInfo;
 
         
-        public TourInfo? TourInfo
+        public TourInfo TourInfo
         {
             get { return _tourInfo; }
             set { _tourInfo = value; }

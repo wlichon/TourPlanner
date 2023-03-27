@@ -4,6 +4,8 @@
 (has to be done through routeviewmodel, generalvm will have to notify routevm 
 somehow as routevm wont know about change in selectedtour properties?)
 
+- Adjust api url's in Processors, create a config file with api addresses?
+
 - Check if OnPropertyChanged can be removed from subviewmodels
 
 - Check if bytearray is jpeg

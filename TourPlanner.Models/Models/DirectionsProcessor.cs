@@ -9,23 +9,14 @@ namespace TourPlanner.Models.Models
 {
     public class DirectionsProcessor
     {
-        public Bitmap? ConvertArrayToBitmap(byte[]? ImageData)
-        {
-            if (ImageData == null)
-                return null;
-            using (var ms = new MemoryStream(ImageData))
-            {
-                return new Bitmap(ms);
-                
-            }
-        }
+        
         public async Task<(byte[]? jpegMap, string message)> LoadMap(string? location)
         {
             HttpResponseMessage response;
             try
             {
                 response = await ApiHelper.ApiClient.GetAsync(
-                    $"https://www.mapquestapi.com/staticmap/v5/map?key=qL8PNjia3XSMfgNRG4henvQNAnQGprnW&center=Wien&size=@2x");
+                    $"https://www.mapquestapi.com/staticmap/v5/map?start=Wien&end=Salzburg&size=610,300@2x&key=qL8PNjia3XSMfgNRG4henvQNAnQGprnW");
 
                 response.EnsureSuccessStatusCode();
 

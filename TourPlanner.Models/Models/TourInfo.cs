@@ -5,12 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing.Imaging;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Drawing;
 using Newtonsoft.Json;
+
 
 namespace TourPlanner.Models
 {
-    public class TourInfo
+    public partial class TourInfo
     {
         public TourInfo() { }
         public TourInfo(string from, string to, float distance, string description, string transportType, int estimatedTime)
@@ -25,18 +25,8 @@ namespace TourPlanner.Models
        
         public byte[]? ImageData { get; set; }
 
-        
-        
-        [NotMapped]
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public Bitmap? MapImage { get; set; }
-
-        
-
-
         public int? TourInfoId { get; set; }
-        public string? From { get; 
-            set; }
+        public string? From { get; set; }
         public string? To { get; set; }
         public float? Distance { get; set; }
         public string? Description { get; set; }

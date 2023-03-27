@@ -100,10 +100,6 @@ C:\Users\wikto\OneDrive\Desktop\GitProjects\TourPlanner\TourPlanner.UnitTests\ob
 C:\Users\wikto\OneDrive\Desktop\GitProjects\TourPlanner\TourPlanner.UnitTests\obj\Debug\net6.0\TourPlanner.UnitTests.pdb
 C:\Users\wikto\OneDrive\Desktop\GitProjects\TourPlanner\TourPlanner.UnitTests\obj\Debug\net6.0\TourPlanner.UnitTests.genruntimeconfig.cache
 C:\Users\wikto\OneDrive\Desktop\GitProjects\TourPlanner\TourPlanner.UnitTests\obj\Debug\net6.0\ref\TourPlanner.UnitTests.dll
-C:\Users\wikto\OneDrive\Desktop\GitProjects\TourPlanner\TourPlanner.UnitTests\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
-C:\Users\wikto\OneDrive\Desktop\GitProjects\TourPlanner\TourPlanner.UnitTests\bin\Debug\net6.0\System.Drawing.Common.dll
-C:\Users\wikto\OneDrive\Desktop\GitProjects\TourPlanner\TourPlanner.UnitTests\bin\Debug\net6.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
-C:\Users\wikto\OneDrive\Desktop\GitProjects\TourPlanner\TourPlanner.UnitTests\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
 C:\Users\wikto\Desktop\GitProjects\TourPlanner\TourPlanner.UnitTests\bin\Debug\net6.0\CoverletSourceRootsMapping
 C:\Users\wikto\Desktop\GitProjects\TourPlanner\TourPlanner.UnitTests\bin\Debug\net6.0\testhost.dll
 C:\Users\wikto\Desktop\GitProjects\TourPlanner\TourPlanner.UnitTests\bin\Debug\net6.0\testhost.exe

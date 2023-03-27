@@ -14,21 +14,20 @@
 
     <Grid Background="AntiqueWhite">
         <Grid.RowDefinitions>
-            <RowDefinition Height="225"/>
+            <RowDefinition Height="1.5*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <StackPanel>
+        
             <Border Margin="8"
                     CornerRadius="5"
                     BorderThickness="1"
-                    BorderBrush="Black"
-                    Height="180">
+                    BorderBrush="Black">
 
-                <Image Source="{Binding bitmapImage}"></Image>
+                <Image Source="{Binding Route}"></Image>
             </Border>
-            <Button Command="{Binding Load}">LOAD IMAGE</Button>
-        </StackPanel>
+            
+       
 
         <Border Margin="8"
                 Grid.Row="1"
@@ -50,11 +49,12 @@
                                FontSize="20"
                                Foreground="White"/>
 
+
                     <Border Margin="0"
                                 Width="660">
                         <TextBox 
-                                     Tag="add or remove"
-                                     Style="{StaticResource ModernTextBox}"/>
+                                Tag="add or remove"
+                                Style="{StaticResource ModernTextBox}"/>
 
                     </Border>
                     <Button Height="20" Width="20" 
@@ -94,7 +94,7 @@
                     
                 </Border>
 
-
+                
             </Grid>
         </Border>
     </Grid>

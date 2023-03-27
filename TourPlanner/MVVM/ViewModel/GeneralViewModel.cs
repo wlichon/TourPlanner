@@ -13,6 +13,7 @@ using System.Windows.Input;
 using System.Windows;
 using System.Drawing;
 using System.IO;
+using System.Windows.Media.Imaging;
 
 namespace TourPlanner.MVVM.ViewModel
 {
@@ -27,8 +28,6 @@ namespace TourPlanner.MVVM.ViewModel
         private bool _selectedTourHasChanged = false;
 
         private TourProcessor _tp;
-
-        private Tour _oldTour;
 
         public string FormTourNameField { get; set; }
 
@@ -97,15 +96,6 @@ namespace TourPlanner.MVVM.ViewModel
                 if (_selectedTourHasChanged)
                 {
                     _selectedTourHasChanged = false;
-                    int? selectedTourId = _selectedTour.TourId;
-
-                    var dp = new DirectionsProcessor();
-
-                    (byte[]? jpeg, string? message) = await dp.LoadMap("placeholder");
-
-                    _selectedTour.TourInfo.ImageData = jpeg;
-
-                    dp.ConvertArrayToBitmap(jpeg);
 
                     (bool success, string updateMessage) = await _tp.UpdateTour(_selectedTour);
                     if (success)
@@ -114,7 +104,7 @@ namespace TourPlanner.MVVM.ViewModel
                     }
                     else
                     {
-                        //_selectedTour = (Tour)_oldTour.Clone();
+                       
                         MessageBox.Show(updateMessage);
                     }
                 }

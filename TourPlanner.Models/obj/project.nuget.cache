@@ -1,12 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "ei1yVcMPc25H89c4xwCrEsBy4TH65OTB3Kk+BDOnxhb5YJgaeolobAZmvFTck2sFtK0chE3x7V6a3GR8i2R8sA==",
+  "dgSpecHash": "v+IH0lOw6wSBAdWz1dk5TUO1hV8P9KPZ9Zgi8yZGN/HdtualJ6h3JaKmn2JhpwGAgIE/9ld8iVLHWXqH0XHEcw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\wikto\\Desktop\\GitProjects\\TourPlanner\\TourPlanner.Models\\TourPlanner.Models.csproj",
+  "projectFilePath": "C:\\Users\\wikto\\OneDrive\\Desktop\\GitProjects\\TourPlanner\\TourPlanner.Models\\TourPlanner.Models.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\wikto\\.nuget\\packages\\microsoft.win32.systemevents\\7.0.0\\microsoft.win32.systemevents.7.0.0.nupkg.sha512",
-    "C:\\Users\\wikto\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
-    "C:\\Users\\wikto\\.nuget\\packages\\system.drawing.common\\7.0.0\\system.drawing.common.7.0.0.nupkg.sha512"
+    "C:\\Users\\wikto\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
   ],
   "logs": []
 }

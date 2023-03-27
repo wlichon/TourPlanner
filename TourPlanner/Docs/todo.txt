@@ -1,0 +1,10 @@
+﻿- Make it so the image gets requested based on the From and To properties
+
+- Make it so the image mapquest call only gets made when either of them changes 
+(has to be done through routeviewmodel, generalvm will have to notify routevm 
+somehow as routevm wont know about change in selectedtour properties?)
+
+- Check if OnPropertyChanged can be removed from subviewmodels
+
+- Check if bytearray is jpeg
+

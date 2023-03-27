@@ -21,7 +21,17 @@ namespace TourPlanner.MVVM.ViewModel
 
 
         private Tour _selectedTour;
-        private ObservableCollection<TourLog> _tourLogs = new ObservableCollection<TourLog>();
+        private BitmapImage? _route;
+
+        public BitmapImage? Route
+        {
+            get { return _route; }
+            set { 
+                _route = value;
+                OnPropertyChanged();
+            }
+        }
+
 
         public Tour SelectedTour
         {
@@ -30,6 +40,7 @@ namespace TourPlanner.MVVM.ViewModel
                 if (_selectedTour != value)
                 {
                     _selectedTour = value;
+                    LoadMap();
                     OnPropertyChanged();
 
                 }
@@ -44,55 +55,36 @@ namespace TourPlanner.MVVM.ViewModel
             var dp = new DirectionsProcessor();
             (byte[]? jpeg, string message) = await dp.LoadMap("placeholder");
 
+            if(jpeg != null)
+            {
+                using (MemoryStream memory = new MemoryStream())
+                {
+                
+                    _route = new BitmapImage();
+                    _route.BeginInit();
+                    _route.StreamSource = new System.IO.MemoryStream(jpeg);
+                    _route.EndInit();
+
+                }
+
+            }
+
+            Route = _route;
+
+
             MessageBox.Show(message);
 
-            Map = dp.ConvertArrayToBitmap(jpeg);
 
-            System.Windows.Media.Imaging.BitmapSource bitmapSource = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(
-                Map.GetHbitmap(),
-                IntPtr.Zero,
-                System.Windows.Int32Rect.Empty,
-                System.Windows.Media.Imaging.BitmapSizeOptions.FromEmptyOptions());
 
-            System.Windows.Media.Imaging.BitmapImage bitmapImage = new System.Windows.Media.Imaging.BitmapImage();
-            bitmapImage.BeginInit();
-            bitmapImage.CacheOption = System.Windows.Media.Imaging.BitmapCacheOption.OnLoad;
-            bitmapImage.StreamSource = new MemoryStream();
-            System.Windows.Media.Imaging.BitmapEncoder encoder = new System.Windows.Media.Imaging.PngBitmapEncoder();
-            encoder.Frames.Add(System.Windows.Media.Imaging.BitmapFrame.Create(bitmapSource));
-            encoder.Save(bitmapImage.StreamSource);
-            bitmapImage.EndInit();
-
-        }
-
-        private BitmapImage _bitmapImage;
-
-        public  BitmapImage bitmapImage
-        {
-            get { return _bitmapImage; }
-            set { _bitmapImage = value;
-                OnPropertyChanged();
-            }
         }
 
 
         public RelayCommand Load { get; set; }
 
-        private Bitmap _map;
-        public Bitmap Map { 
-            get { return _map; } 
-            set
-            {
-                _map = value;
-                OnPropertyChanged();
-            }
-        }
+        
         public RouteViewModel()
         {
-
-            Load = new RelayCommand(async o => {
-                await LoadMap();
-            });
+            Route = new BitmapImage();
 
 
         }

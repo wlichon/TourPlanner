@@ -28,13 +28,6 @@ namespace TourPlannerAPI.Data
         {
 
         }
-
-        /*
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Tour>()
-                .Has
-        }
-        */
+        
     }
 }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Drawing.Imaging;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Drawing;
+using Newtonsoft.Json;
 
 namespace TourPlanner.Models
 {
@@ -14,7 +15,6 @@ namespace TourPlanner.Models
         public TourInfo() { }
         public TourInfo(string from, string to, float distance, string description, string transportType, int estimatedTime)
         {
-            //SetImage(bitmap);
             From = from;
             To = to;
             Distance = distance;
@@ -22,31 +22,17 @@ namespace TourPlanner.Models
             TransportType = transportType;
             EstimatedTime = estimatedTime;
         }
-        /*
-         * 
-         * 
-         IMPLEMENT LATER
+       
+        public byte[]? ImageData { get; set; }
 
-        public Bitmap GetImage()
-        {
-            if (ImageData == null)
-                return null;
-            using (var ms = new MemoryStream(ImageData))
-            {
-                return new Bitmap(ms);
-            }
-        }
+        
+        
+        [NotMapped]
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public Bitmap? MapImage { get; set; }
 
-        public void SetImage(Bitmap image)
-        {
-            using (var ms = new MemoryStream())
-            {
-                ImageData = ms.ToArray();
-            }
-        }
-        public byte[] ImageData { get; set; }
+        
 
-        */
 
         public int? TourInfoId { get; set; }
         public string? From { get; 

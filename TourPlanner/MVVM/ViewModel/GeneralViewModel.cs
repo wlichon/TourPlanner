@@ -11,6 +11,8 @@ using System.Net.Http.Json;
 using TourPlanner.Models.Models;
 using System.Windows.Input;
 using System.Windows;
+using System.Drawing;
+using System.IO;
 
 namespace TourPlanner.MVVM.ViewModel
 {
@@ -83,6 +85,10 @@ namespace TourPlanner.MVVM.ViewModel
             }
         }
 
+        
+        
+        
+
         public async Task ToggleButtonAsync()
         {
             
@@ -92,6 +98,15 @@ namespace TourPlanner.MVVM.ViewModel
                 {
                     _selectedTourHasChanged = false;
                     int? selectedTourId = _selectedTour.TourId;
+
+                    var dp = new DirectionsProcessor();
+
+                    (byte[]? jpeg, string? message) = await dp.LoadMap("placeholder");
+
+                    _selectedTour.TourInfo.ImageData = jpeg;
+
+                    dp.ConvertArrayToBitmap(jpeg);
+
                     (bool success, string updateMessage) = await _tp.UpdateTour(_selectedTour);
                     if (success)
                     {
@@ -105,6 +120,7 @@ namespace TourPlanner.MVVM.ViewModel
                 }
                 ButtonText = "Edit";
             }
+
             else
             {
                 ButtonText = "Save";

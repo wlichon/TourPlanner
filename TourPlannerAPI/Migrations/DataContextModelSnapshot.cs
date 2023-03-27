@@ -30,7 +30,7 @@ namespace TourPlannerAPI.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int?>("TourId"));
 
-                    b.Property<int?>("TourInfoId")
+                    b.Property<int>("TourInfoId")
                         .HasColumnType("integer");
 
                     b.Property<string>("TourName")
@@ -63,6 +63,9 @@ namespace TourPlannerAPI.Migrations
 
                     b.Property<string>("From")
                         .HasColumnType("text");
+
+                    b.Property<byte[]>("ImageData")
+                        .HasColumnType("bytea");
 
                     b.Property<string>("To")
                         .HasColumnType("text");
@@ -106,7 +109,9 @@ namespace TourPlannerAPI.Migrations
                 {
                     b.HasOne("TourPlanner.Models.TourInfo", "TourInfo")
                         .WithMany()
-                        .HasForeignKey("TourInfoId");
+                        .HasForeignKey("TourInfoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("TourInfo");
                 });

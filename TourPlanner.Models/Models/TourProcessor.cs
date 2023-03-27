@@ -37,7 +37,7 @@ namespace TourPlanner.Models.Models
             }
             catch (HttpRequestException ex)
             {
-                return (tours, "Tours loaded unsuccessfully");
+                return (tours, ex.Message);
             }
         }
 
@@ -54,11 +54,11 @@ namespace TourPlanner.Models.Models
             }
             catch(HttpRequestException ex)
             {
-                return (false, "Tour loading connection error");
+                return (false, ex.Message);
             }
             catch(Exception ex)
             {
-                return (false, "Tour loading unkown error");
+                return (false, ex.Message);
             }
 
             
@@ -82,11 +82,11 @@ namespace TourPlanner.Models.Models
             }
             catch (HttpRequestException ex)
             {
-                return (false, "Tour adding connection error");
+                return (false, ex.Message);
             }
             catch (Exception ex)
             {
-                return (false, "Tour adding unknown error");
+                return (false, ex.Message);
             }
 
             return (true, "Tour added successfully");
@@ -100,17 +100,19 @@ namespace TourPlanner.Models.Models
 
             try
             {
-                response = await ApiHelper.ApiClient.PutAsJsonAsync(
-                $"api/tour", tour);
+                var json = JsonConvert.SerializeObject(tour);
+                var data = new StringContent(json, Encoding.UTF8, "application/json");
+                response = await ApiHelper.ApiClient.PutAsync(
+                $"https://localhost:7136/api/tour", data);
                 response.EnsureSuccessStatusCode();
             }
             catch (HttpRequestException ex)
             {
-                return (false, "Update connection error");
+                return (false, ex.Message);
             }
             catch (Exception ex)
             {
-                return (false, "Update unknown error");
+                return (false, ex.Message);
             }
 
             return (true, "Update successful");
@@ -133,11 +135,11 @@ namespace TourPlanner.Models.Models
             }
             catch(HttpRequestException ex)
             {
-                return (false, "Delete connection error");
+                return (false, ex.Message);
             }
             catch (Exception ex)
             {
-                return (false, "Delete unknown error");
+                return (false, ex.Message);
             }
 
             return (true, "Deleted successfully");

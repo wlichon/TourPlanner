@@ -49,6 +49,8 @@ namespace TourPlanner.MVVM.ViewModel
 
         public OtherViewModel OtherVM { get; set; }
 
+        private TourMediator TourMediator { get; set; }
+
         
 
         public ObservableCollection<Tour> Tours {
@@ -154,6 +156,8 @@ namespace TourPlanner.MVVM.ViewModel
             RouteVM = new RouteViewModel();
 
             OtherVM = new OtherViewModel();
+
+            TourMediator = new TourMediator(RouteVM, GeneralVM);
 
 
 

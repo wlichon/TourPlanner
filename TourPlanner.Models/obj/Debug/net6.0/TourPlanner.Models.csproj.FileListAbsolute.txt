@@ -24,3 +24,5 @@ C:\Users\wikto\Desktop\GitProjects\TourPlanner\TourPlanner.Models\obj\Debug\net6
 C:\Users\wikto\Desktop\GitProjects\TourPlanner\TourPlanner.Models\obj\Debug\net6.0\ref\TourPlanner.Models.dll
 C:\Users\wikto\OneDrive\Desktop\GitProjects\TourPlanner\TourPlanner.Models\obj\Debug\net6.0\Interop.DMRInternalLib.dll
 C:\Users\wikto\OneDrive\Desktop\GitProjects\TourPlanner\TourPlanner.Models\obj\Debug\net6.0\TourPlanner.Models.csproj.ResolveComReference.cache
+C:\Users\wikto\Desktop\GitProjects\TourPlanner\TourPlanner.Models\obj\Debug\net6.0\Interop.DMRInternalLib.dll
+C:\Users\wikto\Desktop\GitProjects\TourPlanner\TourPlanner.Models\obj\Debug\net6.0\TourPlanner.Models.csproj.ResolveComReference.cache

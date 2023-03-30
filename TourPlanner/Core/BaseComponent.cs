@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TourPlanner.Core
 {
-    class BaseComponent
+    public class BaseComponent : ObservableObject
     {
         protected IMediator _mediator;
 

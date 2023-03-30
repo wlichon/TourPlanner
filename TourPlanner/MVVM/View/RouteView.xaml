@@ -24,7 +24,7 @@
                     BorderThickness="1"
                     BorderBrush="Black">
 
-                <Image Source="{Binding Route}"></Image>
+                <Image Source="{Binding RouteImage}"></Image>
             </Border>
             
        

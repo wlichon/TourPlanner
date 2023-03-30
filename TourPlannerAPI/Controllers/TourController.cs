@@ -91,6 +91,7 @@ namespace TourPlannerAPI.Controllers
             existingTourInfo.Description = request.TourInfo?.Description;
             existingTourInfo.TransportType = request.TourInfo?.TransportType;
             existingTourInfo.EstimatedTime = request.TourInfo?.EstimatedTime;
+            existingTourInfo.ImageData = request.TourInfo?.ImageData;
             tour.TourName = request.TourName;
             tour.TourInfo = existingTourInfo;
 

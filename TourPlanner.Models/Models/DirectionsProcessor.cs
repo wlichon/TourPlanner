@@ -10,13 +10,13 @@ namespace TourPlanner.Models.Models
     public class DirectionsProcessor
     {
         
-        public async Task<(byte[]? jpegMap, string message)> LoadMap(string? location)
+        public async Task<(byte[]? jpegMap, string message)> LoadMap(string? from, string? to)
         {
             HttpResponseMessage response;
             try
             {
                 response = await ApiHelper.ApiClient.GetAsync(
-                    $"https://www.mapquestapi.com/staticmap/v5/map?start=Wien&end=Salzburg&size=610,300@2x&key=qL8PNjia3XSMfgNRG4henvQNAnQGprnW");
+                    $"https://www.mapquestapi.com/staticmap/v5/map?start={from}&end={to}&size=610,300@2x&key=qL8PNjia3XSMfgNRG4henvQNAnQGprnW");
 
                 response.EnsureSuccessStatusCode();
 
@@ -40,7 +40,7 @@ namespace TourPlanner.Models.Models
                     {
                         await stream.CopyToAsync(memoryStream);
                         var jpegMap = memoryStream.ToArray();
-                        return (jpegMap, "Map loaded successfully");
+                        return (jpegMap, "Map loaded from api");
 
 
                     }

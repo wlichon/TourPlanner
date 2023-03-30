@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 
 namespace TourPlanner.Models
 {
-    public partial class TourInfo
+    public class TourInfo : ICloneable
     {
         public TourInfo() { }
         public TourInfo(string from, string to, float distance, string description, string transportType, int estimatedTime)
@@ -33,5 +33,15 @@ namespace TourPlanner.Models
         public string? TransportType { get; set; }
         public float? EstimatedTime{ get; set; }
 
+        public object Clone()
+        {
+            var clonedInfo = new TourInfo
+            {
+                From = From,
+                To = To
+            };
+
+            return clonedInfo;
+        }
     }
 }

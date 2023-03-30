@@ -10,3 +10,5 @@ somehow as routevm wont know about change in selectedtour properties?)
 
 - Check if bytearray is jpeg
 
+- If created tour has same from and to, load image from database instead of api
+

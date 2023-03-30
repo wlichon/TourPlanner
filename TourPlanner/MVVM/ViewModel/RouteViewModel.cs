@@ -16,18 +16,18 @@ using System.Windows.Media.Imaging;
 
 namespace TourPlanner.MVVM.ViewModel
 {
-    public class RouteViewModel : ObservableObject
+    public class RouteViewModel : BaseComponent
     {
 
 
         private Tour _selectedTour;
-        private BitmapImage? _route;
+        private BitmapImage? _routeImage;
 
-        public BitmapImage? Route
+        public BitmapImage? RouteImage
         {
-            get { return _route; }
+            get { return _routeImage; }
             set { 
-                _route = value;
+                _routeImage = value;
                 OnPropertyChanged();
             }
         }
@@ -48,30 +48,50 @@ namespace TourPlanner.MVVM.ViewModel
             }
         }
 
+        public void MediatorRefreshMap()
+        {
+            using (MemoryStream memory = new MemoryStream())
+            {
 
+                _routeImage = new BitmapImage();
+                _routeImage.BeginInit();
+                _routeImage.StreamSource = new System.IO.MemoryStream(SelectedTour.TourInfo.ImageData);
+                _routeImage.EndInit();
+                RouteImage = _routeImage; 
+
+            }
+
+        }
 
         public async Task LoadMap()
         {
             var dp = new DirectionsProcessor();
-            (byte[]? jpeg, string message) = await dp.LoadMap("placeholder");
+            string message = "Map loaded from memory";
 
-            if(jpeg != null)
+            if (SelectedTour.TourInfo.ImageData == null && SelectedTour.TourInfo.From != null && SelectedTour.TourInfo.To != null) // enter when Imagedata is null but From and To are set
+                (SelectedTour.TourInfo.ImageData, message) = await dp.LoadMap(SelectedTour.TourInfo.From, SelectedTour.TourInfo.To);
+
+            if(SelectedTour.TourInfo.ImageData == null) // enter when either From or To or both are null
             {
-                using (MemoryStream memory = new MemoryStream())
-                {
+                RouteImage = null;
+                MessageBox.Show("Cannot load route image since insufficient data");
+                return;
+            }
+            using (MemoryStream memory = new MemoryStream())
+            {
                 
-                    _route = new BitmapImage();
-                    _route.BeginInit();
-                    _route.StreamSource = new System.IO.MemoryStream(jpeg);
-                    _route.EndInit();
-
-                }
+                _routeImage = new BitmapImage();
+                _routeImage.BeginInit();
+                _routeImage.StreamSource = new System.IO.MemoryStream(SelectedTour.TourInfo.ImageData);
+                _routeImage.EndInit();
+                RouteImage = _routeImage;
 
             }
 
-            Route = _route;
+            
 
 
+            
             MessageBox.Show(message);
 
 
@@ -84,7 +104,7 @@ namespace TourPlanner.MVVM.ViewModel
         
         public RouteViewModel()
         {
-            Route = new BitmapImage();
+            RouteImage = new BitmapImage();
 
 
         }

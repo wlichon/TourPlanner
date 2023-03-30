@@ -17,7 +17,7 @@ using System.Windows.Media.Imaging;
 
 namespace TourPlanner.MVVM.ViewModel
 {
-    public class GeneralViewModel : ObservableObject
+    public class GeneralViewModel : BaseComponent
     {
         private bool _textboxesEnabled = false;
 
@@ -25,28 +25,20 @@ namespace TourPlanner.MVVM.ViewModel
 
         private Tour _selectedTour;
 
-        private bool _selectedTourHasChanged = false;
-
         private TourProcessor _tp;
 
-        public string FormTourNameField { get; set; }
+        private TourInfo _oldInfo;
 
-        public string FormDescriptionField { get; set; }
-        public string FormFromField { get; set; }
-
-        public string FormToField { get; set; }
-
+        
         public Tour SelectedTour {
             get { return _selectedTour; }
             set
             {
                 if(value != _selectedTour)
                 {
-
-
+                    
                     _selectedTour = value;
-                    //_oldTour = (Tour)_selectedTour.Clone();
-                    _selectedTourHasChanged = true;
+                    _oldInfo = (TourInfo)_selectedTour.TourInfo.Clone();
                     OnPropertyChanged();
                 }
             }
@@ -85,7 +77,10 @@ namespace TourPlanner.MVVM.ViewModel
         }
 
         
-        
+        private void MediatorSendRefreshImage()
+        {
+            this._mediator.Notify(this, TourEvent.RefreshRouteImage);
+        }
         
 
         public async Task ToggleButtonAsync()
@@ -93,21 +88,26 @@ namespace TourPlanner.MVVM.ViewModel
             
             if (TextboxesEnabled)
             {
-                if (_selectedTourHasChanged)
+                if(_selectedTour.TourInfo.From != _oldInfo.From || _selectedTour.TourInfo.To != _oldInfo.To)
                 {
-                    _selectedTourHasChanged = false;
-
-                    (bool success, string updateMessage) = await _tp.UpdateTour(_selectedTour);
-                    if (success)
-                    {
-                        MessageBox.Show(updateMessage);
-                    }
-                    else
-                    {
-                       
-                        MessageBox.Show(updateMessage);
-                    }
+                    var dp = new DirectionsProcessor();
+                    (_selectedTour.TourInfo.ImageData, string loadMapMessage) = await dp.LoadMap(_selectedTour.TourInfo.From, _selectedTour.TourInfo.To);
+                    MediatorSendRefreshImage();
+                    MessageBox.Show("MapApi called since locations changed");
                 }
+
+
+                (bool success, string updateMessage) = await _tp.UpdateTour(_selectedTour);
+                if (success)
+                {
+                    MessageBox.Show(updateMessage);
+                }
+                else
+                {
+                       
+                    MessageBox.Show(updateMessage);
+                }
+                
                 ButtonText = "Edit";
             }
 

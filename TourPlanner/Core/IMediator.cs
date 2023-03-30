@@ -9,30 +9,33 @@ namespace TourPlanner.Core
 {
     public enum TourEvent
     {
-        UpdateGeneralVM
+        RefreshRouteImage
     }
-    interface IMediator
+    public interface IMediator
     {
         void Notify(object sender, TourEvent ev);
     }
 
     class TourMediator : IMediator
     {
-        private MainViewModel _mainVM;
+        private RouteViewModel _routeVM;
 
         private GeneralViewModel _generalVM;
 
-        public TourMediator(MainViewModel mainVM, GeneralViewModel generalVM)
+
+        public TourMediator(RouteViewModel routeVM, GeneralViewModel generalVM)
         {
-            _mainVM = mainVM;
+            _routeVM = routeVM;
+            _routeVM.SetMediator(this);
             _generalVM = generalVM;
+            _generalVM.SetMediator(this);
         }
 
         public void Notify(object sender, TourEvent ev)
         {
-            if(ev == TourEvent.UpdateGeneralVM)
+            if(ev == TourEvent.RefreshRouteImage)
             {
-                _generalVM.SelectedTour = _mainVM.SelectedTour;
+                _routeVM.MediatorRefreshMap();
             }
         }
     }

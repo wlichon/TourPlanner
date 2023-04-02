@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "22eCQEQ6UlP5fTd2gN25yZBCGYEEi4D5w56xGllz2bsPo1dVRzxcc9X3876Qiz1li1M3whfiPWpD7G+dH00JOg==",
+  "dgSpecHash": "VKgk3+yXj7fgPmx5rL24/KIxTK1htiY0bQXtnHh5LTIesi0kfOGpmQLPkKe+KnizvBzWNyxwFnhoJUHNPVkOgQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\wikto\\Desktop\\GitProjects\\TourPlanner\\TourPlanner.UnitTests\\TourPlanner.UnitTests.csproj",
+  "projectFilePath": "C:\\Users\\wikto\\OneDrive\\Desktop\\GitProjects\\TourPlanner\\TourPlanner.UnitTests\\TourPlanner.UnitTests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\wikto\\.nuget\\packages\\coverlet.collector\\3.1.0\\coverlet.collector.3.1.0.nupkg.sha512",
     "C:\\Users\\wikto\\.nuget\\packages\\microsoft.codecoverage\\16.11.0\\microsoft.codecoverage.16.11.0.nupkg.sha512",

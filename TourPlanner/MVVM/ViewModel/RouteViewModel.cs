@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using TourPlanner.Models;
 using System.Windows;
 using System.Drawing;
-using TourPlanner.Models.Models;
 using System.Runtime.Intrinsics.Arm;
 using System.IO;
 using System.Windows.Media.Imaging;
@@ -19,6 +18,7 @@ namespace TourPlanner.MVVM.ViewModel
     public class RouteViewModel : BaseComponent
     {
 
+        
 
         private Tour _selectedTour;
         private BitmapImage? _routeImage;

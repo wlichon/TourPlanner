@@ -13,5 +13,6 @@ namespace TourPlanner
     /// </summary>
     public partial class App : Application
     {
+        public const string Key = "qL8PNjia3XSMfgNRG4henvQNAnQGprnW";
     }
 }

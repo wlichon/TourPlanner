@@ -130,14 +130,14 @@
                 <Border Grid.Column="0" 
                 Margin="0 0 5 0">
 
-                    <TextBox IsEnabled="False" Style="{StaticResource ModernTextBox}" Tag="From or To is not specified" Text="{Binding SelectedTour.TourInfo.Distance}"/>
+                    <TextBox IsEnabled="False" Style="{StaticResource ModernTextBox}" Tag="From or To is not specified" Text="{Binding Distance, StringFormat={}{0} kilometers}"/>
 
                 </Border>
 
 
                 <Border  Grid.Column="1" Margin="5 0 0 0">
 
-                    <TextBox IsEnabled="False" Style="{StaticResource ModernTextBox}" Tag="From or To is not specified" Text="{Binding SelectedTour.TourInfo.EstimatedTime}"/>
+                    <TextBox IsEnabled="False" Style="{StaticResource ModernTextBox}" Tag="From or To is not specified" Text="{Binding EstimatedTime, StringFormat={}{0} minutes}"/>
                 </Border>
 
                 <Border Grid.Column="2"

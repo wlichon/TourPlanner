@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TourPlanner.Models.Models
+namespace TourPlanner.Core
 {
     public static class ApiHelper
     {
@@ -17,7 +18,7 @@ namespace TourPlanner.Models.Models
         public static void InitializeClient()
         {
             ApiClient = new HttpClient();
-            ApiClient.BaseAddress = new Uri("https://localhost:7136");
+            ApiClient.BaseAddress = new Uri(Constants.DbApiAddress);
             ApiClient.DefaultRequestHeaders.Accept.Clear();
             ApiClient.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));

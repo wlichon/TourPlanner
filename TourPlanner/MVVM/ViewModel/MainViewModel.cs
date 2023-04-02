@@ -11,7 +11,6 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using TourPlanner.Core;
 using TourPlanner.Models;
-using TourPlanner.Models.Models;
 
 namespace TourPlanner.MVVM.ViewModel
 {

@@ -8,7 +8,6 @@ using TourPlanner.Models;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
-using TourPlanner.Models.Models;
 using System.Windows.Input;
 using System.Windows;
 using System.Drawing;
@@ -38,9 +37,31 @@ namespace TourPlanner.MVVM.ViewModel
                 {
                     
                     _selectedTour = value;
+                    EstimatedTime = _selectedTour.TourInfo.EstimatedTime;
+                    Distance = _selectedTour.TourInfo.Distance;
                     _oldInfo = (TourInfo)_selectedTour.TourInfo.Clone();
                     OnPropertyChanged();
                 }
+            }
+        }
+
+        public float? EstimatedTime
+        {
+            get { return _selectedTour.TourInfo.EstimatedTime; }
+            set
+            {
+                _selectedTour.TourInfo.EstimatedTime = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public float? Distance
+        {
+            get { return _selectedTour.TourInfo.Distance; }
+            set
+            {
+                _selectedTour.TourInfo.Distance = value;
+                OnPropertyChanged();
             }
         }
 
@@ -92,6 +113,7 @@ namespace TourPlanner.MVVM.ViewModel
                 {
                     var dp = new DirectionsProcessor();
                     (_selectedTour.TourInfo.ImageData, string loadMapMessage) = await dp.LoadMap(_selectedTour.TourInfo.From, _selectedTour.TourInfo.To);
+                    (Distance, EstimatedTime, string loadDirectionsMessage) = await dp.LoadDirections(_selectedTour.TourInfo.From, _selectedTour.TourInfo.To);
                     MediatorSendRefreshImage();
                     MessageBox.Show("MapApi called since locations changed");
                 }

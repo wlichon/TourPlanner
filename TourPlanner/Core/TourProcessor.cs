@@ -3,11 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
+using TourPlanner.Models;
 
-namespace TourPlanner.Models.Models
+namespace TourPlanner.Core
 {
     public class TourProcessor
     {
@@ -17,7 +19,7 @@ namespace TourPlanner.Models.Models
             try
             {
 
-                using (HttpResponseMessage response = await ApiHelper.ApiClient.GetAsync(ApiHelper.ApiClient.BaseAddress + $"api/tour"))
+                using (HttpResponseMessage response = await ApiHelper.ApiClient.GetAsync($"api/tour"))
                 {
 
                     
@@ -75,7 +77,7 @@ namespace TourPlanner.Models.Models
             HttpResponseMessage response;
             try
             {
-                response = await ApiHelper.ApiClient.PostAsync("https://localhost:7136/api/tour", data);
+                response = await ApiHelper.ApiClient.PostAsync("/api/tour", data);
                 response.EnsureSuccessStatusCode();
 
 
@@ -103,7 +105,7 @@ namespace TourPlanner.Models.Models
                 var json = JsonConvert.SerializeObject(tour);
                 var data = new StringContent(json, Encoding.UTF8, "application/json");
                 response = await ApiHelper.ApiClient.PutAsync(
-                $"https://localhost:7136/api/tour", data);
+                $"/api/tour", data);
                 response.EnsureSuccessStatusCode();
             }
             catch (HttpRequestException ex)

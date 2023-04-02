@@ -4,13 +4,13 @@ using System.Text.Json.Serialization;
 using System.Windows;
 using System.Windows.Input;
 using TourPlanner.Models;
-using TourPlanner.Models.Models;
 using Newtonsoft.Json;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Net.Http;
 using System.Text;
 using TourPlanner.MVVM.ViewModel;
+using TourPlanner.Core;
 
 namespace TourPlanner
 {

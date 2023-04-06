@@ -13,11 +13,82 @@ using System.Windows;
 using System.Drawing;
 using System.IO;
 using System.Windows.Media.Imaging;
+using System.ComponentModel;
 
 namespace TourPlanner.MVVM.ViewModel
 {
-    public class GeneralViewModel : BaseComponent
+    public class GeneralViewModel : BaseComponent, IDataErrorInfo
     {
+        public string Error { get { return null; } }
+
+        public Dictionary<string, string> ErrorCollection { get; private set; } = new Dictionary<string, string>();
+        public string this[string propName]
+        {
+
+            get
+            {
+                if (TextboxesEnabled == false)
+                    return null;
+
+                string result = null;
+
+                switch (propName)
+                {
+                    case "ChangedName":
+                        if (string.IsNullOrEmpty(ChangedName))
+                        {
+                            result = "Your tour name needs at least 1 character";
+                        }
+                        break;
+                    case "ChangedFrom":
+                        if (string.IsNullOrEmpty(ChangedFrom))
+                        {
+                            result = "Enter your starting location in this textbox";
+                        }
+                        break;
+                    case "ChangedTo":
+                        if (string.IsNullOrEmpty(ChangedTo))
+                        {
+                            result = "Enter your destination in this textbox";
+                        }
+                        break;
+                    case "ChangedDescription":
+                        if (string.IsNullOrEmpty(ChangedDescription))
+                        {
+                            result = "Enter your description";
+                        }
+                        break;
+                }
+
+                if (ErrorCollection.ContainsKey(propName))
+                {
+                    if(result == null)
+                    {
+                        ErrorCollection.Remove(propName);
+                        return null;
+                    }
+                    ErrorCollection[propName] = result;
+
+                }
+                else if (result != null)
+                    ErrorCollection.Add(propName, result);
+
+                if(ErrorCollection.Count == 0)
+                {
+                    IsSaveButtonEnabled = true;
+                }
+                else
+                {
+                    IsSaveButtonEnabled = false;
+                }
+
+                OnPropertyChanged(nameof(ErrorCollection));
+
+                return result;
+            }
+        }
+
+
         private bool _textboxesEnabled = false;
 
         private string _buttonText;
@@ -26,7 +97,27 @@ namespace TourPlanner.MVVM.ViewModel
 
         private TourProcessor _tp;
 
-        private TourInfo _oldInfo;
+        private TourInfo _changedInfo;
+
+        private string _oldName;
+
+        public string ChangedName
+        {
+            get { return _oldName; }
+            set { 
+                _oldName = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string? ChangedFrom
+        {
+            get { return _changedInfo?.From; }
+            set { 
+                _changedInfo.From = value;
+                OnPropertyChanged();
+            }
+        }
 
         
         public Tour SelectedTour {
@@ -37,30 +128,57 @@ namespace TourPlanner.MVVM.ViewModel
                 {
                     
                     _selectedTour = value;
+                    _changedInfo = new TourInfo();
+                    _changedInfo.TourInfoId = _selectedTour.TourInfo.TourInfoId;
+                   
+                    ChangedName = _selectedTour.TourName;
+                    ChangedFrom = _selectedTour.TourInfo.From;
+                    ChangedTo = _selectedTour.TourInfo.To;
+                    ChangedDescription = _selectedTour.TourInfo.Description;
+                 
                     EstimatedTime = _selectedTour.TourInfo.EstimatedTime;
                     Distance = _selectedTour.TourInfo.Distance;
-                    _oldInfo = (TourInfo)_selectedTour.TourInfo.Clone();
+                    
                     OnPropertyChanged();
                 }
             }
         }
 
-        public float? EstimatedTime
+        public string? ChangedDescription
         {
-            get { return _selectedTour.TourInfo.EstimatedTime; }
+            get { return _changedInfo?.Description; }
             set
             {
-                _selectedTour.TourInfo.EstimatedTime = value;
+                _changedInfo.Description = value;
+                OnPropertyChanged();
+            }
+        }
+        public string? ChangedTo
+        {
+            get { return _changedInfo?.To; }
+            set
+            {
+                _changedInfo.To = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public float? EstimatedTime
+        {
+            get { return _changedInfo?.EstimatedTime; }
+            set
+            {
+                _changedInfo.EstimatedTime = value;
                 OnPropertyChanged();
             }
         }
 
         public float? Distance
         {
-            get { return _selectedTour.TourInfo.Distance; }
+            get { return _changedInfo?.Distance; }
             set
             {
-                _selectedTour.TourInfo.Distance = value;
+                _changedInfo.Distance = value;
                 OnPropertyChanged();
             }
         }
@@ -92,8 +210,25 @@ namespace TourPlanner.MVVM.ViewModel
                 if(_textboxesEnabled != value)
                 {
                     _textboxesEnabled = value;
+                    if(_textboxesEnabled == true)
+                    {
+                        ChangedName = ChangedName;
+                        ChangedFrom = ChangedFrom;
+                    }
                     OnPropertyChanged();
                 }
+            }
+        }
+
+        private bool _isSaveButtonEnabled;
+
+        public bool IsSaveButtonEnabled
+        {
+            get { return _isSaveButtonEnabled; }
+            set {
+                
+                _isSaveButtonEnabled = value;
+                OnPropertyChanged();
             }
         }
 
@@ -105,19 +240,39 @@ namespace TourPlanner.MVVM.ViewModel
         
 
         public async Task ToggleButtonAsync()
-        {
+        { 
+            if(SelectedTour == null)
+            {
+                return;
+            }
             
             if (TextboxesEnabled)
             {
-                if(_selectedTour.TourInfo.From != _oldInfo.From || _selectedTour.TourInfo.To != _oldInfo.To)
+                bool imageChanged = false;
+
+                if((_selectedTour.TourInfo.From != _changedInfo.From || _selectedTour.TourInfo.To != _changedInfo.To) && (!string.IsNullOrEmpty(_changedInfo.To) && !string.IsNullOrEmpty(_changedInfo.From)))
                 {
                     var dp = new DirectionsProcessor();
-                    (_selectedTour.TourInfo.ImageData, string loadMapMessage) = await dp.LoadMap(_selectedTour.TourInfo.From, _selectedTour.TourInfo.To);
-                    (Distance, EstimatedTime, string loadDirectionsMessage) = await dp.LoadDirections(_selectedTour.TourInfo.From, _selectedTour.TourInfo.To);
-                    MediatorSendRefreshImage();
+                    (_changedInfo.ImageData, string loadMapMessage) = await dp.LoadMap(_changedInfo.From, _changedInfo.To);
+                    (Distance, EstimatedTime, string loadDirectionsMessage) = await dp.LoadDirections(_changedInfo.From, _changedInfo.To);
+                    imageChanged = true;
                     MessageBox.Show("MapApi called since locations changed");
                 }
 
+                _selectedTour.TourName = ChangedName;
+                
+                _selectedTour.TourInfo.TourInfoId = _changedInfo.TourInfoId;
+                _selectedTour.TourInfo.Distance = _changedInfo.Distance;
+                _selectedTour.TourInfo.Description = _changedInfo.Description;
+                _selectedTour.TourInfo.From = _changedInfo.From;
+                _selectedTour.TourInfo.To = _changedInfo.To;
+                _selectedTour.TourInfo.TransportType = _changedInfo.TransportType;
+                _selectedTour.TourInfo.ImageData = _changedInfo.ImageData;
+
+                if (imageChanged)
+                {
+                    MediatorSendRefreshImage();
+                }
 
                 (bool success, string updateMessage) = await _tp.UpdateTour(_selectedTour);
                 if (success)
@@ -148,6 +303,8 @@ namespace TourPlanner.MVVM.ViewModel
             _tp = new TourProcessor();
 
             ButtonText = "Edit";
+
+            IsSaveButtonEnabled = true;
 
             ToggleButtonsCommand = new RelayCommand(o => ToggleButtonAsync());
         }

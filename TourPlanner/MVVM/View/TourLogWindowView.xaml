@@ -1,0 +1,98 @@
+﻿<Window x:Class="TourPlanner.MVVM.View.TourLogWindowView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TourPlanner.MVVM.View"
+        xmlns:core="clr-namespace:TourPlanner.Core"
+        xmlns:ViewModel="clr-namespace:TourPlanner.MVVM.ViewModel"
+        mc:Ignorable="d"
+        Title="TourLogWindow" Height="500" Width="350"
+        Background="#1e1f1e"
+        core:DialogCloser.DialogResult="{Binding DialogResult}"
+        d:DataContext="{d:DesignInstance Type=ViewModel:TourLogWindowViewModel}">
+
+
+    <Window.Resources>
+        <core:DateTimeConverterMinutes x:Key="dateTimeConverterMinutes"/>
+
+    </Window.Resources>
+    
+    
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="175"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="75"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.Resources>
+            <Style TargetType="{x:Type Button}">
+                <Setter Property="IsEnabled" Value="{Binding IsAddButtonEnabled}"/>
+
+            </Style>
+        </Grid.Resources>
+        
+        <Label Grid.Row="0" Content="Date" Foreground="GhostWhite"/>
+        <Calendar Grid.Row="0" Grid.Column="1" SelectedDate="{Binding Date, ValidatesOnDataErrors=True,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding ErrorCollection[Date]}" x:Name="Calendar"></Calendar>
+
+        <Label Grid.Row="1" Content="Starting&#10;Time" Foreground="GhostWhite"/>
+        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+            <Label Foreground="GhostWhite" Content="Hour:" VerticalAlignment="Center"/>
+            <TextBox Margin="0 0 50 0" Width="30" Height="25" Text="{Binding StartHours, ValidatesOnDataErrors=True,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding ErrorCollection[StartHours]}"/>
+
+            <Label Foreground="GhostWhite" Content="Minute:" VerticalAlignment="Center"/>
+            <TextBox Width="30" Height="25" Text="{Binding StartMinutes, ValidatesOnDataErrors=True,Mode=TwoWay}" ToolTip="{Binding ErrorCollection[StartMinutes]}"/>
+
+           
+        </StackPanel>
+        
+        <Label Grid.Row="2" Content="Comment" Foreground="GhostWhite"/>
+        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Comment,  ValidatesOnDataErrors=True,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding ErrorCollection[Comment]}"></TextBox>
+        
+        <Label Grid.Row="3" Content="Difficulty" Foreground="GhostWhite"/>
+        <ComboBox Grid.Row="3" Grid.Column="1" SelectedItem="{Binding SelectedDifficultyItem}">
+            <ComboBoxItem IsSelected="True" Tag="1">Easy - 1</ComboBoxItem>
+            <ComboBoxItem Tag="2">Normal - 2</ComboBoxItem>
+            <ComboBoxItem Tag="3">Intermediate - 3</ComboBoxItem>
+            <ComboBoxItem Tag="4">Hard - 4</ComboBoxItem>
+            <ComboBoxItem Tag="5">Expert - 5</ComboBoxItem>
+        </ComboBox>
+        
+        <Label Grid.Row="4" Content="Rating" Foreground="GhostWhite"/>
+        <ComboBox Grid.Row="4" Grid.Column="1" SelectedItem="{Binding SelectedRatingItem}">
+            <ComboBoxItem IsSelected="True" Tag="1">Bad - 1</ComboBoxItem>
+            <ComboBoxItem Tag="2">Acceptable - 2</ComboBoxItem>
+            <ComboBoxItem Tag="3">Alright - 3</ComboBoxItem>
+            <ComboBoxItem Tag="4">Good - 4</ComboBoxItem>
+            <ComboBoxItem Tag="5">Extraordinary - 5</ComboBoxItem>
+        </ComboBox>
+   
+        <Label Grid.Row="5" Content="Duration" Foreground="GhostWhite"/>
+        <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="1">
+
+            <Label Content="Hours:" VerticalAlignment="Center" Foreground="AntiqueWhite"/>
+            <TextBox Width="30" Height="25" Text="{Binding DurationHours}"></TextBox>
+
+            <Label Content="Minutes:" VerticalAlignment="Center" Foreground="AntiqueWhite"/>
+            <TextBox Width="30" Height="25" Text="{Binding DurationMinutes}"></TextBox>
+
+            <Label Content="Seconds:" VerticalAlignment="Center" Foreground="AntiqueWhite"/>
+            <TextBox Width="30" Height="25" Text="{Binding DurationSeconds}"></TextBox>
+        </StackPanel>
+
+        <Button Grid.ColumnSpan="2" Grid.Row="6" Command="{Binding AddTourLogButton}">Add Log</Button>
+
+    </Grid>
+
+
+</Window>

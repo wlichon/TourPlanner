@@ -26,6 +26,7 @@ namespace TourPlannerAPI.Data
             */
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
+            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
         }
         

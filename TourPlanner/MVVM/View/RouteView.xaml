@@ -51,10 +51,9 @@
 
 
                     <Border Margin="0"
-                                Width="660">
+                                Width="600">
                         <TextBox 
-                                Tag="add or remove"
-                                Style="{StaticResource ModernTextBox}"/>
+                                Tag="add or remove"/>
 
                     </Border>
                     <Button Height="20" Width="20" 
@@ -62,22 +61,23 @@
                                 Background="Transparent" 
                                 Foreground="WhiteSmoke" 
                                 BorderThickness="0" 
-                                Margin="0 0 0 0"/>
+                                Margin="0 0 0 0"
+                                Command="{Binding ShowAddLogWindowButton}"/>
                     <Button Height="20" Width="20"
                                 Content="🗕" 
                                 Background="Transparent" 
                                 Foreground="WhiteSmoke" 
                                 BorderThickness="0"
                                 Margin="0 0 0 7"
-                                
-                                
+                                Command="{Binding RemoveSelectedLogButton}"
                                 VerticalAlignment="Center"/>
                     <Button Height="20" 
                                 Width="20" 
                                 Content="..." 
                                 Background="Transparent" 
                                 Foreground="WhiteSmoke" 
-                                BorderThickness="0"/>
+                                BorderThickness="0"
+                                Command="{Binding EditSelectedLogButton}"/>
                 </StackPanel>
                 
                 <!-- Tour logs-->
@@ -86,10 +86,18 @@
                         Margin="5"
                         BorderThickness="4"
                         BorderBrush="Black">
-                    <ListView ItemsSource="{Binding SelectedTour.TourLogs}"
+                    <ListView ItemsSource="{Binding SelectedTour.TourLogs, Mode=TwoWay}"
                               Background="Transparent"
-                              ItemContainerStyle="{StaticResource TourLogCard}">
-                        
+                              SelectedItem="{Binding SelectedLog}">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Date" Width="150" DisplayMemberBinding="{Binding Date}" />
+                                <GridViewColumn Header="Comment" Width="325" DisplayMemberBinding="{Binding Comment}"/>
+                                <GridViewColumn Header="Rating" Width="75" DisplayMemberBinding="{Binding Rating}"/>
+                                <GridViewColumn Header="Difficulty" Width="75" DisplayMemberBinding="{Binding Difficulty}"/>
+                                <GridViewColumn Header="Duration" Width="100" DisplayMemberBinding="{Binding Duration}" />
+                            </GridView>
+                        </ListView.View>
                     </ListView>
                     
                 </Border>

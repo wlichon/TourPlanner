@@ -37,8 +37,13 @@ namespace TourPlanner.Models
         {
             var clonedInfo = new TourInfo
             {
-                From = From,
-                To = To
+                TourInfoId = this.TourInfoId,
+                From = this.From,
+                To = this.To,
+                Distance = this.Distance,
+                Description = this.Description,
+                TransportType = this.TransportType,
+                EstimatedTime = this.EstimatedTime,
             };
 
             return clonedInfo;

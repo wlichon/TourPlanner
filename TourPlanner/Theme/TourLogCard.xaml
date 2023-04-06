@@ -26,16 +26,16 @@
                                 <Label Content="Date:"
                                        VerticalContentAlignment="Center"
                                        Foreground="White"
-                                       FontSize="20"/>
+                                       FontSize="12"/>
                             </Border>
                             
                             <Border Margin="2"
                                     BorderBrush="White"
                                     BorderThickness="3">
-                                <Label Content="{Binding Date}"
+                                <Label Content="{Binding Date, UpdateSourceTrigger=PropertyChanged}"
                                        VerticalContentAlignment="Center"
                                        Foreground="White"
-                                       FontSize="20"
+                                       FontSize="12"
                                        Background="Green"/>
                             </Border>
 
@@ -45,7 +45,7 @@
                                 <Label Content="Duration:"
                                        VerticalContentAlignment="Center"
                                        Foreground="White"
-                                       FontSize="20"/>
+                                       FontSize="12"/>
                             </Border>
 
                             <Border Margin="2"
@@ -54,7 +54,7 @@
                                 <Label Content="{Binding Duration}"
                                        VerticalContentAlignment="Center"
                                        Foreground="White"
-                                       FontSize="20"
+                                       FontSize="12"
                                        Background="Green"/>
                             </Border>
 
@@ -64,7 +64,7 @@
                                 <Label Content="Distance:"
                                        VerticalContentAlignment="Center"
                                        Foreground="White"
-                                       FontSize="20"/>
+                                       FontSize="12"/>
                             </Border>
 
 
@@ -75,9 +75,9 @@
                                 <TextBlock 
                                        VerticalAlignment="Center"
                                        Foreground="White"
-                                       FontSize="20">
-                                    <Run Text="{Binding Distance}"/>
-                                    <Run Text="meter"/>
+                                       FontSize="12">
+                                    <Run Text="{Binding Difficulty, Mode=TwoWay}"/>
+                                    <Run Text="Difficulty"/>
 
 
                                 </TextBlock>

@@ -86,14 +86,20 @@ namespace TourPlannerAPI.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("TourLogId"));
 
+                    b.Property<string>("Comment")
+                        .HasColumnType("text");
+
                     b.Property<DateTime>("Date")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<int>("Distance")
+                    b.Property<int?>("Difficulty")
                         .HasColumnType("integer");
 
-                    b.Property<TimeSpan>("Duration")
+                    b.Property<TimeSpan?>("Duration")
                         .HasColumnType("interval");
+
+                    b.Property<int?>("Rating")
+                        .HasColumnType("integer");
 
                     b.Property<int>("TourId")
                         .HasColumnType("integer");

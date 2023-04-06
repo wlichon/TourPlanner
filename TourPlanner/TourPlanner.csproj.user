@@ -16,6 +16,9 @@
     <Compile Update="MVVM\View\RouteView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="MVVM\View\TourLogWindowView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="MainWindow.xaml">
@@ -30,7 +33,13 @@
     <Page Update="MVVM\View\RouteView.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="MVVM\View\TourLogWindowView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Theme\ComboBoxTheme.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Theme\MyTextBox.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Theme\RouteInfoButton.xaml">

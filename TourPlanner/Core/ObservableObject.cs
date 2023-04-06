@@ -10,8 +10,10 @@ using TourPlanner.Models;
 
 namespace TourPlanner.Core
 {
-    public class ObservableObject : INotifyPropertyChanged
-    {
+    public class ObservableObject : INotifyPropertyChanged 
+    { 
+        
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected void OnPropertyChanged([CallerMemberName] string name = null)

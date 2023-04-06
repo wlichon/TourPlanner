@@ -17,6 +17,7 @@
     <Window.DataContext>
         <ViewModel:MainViewModel/>
     </Window.DataContext>
+    
 
     <Border Background="#eff2f7" CornerRadius="10" MouseDown="Border_MouseDown">
 
@@ -125,10 +126,8 @@
 
                 <!-- Tour Searchbar -->
                 <Border Margin="5">
-                    <TextBox Style="{StaticResource ModernTextBox}"
-                             Tag="Search">
-                        
-                    </TextBox>
+                    
+                    <TextBox Text="{Binding Path=SearchBox}"/>
                 </Border>
 
                 <!-- Add and remove tours panel -->
@@ -144,8 +143,7 @@
                         <Border Margin="0"
                                 Width="175">
                             <TextBox 
-                                     Tag="add or remove"
-                                     Text="{Binding TourBoxContent}"/>
+                                     Text="{Binding TourBoxContent, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding ErrorCollection[TourBoxContent]}"/>
 
                         </Border>
                         <Button Height="20" Width="20" 
@@ -226,10 +224,6 @@
 
         
     </Border>
-
-
-
-
 
 
 </Window>

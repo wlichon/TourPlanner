@@ -120,10 +120,10 @@ namespace TourPlanner.Models
             {
                 From = this.TourInfo?.From,
                 To = this.TourInfo?.To,
-                Distance = this.TourInfo.Distance,
-                Description = this.TourInfo.Description,
-                TransportType = this.TourInfo.TransportType,
-                EstimatedTime = this.TourInfo.EstimatedTime
+                Distance = this.TourInfo?.Distance,
+                Description = this.TourInfo?.Description,
+                TransportType = this.TourInfo?.TransportType,
+                EstimatedTime = this.TourInfo?.EstimatedTime
             };
 
             return tourCopy;

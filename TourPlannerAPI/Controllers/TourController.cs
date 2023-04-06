@@ -105,7 +105,7 @@ namespace TourPlannerAPI.Controllers
 
         [HttpDelete("{tourId}")]
 
-        public async Task<ActionResult<List<Tour>>> Delete(int tourId)
+        public async Task<ActionResult<List<Tour>>> DeleteTour(int tourId)
         {
             var tour = await _context.Tours
                 .Include(t => t.TourInfo)
@@ -128,6 +128,24 @@ namespace TourPlannerAPI.Controllers
             _context.Tours.Remove(tour);
             await _context.SaveChangesAsync();
             return Ok(tours);
+        }
+
+
+        [HttpDelete("log/{tourLogId}")]
+
+        public async Task<ActionResult<List<Tour>>> DeleteLog(int tourLogId)
+        {
+            var tourLog = await _context.TourLog
+                .Where(tl => tl.TourLogId == tourLogId)
+                .FirstOrDefaultAsync();
+
+            
+            if (tourLog != null)
+                _context.TourLog.Remove(tourLog);
+
+            
+            await _context.SaveChangesAsync();
+            return Ok(tourLog);
         }
 
     }

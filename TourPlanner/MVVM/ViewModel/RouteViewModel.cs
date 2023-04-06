@@ -12,21 +12,33 @@ using System.Drawing;
 using System.Runtime.Intrinsics.Arm;
 using System.IO;
 using System.Windows.Media.Imaging;
+using TourPlanner.MVVM.View;
 
 namespace TourPlanner.MVVM.ViewModel
 {
     public class RouteViewModel : BaseComponent
     {
-
-        
-
         private Tour _selectedTour;
         private BitmapImage? _routeImage;
+
+        private TourLog _selectedLog;
+
+        public TourLog SelectedLog
+        {
+            get { return _selectedLog; }
+            set
+            {
+                _selectedLog = value;
+                OnPropertyChanged();
+            }
+        }
+
 
         public BitmapImage? RouteImage
         {
             get { return _routeImage; }
-            set { 
+            set
+            {
                 _routeImage = value;
                 OnPropertyChanged();
             }
@@ -36,13 +48,13 @@ namespace TourPlanner.MVVM.ViewModel
         public Tour SelectedTour
         {
             get { return _selectedTour; }
-            set { 
+            set
+            {
                 if (_selectedTour != value)
                 {
                     _selectedTour = value;
                     LoadMap();
                     OnPropertyChanged();
-
                 }
 
             }
@@ -57,7 +69,7 @@ namespace TourPlanner.MVVM.ViewModel
                 _routeImage.BeginInit();
                 _routeImage.StreamSource = new System.IO.MemoryStream(SelectedTour.TourInfo.ImageData);
                 _routeImage.EndInit();
-                RouteImage = _routeImage; 
+                RouteImage = _routeImage;
 
             }
 
@@ -71,7 +83,7 @@ namespace TourPlanner.MVVM.ViewModel
             if (SelectedTour.TourInfo.ImageData == null && SelectedTour.TourInfo.From != null && SelectedTour.TourInfo.To != null) // enter when Imagedata is null but From and To are set
                 (SelectedTour.TourInfo.ImageData, message) = await dp.LoadMap(SelectedTour.TourInfo.From, SelectedTour.TourInfo.To);
 
-            if(SelectedTour.TourInfo.ImageData == null) // enter when either From or To or both are null
+            if (SelectedTour.TourInfo.ImageData == null) // enter when either From or To or both are null
             {
                 RouteImage = null;
                 MessageBox.Show("Cannot load route image since insufficient data");
@@ -79,7 +91,7 @@ namespace TourPlanner.MVVM.ViewModel
             }
             using (MemoryStream memory = new MemoryStream())
             {
-                
+
                 _routeImage = new BitmapImage();
                 _routeImage.BeginInit();
                 _routeImage.StreamSource = new System.IO.MemoryStream(SelectedTour.TourInfo.ImageData);
@@ -88,26 +100,170 @@ namespace TourPlanner.MVVM.ViewModel
 
             }
 
-            
 
 
-            
+
+
             MessageBox.Show(message);
 
 
 
         }
 
+        public RelayCommand ShowAddLogWindowButton { get; set; }
 
+        public RelayCommand RemoveSelectedLogButton { get; set; }
+
+        public RelayCommand EditSelectedLogButton { get; set; }
         public RelayCommand Load { get; set; }
 
-        
+
         public RouteViewModel()
         {
+            
+            
             RouteImage = new BitmapImage();
 
 
-        }
 
+            ShowAddLogWindowButton = new RelayCommand(async o =>
+            {
+
+                TourLogWindowViewModel tourLogVM = new TourLogWindowViewModel(null);
+
+                TourLogWindowView tourLogWindow = new TourLogWindowView();
+
+                tourLogWindow.DataContext = tourLogVM;
+
+                bool? dialogResult = tourLogWindow.ShowDialog();
+
+                switch (dialogResult)
+                {
+                    case true:
+                        if (_selectedTour == null)
+                            return;
+
+                        if (_selectedTour.TourLogs == null)
+                        {
+                            _selectedTour.TourLogs = new ObservableCollection<TourLog>();
+
+                        }
+
+                        _selectedTour.TourLogs.Add(tourLogVM.TourLog);
+                        var tp = new TourProcessor();
+                        (bool success, string message) = await tp.UpdateTour(_selectedTour);
+                        if (success)
+                        {
+                            await tp.LoadTours();
+                            MessageBox.Show("Tour log added");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Tour log adding failed");
+
+                        }
+
+                        //add log to tour
+
+                        break;
+                    case false:
+                        //dont add
+                        MessageBox.Show("tour log window closed");
+                        break;
+                    default:
+                        //shouldnt happen
+                        break;
+                }
+
+            });
+
+            RemoveSelectedLogButton = new RelayCommand(async o =>
+            {
+                if (SelectedTour == null || SelectedLog == null)
+                    return;
+
+                var tp = new TourProcessor();
+
+                (bool success, string message) = await tp.DeleteTourLog(SelectedLog.TourLogId);
+
+                if (success)
+                {
+                    SelectedTour.TourLogs.Remove(SelectedLog);
+                    MessageBox.Show(message);
+                }
+                else
+                {
+                    MessageBox.Show(message);
+
+                }
+            });
+
+
+            EditSelectedLogButton = new RelayCommand(async o =>
+            {
+              
+                if(SelectedLog == null)
+                {
+                    MessageBox.Show("You have to selected a log before you can edit it");
+                    return;
+                }
+
+                TourLog? log = (TourLog)SelectedLog.Clone();
+                TourLogWindowViewModel tourLogVM = new TourLogWindowViewModel(log);
+
+                TourLogWindowView tourLogWindow = new TourLogWindowView();
+
+                tourLogWindow.DataContext = tourLogVM;
+
+                bool? dialogResult = tourLogWindow.ShowDialog();
+
+                switch (dialogResult)
+                {
+                    case true:
+                        if (_selectedTour == null)
+                            return;
+
+                        if (_selectedTour.TourLogs == null)
+                        {
+                            return;
+
+                        }
+                        
+                        
+                        SelectedLog.Date = tourLogVM.TourLog.Date;
+                        SelectedLog.Duration = tourLogVM.TourLog.Duration;
+                        SelectedLog.Difficulty = tourLogVM.TourLog.Difficulty;
+                        SelectedLog.Rating = tourLogVM.TourLog.Rating;
+                        SelectedLog.Comment = tourLogVM.TourLog.Comment;
+                        
+
+
+                var tp = new TourProcessor();
+                        (bool success, string message) = await tp.UpdateTour(_selectedTour);
+                        if (success)
+                        {
+                            MessageBox.Show("Tour log edited");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Tour log editing failed");
+
+                        }
+
+                        //add log to tour
+
+                        break;
+                    case false:
+                        //dont add
+                        MessageBox.Show("tour log window closed");
+                        break;
+                    default:
+                        //shouldnt happen
+                        break;
+                }
+            });
+    
+            
+        }
     }
 }

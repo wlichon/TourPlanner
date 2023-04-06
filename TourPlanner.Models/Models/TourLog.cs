@@ -1,50 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace TourPlanner.Models
 {
-    public class TourLog : IEquatable<TourLog>
+    public class TourLog : ICloneable, INotifyPropertyChanged
     {
-        public bool Equals(TourLog other)
+
+        public object Clone()
         {
-            if (other is null)
-                return false;
-
-            return this.Distance == other.Distance && this.Duration == other.Duration && this.Date == other.Date;
-        }
-
-        public override bool Equals(object obj) => Equals(obj as TourLog);
-
-        public override int GetHashCode() => (_distance).GetHashCode();
-        public static bool operator ==(TourLog obj1, TourLog obj2)
-        {
-
-
-            if (ReferenceEquals(obj1, obj2))
+            var clonedLog = new TourLog
             {
-                return true;
-            }
+                Date = Date,
+                Comment = Comment,
+                Difficulty = Difficulty,
+                Duration = Duration,
+                Rating = Rating
+            };
 
-            if (ReferenceEquals(obj1, null) || ReferenceEquals(obj2, null))
-            {
-                return false;
-            }
-
-
-
-            return (obj1.Distance == obj2.Distance &&
-                    obj1.Duration == obj2.Duration &&
-                    obj1.Date == obj2.Date);
+            return clonedLog;
         }
-
-        public static bool operator !=(TourLog obj1, TourLog obj2)
-        {
-            return !(obj1 == obj2);
-        }
-
         public int TourLogId { get; set; }
 
         private DateTime _date;
@@ -52,25 +31,63 @@ namespace TourPlanner.Models
         public DateTime Date
         {
             get { return _date; }
-            set { _date = value; }
+            set { 
+                _date = value;
+                OnPropertyChanged();
+            }
         }
-       
 
-        private TimeSpan _duration;
+        private string? _comment;
 
-        public TimeSpan Duration
+        public string? Comment
+        {
+            get { return _comment; }
+            set { 
+                _comment = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private int? _difficulty;
+
+        public int? Difficulty
+        {
+            get { return _difficulty; }
+            set { 
+                _difficulty = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+
+        private TimeSpan? _duration;
+
+        public TimeSpan? Duration
         {
             get { return _duration; }
-            set { _duration = value; }
+            set { 
+                _duration = value;
+                OnPropertyChanged();
+            }
         }
-       
 
-        private int _distance;
+        private int? _rating;
 
-        public int Distance
+        public event PropertyChangedEventHandler? PropertyChanged;
+
+        protected void OnPropertyChanged([CallerMemberName] string name = null)
         {
-            get { return _distance; }
-            set { _distance = value; }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+
+        public int? Rating
+        {
+            get { return _rating; }
+            set { 
+                _rating = value;
+                OnPropertyChanged();
+            }
         }
 
         public int TourId { get; set; }

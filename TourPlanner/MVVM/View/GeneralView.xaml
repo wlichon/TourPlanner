@@ -51,6 +51,11 @@
                 <Setter Property="IsEnabled" Value="{Binding TextboxesEnabled}"/>
 
             </Style>
+
+            <Style TargetType="{x:Type Button}">
+                <Setter Property="IsEnabled" Value="{Binding IsSaveButtonEnabled}"/>
+
+            </Style>
         </Grid.Resources>
         
         <Border BorderBrush="Black"
@@ -62,7 +67,7 @@
         <Border Grid.Row="0" Grid.Column="1" 
                 Margin="10">
 
-            <TextBox Text="{Binding SelectedTour.TourName,Mode=TwoWay}"/>
+            <TextBox Text="{Binding ChangedName,ValidatesOnDataErrors=True,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding ErrorCollection[ChangedName]}"/>
         </Border>
 
         <Border BorderBrush="Black"
@@ -76,7 +81,7 @@
         <Border Grid.Row="1" Grid.Column="1" 
                 Margin="10">
 
-            <TextBox Text="{Binding SelectedTour.TourInfo.Description,Mode=TwoWay}"/>
+            <TextBox Text="{Binding ChangedDescription,ValidatesOnDataErrors=True,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding ErrorCollection[ChangedDescription]}"/>
         </Border>
 
         <Border BorderBrush="Black"
@@ -88,7 +93,7 @@
         <Border Grid.Row="2" Grid.Column="1" 
                 Margin="10">
 
-            <TextBox Text="{Binding SelectedTour.TourInfo.From,Mode=TwoWay}"/>
+            <TextBox Text="{Binding ChangedFrom, ValidatesOnDataErrors=True,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding ErrorCollection[ChangedFrom]}"/>
         </Border>
 
         <Border BorderBrush="Black"
@@ -101,7 +106,7 @@
         <Border Grid.Row="3" Grid.Column="1" 
                 Margin="10">
 
-            <TextBox Text="{Binding SelectedTour.TourInfo.To,Mode=TwoWay}"/>
+            <TextBox Text="{Binding ChangedTo,ValidatesOnDataErrors=True,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding ErrorCollection[ChangedTo]}"/>
         </Border>
 
         <Border BorderBrush="Black"

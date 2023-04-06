@@ -13,6 +13,7 @@
                 <ResourceDictionary Source="Theme/TourCard.xaml"/>
                 <ResourceDictionary Source="Theme/TourLogCard.xaml"/>
                 <ResourceDictionary Source="Theme/ComboBoxTheme.xaml"/>
+                <ResourceDictionary Source="Theme/MyTextBox.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
             <DataTemplate DataType="{x:Type ViewModel:GeneralViewModel}">
@@ -25,6 +26,10 @@
 
             <DataTemplate DataType="{x:Type ViewModel:OtherViewModel}">
                 <View:OtherView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type ViewModel:TourLogWindowViewModel}">
+                <View:TourLogWindowView/>
             </DataTemplate>
 
         </ResourceDictionary>

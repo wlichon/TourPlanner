@@ -141,6 +141,7 @@ C:\Users\wikto\Desktop\GitProjects\TourPlanner\TourPlanner\obj\Debug\net6.0-wind
 C:\Users\wikto\Desktop\GitProjects\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\MVVM\View\GeneralView.g.cs
 C:\Users\wikto\Desktop\GitProjects\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\MVVM\View\OtherView.g.cs
 C:\Users\wikto\Desktop\GitProjects\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\MVVM\View\RouteView.g.cs
+C:\Users\wikto\Desktop\GitProjects\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\MVVM\View\TourLogWindowView.g.cs
 C:\Users\wikto\Desktop\GitProjects\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\App.g.cs
 C:\Users\wikto\Desktop\GitProjects\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\GeneratedInternalTypeHelper.g.cs
 C:\Users\wikto\Desktop\GitProjects\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\TourPlanner_MarkupCompile.cache
@@ -150,6 +151,7 @@ C:\Users\wikto\Desktop\GitProjects\TourPlanner\TourPlanner\obj\Debug\net6.0-wind
 C:\Users\wikto\Desktop\GitProjects\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\MVVM\View\GeneralView.baml
 C:\Users\wikto\Desktop\GitProjects\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\MVVM\View\OtherView.baml
 C:\Users\wikto\Desktop\GitProjects\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\MVVM\View\RouteView.baml
+C:\Users\wikto\Desktop\GitProjects\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\MVVM\View\TourLogWindowView.baml
 C:\Users\wikto\Desktop\GitProjects\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\TourPlanner.g.resources
 C:\Users\wikto\Desktop\GitProjects\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\TourPlanner.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\wikto\Desktop\GitProjects\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\TourPlanner.AssemblyInfoInputs.cache
@@ -161,3 +163,4 @@ C:\Users\wikto\Desktop\GitProjects\TourPlanner\TourPlanner\obj\Debug\net6.0-wind
 C:\Users\wikto\Desktop\GitProjects\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\TourPlanner.pdb
 C:\Users\wikto\Desktop\GitProjects\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\TourPlanner.genruntimeconfig.cache
 C:\Users\wikto\Desktop\GitProjects\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\ref\TourPlanner.dll
+C:\Users\wikto\Desktop\GitProjects\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\Theme\MyTextBox.baml

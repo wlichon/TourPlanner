@@ -144,7 +144,31 @@ namespace TourPlanner.Core
                 return (false, ex.Message);
             }
 
-            return (true, "Deleted successfully");
+            return (true, "Deleted tour successfully");
+        }
+
+        public async Task<(bool success, string message)> DeleteTourLog(int? tourLogId)
+        {
+            HttpResponseMessage response;
+
+            try
+            {
+
+                response = await ApiHelper.ApiClient.DeleteAsync(
+                $"api/tour/log/{tourLogId}");
+                response.EnsureSuccessStatusCode();
+
+            }
+            catch (HttpRequestException ex)
+            {
+                return (false, ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return (false, ex.Message);
+            }
+
+            return (true, "Deleted log successfully");
         }
     }
 }

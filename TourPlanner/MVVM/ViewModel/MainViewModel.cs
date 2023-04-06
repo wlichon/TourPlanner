@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -14,8 +16,47 @@ using TourPlanner.Models;
 
 namespace TourPlanner.MVVM.ViewModel
 {
-    public class MainViewModel : ObservableObject
+    public class MainViewModel : ObservableObject, IDataErrorInfo
     {
+     
+        public string Error { get { return null; } }
+
+        public Dictionary<string ,string> ErrorCollection { get; private set; } =  new Dictionary<string, string>();
+        public string this[string propName]
+        {
+            get
+            {
+                string result = null;
+
+                switch (propName)
+                {
+                    case "TourBoxContent":
+                        if (string.IsNullOrEmpty(TourBoxContent))
+                        {
+                            result = "Your tour name needs at least 1 character";
+                        }
+                        break;
+                }
+
+                if (ErrorCollection.ContainsKey(propName))
+                    ErrorCollection[propName] = result;
+                else if (result != null)
+                    ErrorCollection.Add(propName, result);
+
+                OnPropertyChanged(nameof(ErrorCollection));
+
+                return result;
+            }
+        }
+        
+        private string _searchBox;
+
+        public string SearchBox
+        {
+            get { return _searchBox; }
+            set { _searchBox = value; }
+        }
+
 
         private string _tourBoxContent;
 
@@ -28,7 +69,11 @@ namespace TourPlanner.MVVM.ViewModel
         public string TourBoxContent
         {
             get { return _tourBoxContent; }
-            set { 
+            set {
+                if (value == "Error")
+                {
+                    throw new ArgumentException("Define a name for your tour");
+                }
                 _tourBoxContent = value;
                 OnPropertyChanged();
             }
@@ -85,8 +130,13 @@ namespace TourPlanner.MVVM.ViewModel
             }
         }
 
+
         private async Task AddTour()
         {
+            if(TourBoxContent.Length == 0)
+            {
+                return;
+            }
             var newTour = new Tour { TourName = _tourBoxContent};
             (bool success, string addMessage) = await _tp.AddTour(newTour);
 

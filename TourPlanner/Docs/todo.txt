@@ -1,14 +1,7 @@
-﻿- Make it so the image gets requested based on the From and To properties
-
-- Make it so the image mapquest call only gets made when either of them changes 
-(has to be done through routeviewmodel, generalvm will have to notify routevm 
-somehow as routevm wont know about change in selectedtour properties?)
-
-- Adjust api url's in Processors, create a config file with api addresses?
-
-- Check if OnPropertyChanged can be removed from subviewmodels
+﻿- Check if OnPropertyChanged can be removed from subviewmodels
 
 - Check if bytearray is jpeg
 
-- If created tour has same from and to, load image from database instead of api
+- Service Dictionary? for backend api
 
+- cancellation token, cancel async functions like LoadMap or others when no longer necessary (when changing selectedTour before map is loaded for example)

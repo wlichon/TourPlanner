@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using log4net;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -13,6 +14,7 @@ namespace TourPlanner.Core
 {
     public class TourProcessor
     {
+        private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         public async Task<(ObservableCollection<Tour>? tours, string message)> LoadTours()
         {
             ObservableCollection<Tour>? tours = null;
@@ -39,7 +41,8 @@ namespace TourPlanner.Core
             }
             catch (HttpRequestException ex)
             {
-                return (tours, ex.Message);
+                log.Info("The database api is refusing your request, likely due to it being offline");
+                return (tours, "The database api is refusing your request, likely due to it being offline");
             }
         }
 
@@ -56,10 +59,12 @@ namespace TourPlanner.Core
             }
             catch(HttpRequestException ex)
             {
+                log.Info(ex.Message);
                 return (false, ex.Message);
             }
             catch(Exception ex)
             {
+                log.Info(ex.Message);
                 return (false, ex.Message);
             }
 
@@ -84,10 +89,12 @@ namespace TourPlanner.Core
             }
             catch (HttpRequestException ex)
             {
-                return (false, ex.Message);
+                log.Info("Tour cannot be added, due to the api database refusing your request");
+                return (false, "Tour cannot be added, due to the api database refusing your request");
             }
             catch (Exception ex)
             {
+                log.Info(ex.Message);
                 return (false, ex.Message);
             }
 
@@ -110,10 +117,12 @@ namespace TourPlanner.Core
             }
             catch (HttpRequestException ex)
             {
-                return (false, ex.Message);
+                log.Info("Tour cannot be updated, due to the api database refusing your request");
+                return (false, "Tour cannot be added, due to the api database refusing your request");
             }
             catch (Exception ex)
             {
+                log.Info(ex.Message);
                 return (false, ex.Message);
             }
 
@@ -137,10 +146,12 @@ namespace TourPlanner.Core
             }
             catch(HttpRequestException ex)
             {
-                return (false, ex.Message);
+                log.Info("Tour cannot be deleted, due to the api database refusing your request");
+                return (false, "Tour cannot be added, due to the api database refusing your request");
             }
             catch (Exception ex)
             {
+                log.Info(ex.Message);
                 return (false, ex.Message);
             }
 
@@ -161,10 +172,12 @@ namespace TourPlanner.Core
             }
             catch (HttpRequestException ex)
             {
-                return (false, ex.Message);
+                log.Info("Tour log cannot be added, due to the api database refusing your request");
+                return (false, "Tour log cannot be added, due to the api database refusing your request");
             }
             catch (Exception ex)
             {
+                log.Info(ex.Message);
                 return (false, ex.Message);
             }
 

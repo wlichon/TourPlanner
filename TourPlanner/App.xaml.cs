@@ -1,4 +1,5 @@
-﻿using System;
+﻿using log4net.Config;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,6 +14,10 @@ namespace TourPlanner
     /// </summary>
     public partial class App : Application
     {
-        public const string Key = "qL8PNjia3XSMfgNRG4henvQNAnQGprnW";
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+            XmlConfigurator.Configure(); // Initialize log4net
+        }
     }
 }

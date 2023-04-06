@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using log4net;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -18,7 +19,8 @@ namespace TourPlanner.MVVM.ViewModel
 {
     public class MainViewModel : ObservableObject, IDataErrorInfo
     {
-     
+        private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         public string Error { get { return null; } }
 
         public Dictionary<string ,string> ErrorCollection { get; private set; } =  new Dictionary<string, string>();
@@ -70,10 +72,6 @@ namespace TourPlanner.MVVM.ViewModel
         {
             get { return _tourBoxContent; }
             set {
-                if (value == "Error")
-                {
-                    throw new ArgumentException("Define a name for your tour");
-                }
                 _tourBoxContent = value;
                 OnPropertyChanged();
             }
@@ -106,7 +104,6 @@ namespace TourPlanner.MVVM.ViewModel
             get { return _selectedTour; }
             set
             {
-                
                 RouteVM.SelectedTour = value;
                 GeneralVM.SelectedTour = value;
                 _selectedTour = value;

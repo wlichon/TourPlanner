@@ -164,3 +164,7 @@ C:\Users\wikto\Desktop\GitProjects\TourPlanner\TourPlanner\obj\Debug\net6.0-wind
 C:\Users\wikto\Desktop\GitProjects\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\TourPlanner.genruntimeconfig.cache
 C:\Users\wikto\Desktop\GitProjects\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\ref\TourPlanner.dll
 C:\Users\wikto\Desktop\GitProjects\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\Theme\MyTextBox.baml
+C:\Users\wikto\Desktop\GitProjects\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\log4net.dll
+C:\Users\wikto\Desktop\GitProjects\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\TourPlanner_Content.g.cs
+C:\Users\wikto\Desktop\GitProjects\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\App.config
+C:\Users\wikto\Desktop\GitProjects\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\TourPlanner.dll.config

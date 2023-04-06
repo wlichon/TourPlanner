@@ -6,13 +6,15 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using log4net;
 using Newtonsoft.Json;
 
 namespace TourPlanner.Core
 {
     public class DirectionsProcessor
     {
-        
+        private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         public async Task<(byte[]? jpegMap, string message)> LoadMap(string? from, string? to)
         {
             HttpResponseMessage response;
@@ -26,10 +28,12 @@ namespace TourPlanner.Core
             }
             catch (HttpRequestException ex)
             {
+                log.Info(ex.Message);
                 return (null, "Map loading connection error");
             }
             catch (Exception ex)
             {
+                log.Info(ex.Message);
                 return (null, "Map loading unkown error");
             }
 
@@ -52,7 +56,8 @@ namespace TourPlanner.Core
             }
             catch (Exception ex)
             {
-                return (null, "Map loading unkown error");
+                log.Info("Map loading unknown error");
+                return (null, "Map loading unknown error");
             }
 
 
@@ -69,12 +74,12 @@ namespace TourPlanner.Core
             }
         }
 
-        public async Task<(int distance, int time, string message)> LoadDirections(string? from, string? to)
+        public async Task<(int distance, int time, string message)> LoadDirections(string? from, string? to, string? transportType)
         {
             HttpResponseMessage response;
             try
             {
-                string suffix = Constants.MapQuestDirectionsSuffix(from, to);
+                string suffix = Constants.MapQuestDirectionsSuffix(from, to, transportType);
                 response = await ApiHelper.ApiClient.GetAsync(Constants.MapQuestBaseUrl + suffix);
 
                 response.EnsureSuccessStatusCode();
@@ -82,11 +87,13 @@ namespace TourPlanner.Core
             }
             catch (HttpRequestException ex)
             {
-                return (-1, -1, "Map loading connection error");
+                log.Info("Directions loading connection error");
+                return (-1, -1, "Directions loading connection error");
             }
             catch (Exception ex)
             {
-                return (-1, -1, "Map loading unkown error");
+                log.Info("Directions loading unknown error");
+                return (-1, -1, "Directions loading unknown error");
             }
 
             
@@ -105,7 +112,8 @@ namespace TourPlanner.Core
             }
             catch (Exception ex)
             {
-                return (-1,-1, "Map loading unkown error");
+                log.Info("Directions loading unknown error");
+                return (-1,-1, "Directions loading unknown error");
             }
 
 

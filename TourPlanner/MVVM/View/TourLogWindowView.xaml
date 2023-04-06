@@ -81,13 +81,13 @@
         <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="1">
 
             <Label Content="Hours:" VerticalAlignment="Center" Foreground="AntiqueWhite"/>
-            <TextBox Width="30" Height="25" Text="{Binding DurationHours}"></TextBox>
+            <TextBox Width="30" Height="25" Text="{Binding DurationHours, ValidatesOnDataErrors=True,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding ErrorCollection[DurationHours]}"></TextBox>
 
             <Label Content="Minutes:" VerticalAlignment="Center" Foreground="AntiqueWhite"/>
-            <TextBox Width="30" Height="25" Text="{Binding DurationMinutes}"></TextBox>
+            <TextBox Width="30" Height="25" Text="{Binding DurationMinutes, ValidatesOnDataErrors=True,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding ErrorCollection[DurationMinutes]}"></TextBox>
 
             <Label Content="Seconds:" VerticalAlignment="Center" Foreground="AntiqueWhite"/>
-            <TextBox Width="30" Height="25" Text="{Binding DurationSeconds}"></TextBox>
+            <TextBox Width="30" Height="25" Text="{Binding DurationSeconds , ValidatesOnDataErrors=True,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding ErrorCollection[DurationSeconds]}"></TextBox>
         </StackPanel>
 
         <Button Grid.ColumnSpan="2" Grid.Row="6" Command="{Binding AddTourLogButton}">Add Log</Button>

@@ -1,0 +1,7 @@
+2023-04-06 19:21:10,862 [1] INFO  TourPlanner.MVVM.ViewModel.MainViewModel - New tour selected
+2023-04-06 19:21:12,080 [1] INFO  TourPlanner.MVVM.ViewModel.MainViewModel - New tour selected
+2023-04-06 19:21:13,113 [1] INFO  TourPlanner.MVVM.ViewModel.MainViewModel - New tour selected
+2023-04-06 19:29:12,789 [1] INFO  TourPlanner.Core.TourProcessor - No connection could be made because the target machine actively refused it. (localhost:7136)
+2023-04-06 19:32:27,687 [1] INFO  TourPlanner.Core.TourProcessor - The database api is refusing your request, likely due to it being offline
+2023-04-06 19:33:10,683 [1] INFO  TourPlanner.Core.TourProcessor - Tour cannot be added, due to the api database refusing your request
+2023-04-06 20:02:53,625 [1] INFO  TourPlanner.Core.TourProcessor - The database api is refusing your request, likely due to it being offline

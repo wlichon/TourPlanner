@@ -13,9 +13,9 @@ namespace TourPlanner.Core
         public const string DbApiAddress = "https://localhost:7136";
         public const int RouteImageWidth = 610;
         public const int RouteImageHeight = 300;
-        static public string MapQuestDirectionsSuffix(string? from, string? to)
+        static public string MapQuestDirectionsSuffix(string? from, string? to, string? transportType)
         {
-            return $"/directions/v2/route?key={Key}&from={from}&to={to}";
+            return $"/directions/v2/route?key={Key}&from={from}&to={to}&routeType={transportType}";
         }
         static public string MapQuestMapSuffix(string? from, string? to)
         {

@@ -152,8 +152,12 @@ namespace TourPlanner.MVVM.ViewModel
         {
             get { return _tourLog.Date.Minute; }
             set { 
-                if(value < 60 && value >=0)
-                    _tourLog.Date = new DateTime(_tourLog.Date.Year, _tourLog.Date.Month, _tourLog.Date.Day, _tourLog.Date.Hour, Int32.Parse(value.ToString()), 0); 
+                if(value < 60 && value >= 0)
+                {
+                    _tourLog.Date = new DateTime(_tourLog.Date.Year, _tourLog.Date.Month, _tourLog.Date.Day, _tourLog.Date.Hour, Int32.Parse(value.ToString()), 0);
+                    OnPropertyChanged();
+
+                }
             }
         }
 
@@ -162,7 +166,12 @@ namespace TourPlanner.MVVM.ViewModel
             get { return _tourLog.Date.Hour; }
             set {
                 if (value < 24 && value >= 0)
+                {
                     _tourLog.Date = new DateTime(_tourLog.Date.Year, _tourLog.Date.Month, _tourLog.Date.Day, Int32.Parse(value.ToString()), _tourLog.Date.Minute, 0);
+                    OnPropertyChanged();
+
+                }
+
             }
         }
 
@@ -181,7 +190,11 @@ namespace TourPlanner.MVVM.ViewModel
         public int DurationHours
         {
             get { return _durationHours; }
-            set { _durationHours = value; }
+            set { 
+                _durationHours = value;
+                OnPropertyChanged();
+
+            }
         }
 
         private int _durationMinutes;
@@ -189,7 +202,11 @@ namespace TourPlanner.MVVM.ViewModel
         public int DurationMinutes
         {
             get { return _durationMinutes; }
-            set { _durationMinutes = value; }
+            set { 
+                _durationMinutes = value;
+                OnPropertyChanged();
+
+            }
         }
 
         private int _durationSeconds;
@@ -197,7 +214,10 @@ namespace TourPlanner.MVVM.ViewModel
         public int DurationSeconds
         {
             get { return _durationSeconds; }
-            set { _durationSeconds = value; }
+            set { 
+                _durationSeconds = value;
+                OnPropertyChanged();
+            }
         }
 
         public RelayCommand AddTourLogButton { get; set; }

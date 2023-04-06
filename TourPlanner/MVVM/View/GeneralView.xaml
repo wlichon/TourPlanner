@@ -4,10 +4,16 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TourPlanner.MVVM.View" 
-             xmlns:ViewModel="clr-namespace:TourPlanner.MVVM.ViewModel" 
+             xmlns:ViewModel="clr-namespace:TourPlanner.MVVM.ViewModel"
+             xmlns:core="clr-namespace:TourPlanner.Core"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              d:DataContext="{d:DesignInstance Type=ViewModel:GeneralViewModel}">
+
+    <UserControl.Resources>
+        <core:TransportTypeConverter x:Key="transportTypeConverter"/>
+
+    </UserControl.Resources>
 
 
     <Grid Background="#252525">
@@ -115,7 +121,8 @@
             <ComboBox Style="{DynamicResource ComboBoxTheme}"
                       VerticalContentAlignment="Center"
                       HorizontalContentAlignment="Center"
-                      FontSize="18">
+                      FontSize="18"
+                      SelectedItem="{Binding Path=ChangedTransportType, Converter={StaticResource transportTypeConverter}, Mode=OneWayToSource}">
                 <ComboBoxItem IsSelected="True">Car</ComboBoxItem>
                 <ComboBoxItem>Bicycle</ComboBoxItem>
                 <ComboBoxItem>On Foot</ComboBoxItem>

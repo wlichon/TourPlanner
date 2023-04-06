@@ -14,6 +14,7 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Media.Imaging;
 using System.ComponentModel;
+using System.Runtime.Intrinsics.Arm;
 
 namespace TourPlanner.MVVM.ViewModel
 {
@@ -119,6 +120,19 @@ namespace TourPlanner.MVVM.ViewModel
             }
         }
 
+        public string? ChangedTransportType
+        {
+            get { return _changedInfo?.TransportType; }
+            set
+            {
+                if(_changedInfo != null)
+                {
+                    _changedInfo.TransportType = value;
+                    OnPropertyChanged();
+
+                }
+            }
+        }
         
         public Tour SelectedTour {
             get { return _selectedTour; }
@@ -130,7 +144,8 @@ namespace TourPlanner.MVVM.ViewModel
                     _selectedTour = value;
                     _changedInfo = new TourInfo();
                     _changedInfo.TourInfoId = _selectedTour.TourInfo.TourInfoId;
-                   
+
+                    ChangedTransportType = _selectedTour.TourInfo.TransportType;
                     ChangedName = _selectedTour.TourName;
                     ChangedFrom = _selectedTour.TourInfo.From;
                     ChangedTo = _selectedTour.TourInfo.To;
@@ -249,14 +264,19 @@ namespace TourPlanner.MVVM.ViewModel
             if (TextboxesEnabled)
             {
                 bool imageChanged = false;
+                var dp = new DirectionsProcessor();
 
                 if((_selectedTour.TourInfo.From != _changedInfo.From || _selectedTour.TourInfo.To != _changedInfo.To) && (!string.IsNullOrEmpty(_changedInfo.To) && !string.IsNullOrEmpty(_changedInfo.From)))
                 {
-                    var dp = new DirectionsProcessor();
                     (_changedInfo.ImageData, string loadMapMessage) = await dp.LoadMap(_changedInfo.From, _changedInfo.To);
-                    (Distance, EstimatedTime, string loadDirectionsMessage) = await dp.LoadDirections(_changedInfo.From, _changedInfo.To);
+                    (Distance, EstimatedTime, string loadDirectionsMessage) = await dp.LoadDirections(_changedInfo.From, _changedInfo.To, _changedInfo.TransportType);
                     imageChanged = true;
                     MessageBox.Show("MapApi called since locations changed");
+                }
+
+                if(!imageChanged && _selectedTour.TourInfo.TransportType != _changedInfo.TransportType)
+                {
+                    (Distance, EstimatedTime, string loadDirectionsMessage) = await dp.LoadDirections(_changedInfo.From, _changedInfo.To, _changedInfo.TransportType);
                 }
 
                 _selectedTour.TourName = ChangedName;
@@ -268,6 +288,7 @@ namespace TourPlanner.MVVM.ViewModel
                 _selectedTour.TourInfo.To = _changedInfo.To;
                 _selectedTour.TourInfo.TransportType = _changedInfo.TransportType;
                 _selectedTour.TourInfo.ImageData = _changedInfo.ImageData;
+                _selectedTour.TourInfo.EstimatedTime = _changedInfo.EstimatedTime;
 
                 if (imageChanged)
                 {

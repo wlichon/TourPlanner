@@ -53,7 +53,10 @@
                     <Border Margin="0"
                                 Width="600">
                         <TextBox 
-                                Tag="add or remove"/>
+                                Tag="add or remove"
+                                Text="{Binding TourLogBoxContent, UpdateSourceTrigger=PropertyChanged}"
+                                
+                            />
 
                     </Border>
                     <Button Height="20" Width="20" 
@@ -86,7 +89,7 @@
                         Margin="5"
                         BorderThickness="4"
                         BorderBrush="Black">
-                    <ListView ItemsSource="{Binding SelectedTour.TourLogs, Mode=TwoWay}"
+                    <ListView ItemsSource="{Binding FilteredLogs, Mode=TwoWay}"
                               Background="Transparent"
                               SelectedItem="{Binding SelectedLog}">
                         <ListView.View>

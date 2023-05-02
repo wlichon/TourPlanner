@@ -17,7 +17,7 @@
     <Window.DataContext>
         <ViewModel:MainViewModel/>
     </Window.DataContext>
-    
+
 
     <Border Background="#eff2f7" CornerRadius="10" MouseDown="Border_MouseDown">
 
@@ -66,10 +66,10 @@
                     </StackPanel>
 
                 </Grid>
-                
+
 
             </Border>
-            
+
             <!-- Toolbar Left Buttons -->
             <Border Grid.Row="1" 
                     Grid.ColumnSpan="2" 
@@ -118,20 +118,17 @@
             <Grid Background="#2f3136"
                   Grid.Row="2">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="50"/>
+
                     <RowDefinition Height="40"/>
                     <RowDefinition/>
 
                 </Grid.RowDefinitions>
 
                 <!-- Tour Searchbar -->
-                <Border Margin="5">
-                    
-                    <TextBox Text="{Binding Path=SearchBox}"/>
-                </Border>
+
 
                 <!-- Add and remove tours panel -->
-                <Border Grid.Row="1"
+                <Border Grid.Row="0"
                         BorderThickness="2"
                         BorderBrush="White">
                     <StackPanel Orientation="Horizontal">
@@ -143,7 +140,9 @@
                         <Border Margin="0"
                                 Width="175">
                             <TextBox 
-                                     Text="{Binding TourBoxContent, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding ErrorCollection[TourBoxContent]}"/>
+                                     Text="{Binding TourBoxContent, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding ErrorCollection[TourBoxContent]}">
+                                
+                            </TextBox>
 
                         </Border>
                         <Button Height="20" Width="20" 
@@ -172,19 +171,19 @@
                 </Border>
 
                 <!-- Tour List -->
-                <Border Grid.Row="2"
-                        Margin="8"
+                <Border Grid.Row="1"
+                        Margin="8,0,8,8"
                         CornerRadius="5"
                         BorderBrush="White"
-                        BorderThickness="2">
-                    <ListView ItemsSource="{Binding Tours}"
+                        BorderThickness="2" Height="614" VerticalAlignment="Bottom">
+                    <ListView ItemsSource="{Binding FilteredTours}"
                               Background="Transparent"
                               BorderThickness="0"
                               ItemContainerStyle="{StaticResource TourCard}"
                               SelectedItem="{Binding SelectedTour}">
-                        
+
                     </ListView>
-                    
+
                 </Border>
             </Grid>
 
@@ -203,11 +202,11 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-               
+
                 <!-- Route Info Buttons -->
-                
+
                 <Button Content="General" Style="{StaticResource RouteInfoButton}" Command="{Binding GeneralViewCommand}"/>
-                
+
                 <Button Content="Route" Style="{StaticResource RouteInfoButton}" Command="{Binding RouteViewCommand}" Grid.Column="1"/>
                 <Button Content="Other" Style="{StaticResource RouteInfoButton}" Command="{Binding OtherViewCommand}" Grid.Column="2"/>
 
@@ -222,7 +221,7 @@
 
         </Grid>
 
-        
+
     </Border>
 
 

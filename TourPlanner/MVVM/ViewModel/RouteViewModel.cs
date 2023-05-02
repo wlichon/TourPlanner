@@ -53,6 +53,7 @@ namespace TourPlanner.MVVM.ViewModel
                 if (_selectedTour != value)
                 {
                     _selectedTour = value;
+                    FilteredLogs = SelectedTour.TourLogs;
                     LoadMap();
                     OnPropertyChanged();
                 }
@@ -117,6 +118,45 @@ namespace TourPlanner.MVVM.ViewModel
         public RelayCommand EditSelectedLogButton { get; set; }
         public RelayCommand Load { get; set; }
 
+        private ObservableCollection<TourLog> _filteredLogs;
+
+        private string _tourLogBoxContent;
+
+        public string TourLogBoxContent
+        {
+            get { return _tourLogBoxContent; }
+            set { 
+                _tourLogBoxContent = value;
+                Search();
+            }
+        }
+
+        public ObservableCollection<TourLog> FilteredLogs { 
+            get
+            {
+                return _filteredLogs;
+            }
+            set
+            {
+                _filteredLogs = value;
+                OnPropertyChanged();
+            } 
+        }
+
+        public void Search()
+        {
+
+            if (TourLogBoxContent == "")
+            {
+                FilteredLogs = new ObservableCollection<TourLog>(SelectedTour.TourLogs);
+                return;
+            }
+            else
+            {
+
+                FilteredLogs = new ObservableCollection<TourLog>(SelectedTour.TourLogs.Where(item => item.Comment.Contains(TourLogBoxContent)));
+            }
+        }
 
         public RouteViewModel()
         {

@@ -51,20 +51,15 @@ namespace TourPlanner.MVVM.ViewModel
             }
         }
         
-        private string _searchBox;
-
-        public string SearchBox
-        {
-            get { return _searchBox; }
-            set { _searchBox = value; }
-        }
-
+     
 
         private string _tourBoxContent;
 
         private Tour _selectedTour;
 
         private ObservableCollection<Tour> _tours;
+
+        private ObservableCollection<Tour> _filteredTours;
 
         private TourProcessor _tp;
 
@@ -73,9 +68,12 @@ namespace TourPlanner.MVVM.ViewModel
             get { return _tourBoxContent; }
             set {
                 _tourBoxContent = value;
+                Search();
                 OnPropertyChanged();
             }
         }
+
+        public RelayCommand SearchCommand { get; set; }
 
         public RelayCommand AddTourButton { get; set; }
         public RelayCommand RemoveTourButton { get; set; }
@@ -97,6 +95,16 @@ namespace TourPlanner.MVVM.ViewModel
 
         public ObservableCollection<Tour> Tours {
             get { return _tours; }
+        }
+
+        public ObservableCollection<Tour> FilteredTours
+        {
+            get { return _filteredTours; }
+            set
+            {
+                _filteredTours = value;
+                OnPropertyChanged();
+            }
         }
 
 
@@ -189,11 +197,29 @@ namespace TourPlanner.MVVM.ViewModel
             TourBoxContent = "";
         }
 
+
+
+        public void Search()
+        {
+            if(TourBoxContent == "")
+            {
+                FilteredTours = new ObservableCollection<Tour>(Tours);
+                return;
+            }
+            else
+            {
+                
+                FilteredTours = new ObservableCollection<Tour>(_tours.Where(item => item.TourName.Contains(TourBoxContent)));
+            }
+        }
+
         public MainViewModel()
         {
             _tp = new TourProcessor();
 
             _tours = new ObservableCollection<Tour>();
+
+            FilteredTours = new ObservableCollection<Tour>(Tours);
 
             TourBoxContent = "";
 
@@ -204,7 +230,6 @@ namespace TourPlanner.MVVM.ViewModel
             OtherVM = new OtherViewModel();
 
             TourMediator = new TourMediator(RouteVM, GeneralVM);
-
 
 
             AddTourButton = new RelayCommand(async o => {

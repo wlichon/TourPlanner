@@ -53,6 +53,7 @@ namespace TourPlanner
             {
                 mainViewModel.Tours.Add(tour);
             }
+            mainViewModel.FilteredTours = mainViewModel.Tours;
             MessageBox.Show(loadMessage);
             
         }

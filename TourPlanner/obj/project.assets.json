@@ -8,10 +8,14 @@
           "System.Configuration.ConfigurationManager": "4.5.0"
         },
         "compile": {
-          "lib/netstandard2.0/log4net.dll": {}
+          "lib/netstandard2.0/log4net.dll": {
+            "related": ".xml"
+          }
         },
         "runtime": {
-          "lib/netstandard2.0/log4net.dll": {}
+          "lib/netstandard2.0/log4net.dll": {
+            "related": ".xml"
+          }
         }
       },
       "Microsoft.NETCore.Platforms/2.0.0": {
@@ -26,10 +30,14 @@
       "Newtonsoft.Json/13.0.3": {
         "type": "package",
         "compile": {
-          "lib/net6.0/Newtonsoft.Json.dll": {}
+          "lib/net6.0/Newtonsoft.Json.dll": {
+            "related": ".xml"
+          }
         },
         "runtime": {
-          "lib/net6.0/Newtonsoft.Json.dll": {}
+          "lib/net6.0/Newtonsoft.Json.dll": {
+            "related": ".xml"
+          }
         }
       },
       "System.Configuration.ConfigurationManager/4.5.0": {
@@ -39,7 +47,9 @@
           "System.Security.Permissions": "4.5.0"
         },
         "compile": {
-          "ref/netstandard2.0/System.Configuration.ConfigurationManager.dll": {}
+          "ref/netstandard2.0/System.Configuration.ConfigurationManager.dll": {
+            "related": ".xml"
+          }
         },
         "runtime": {
           "lib/netstandard2.0/System.Configuration.ConfigurationManager.dll": {}
@@ -52,7 +62,9 @@
           "System.Security.Principal.Windows": "4.5.0"
         },
         "compile": {
-          "ref/netstandard2.0/System.Security.AccessControl.dll": {}
+          "ref/netstandard2.0/System.Security.AccessControl.dll": {
+            "related": ".xml"
+          }
         },
         "runtime": {
           "lib/netstandard2.0/System.Security.AccessControl.dll": {}
@@ -67,7 +79,9 @@
       "System.Security.Cryptography.ProtectedData/4.5.0": {
         "type": "package",
         "compile": {
-          "ref/netstandard2.0/_._": {}
+          "ref/netstandard2.0/_._": {
+            "related": ".xml"
+          }
         },
         "runtime": {
           "lib/netstandard2.0/System.Security.Cryptography.ProtectedData.dll": {}
@@ -85,7 +99,9 @@
           "System.Security.AccessControl": "4.5.0"
         },
         "compile": {
-          "ref/netstandard2.0/System.Security.Permissions.dll": {}
+          "ref/netstandard2.0/System.Security.Permissions.dll": {
+            "related": ".xml"
+          }
         },
         "runtime": {
           "lib/netstandard2.0/System.Security.Permissions.dll": {}
@@ -97,7 +113,9 @@
           "Microsoft.NETCore.Platforms": "2.0.0"
         },
         "compile": {
-          "ref/netstandard2.0/System.Security.Principal.Windows.dll": {}
+          "ref/netstandard2.0/System.Security.Principal.Windows.dll": {
+            "related": ".xml"
+          }
         },
         "runtime": {
           "lib/netstandard2.0/System.Security.Principal.Windows.dll": {}
@@ -389,18 +407,18 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\wikto\\OneDrive\\Desktop\\GitProjects\\TourPlanner\\TourPlanner\\TourPlanner.csproj",
+      "projectUniqueName": "C:\\Users\\wikto\\Desktop\\GitProjects\\TourPlanner\\TourPlanner\\TourPlanner.csproj",
       "projectName": "TourPlanner",
-      "projectPath": "C:\\Users\\wikto\\OneDrive\\Desktop\\GitProjects\\TourPlanner\\TourPlanner\\TourPlanner.csproj",
+      "projectPath": "C:\\Users\\wikto\\Desktop\\GitProjects\\TourPlanner\\TourPlanner\\TourPlanner.csproj",
       "packagesPath": "C:\\Users\\wikto\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\wikto\\OneDrive\\Desktop\\GitProjects\\TourPlanner\\TourPlanner\\obj\\",
+      "outputPath": "C:\\Users\\wikto\\Desktop\\GitProjects\\TourPlanner\\TourPlanner\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\wikto\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "net6.0-windows7.0"
+        "net6.0-windows"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
@@ -410,8 +428,8 @@
         "net6.0-windows7.0": {
           "targetAlias": "net6.0-windows",
           "projectReferences": {
-            "C:\\Users\\wikto\\OneDrive\\Desktop\\GitProjects\\TourPlanner\\TourPlanner.Models\\TourPlanner.Models.csproj": {
-              "projectPath": "C:\\Users\\wikto\\OneDrive\\Desktop\\GitProjects\\TourPlanner\\TourPlanner.Models\\TourPlanner.Models.csproj"
+            "C:\\Users\\wikto\\Desktop\\GitProjects\\TourPlanner\\TourPlanner.Models\\TourPlanner.Models.csproj": {
+              "projectPath": "C:\\Users\\wikto\\Desktop\\GitProjects\\TourPlanner\\TourPlanner.Models\\TourPlanner.Models.csproj"
             }
           }
         }
@@ -441,7 +459,8 @@
           "net47",
           "net471",
           "net472",
-          "net48"
+          "net48",
+          "net481"
         ],
         "assetTargetFallback": true,
         "warn": true,
@@ -453,7 +472,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }

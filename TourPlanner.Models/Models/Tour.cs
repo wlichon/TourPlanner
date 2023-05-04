@@ -44,6 +44,60 @@ namespace TourPlanner.Models
             
 
         }
+
+        public int TourPopularity() // popularity is simply derived from number of logs
+        {
+            if (TourLogs.Count > 0)
+                return TourLogs.Count;
+
+            return 0;
+        }
+
+        public bool ChildFriendly()  
+        {
+            // if the average difficulty is 3,
+            // or average Duration is higher than 1 hour,
+            // or the average distance is more than 10km
+            // then the tour is not child friendly
+            // also if no logs are present the tour is classified as not child friendly by default
+
+            int logCount = TourLogs.Count;
+
+            if(logCount == 0)
+            {
+                return false;
+            }
+
+            int sumDifficulty = 0;
+            TimeSpan sumDuration = TimeSpan.Zero;
+
+            if (TourInfo.Distance >= 10000)
+                return false;
+
+            foreach(TourLog log in TourLogs)
+            {
+                if(log.Difficulty is not null)
+                {
+                    sumDifficulty += (int)log.Difficulty;
+                }
+                if(log.Duration is not null)
+                {
+
+                    sumDuration += (TimeSpan)log.Duration;
+                }
+
+          
+            }
+
+            int averageDifficulty = sumDifficulty / logCount;
+            TimeSpan averageDuration = sumDuration.Divide(logCount);
+
+            if(averageDifficulty >= 3 || averageDuration >= TimeSpan.FromHours(1))
+                return false;
+
+            return true;
+        }
+
         public static bool operator ==(Tour obj1, Tour obj2)
         {
 

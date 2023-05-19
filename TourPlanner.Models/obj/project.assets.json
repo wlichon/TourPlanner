@@ -60,11 +60,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\wikto\\Desktop\\GitProjects\\TourPlanner\\TourPlanner.Models\\TourPlanner.Models.csproj",
+      "projectUniqueName": "C:\\Users\\wikto\\Desktop\\FH\\4-semester\\GitProjects\\TourPlanner\\TourPlanner.Models\\TourPlanner.Models.csproj",
       "projectName": "TourPlanner.Models",
-      "projectPath": "C:\\Users\\wikto\\Desktop\\GitProjects\\TourPlanner\\TourPlanner.Models\\TourPlanner.Models.csproj",
+      "projectPath": "C:\\Users\\wikto\\Desktop\\FH\\4-semester\\GitProjects\\TourPlanner\\TourPlanner.Models\\TourPlanner.Models.csproj",
       "packagesPath": "C:\\Users\\wikto\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\wikto\\Desktop\\GitProjects\\TourPlanner\\TourPlanner.Models\\obj\\",
+      "outputPath": "C:\\Users\\wikto\\Desktop\\FH\\4-semester\\GitProjects\\TourPlanner\\TourPlanner.Models\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\wikto\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -114,7 +114,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
       }
     }
   }

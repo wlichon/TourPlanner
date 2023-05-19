@@ -5,3 +5,9 @@
 2023-04-06 19:32:27,687 [1] INFO  TourPlanner.Core.TourProcessor - The database api is refusing your request, likely due to it being offline
 2023-04-06 19:33:10,683 [1] INFO  TourPlanner.Core.TourProcessor - Tour cannot be added, due to the api database refusing your request
 2023-04-06 20:02:53,625 [1] INFO  TourPlanner.Core.TourProcessor - The database api is refusing your request, likely due to it being offline
+2023-05-17 22:30:31,010 [1] INFO  TourPlanner.Core.TourProcessor - Tour cannot be added, due to the api database refusing your request
+2023-05-17 22:37:57,534 [1] INFO  TourPlanner.Core.TourProcessor - Tour cannot be added, due to the api database refusing your request
+2023-05-17 22:44:06,535 [1] INFO  TourPlanner.Core.TourProcessor - Tour cannot be added, due to the api database refusing your request
+2023-05-19 13:27:19,897 [1] INFO  TourPlanner.Core.TourProcessor - The database api is refusing your request, likely due to it being offline
+2023-05-19 13:27:50,896 [1] INFO  TourPlanner.Core.DirectionsProcessor - Configuration system failed to initialize
+2023-05-19 13:27:50,904 [1] INFO  TourPlanner.Core.DirectionsProcessor - Directions loading unknown error

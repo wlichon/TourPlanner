@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "FhdnhTz56pkKbgmz703z2xlIv2KkmzaNRrzpOdw8p1aL70p0ruR+sDhDj2XybgMCWWvME4HGtfKNYtEeHlt3yw==",
+  "dgSpecHash": "TAM1tX2vpCa92ugezVF6hK0WtgkeK9yXjhtGoiACOS2O3XYn3oKISZ3+r50tGjjwKJGjE0qsJeayQw/E8zbiHw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\wikto\\Desktop\\GitProjects\\TourPlanner\\TourPlannerAPI\\TourPlannerAPI.csproj",
+  "projectFilePath": "C:\\Users\\wikto\\Desktop\\FH\\4-semester\\GitProjects\\TourPlanner\\TourPlannerAPI\\TourPlannerAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\wikto\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\wikto\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\6.0.15\\microsoft.aspnetcore.jsonpatch.6.0.15.nupkg.sha512",

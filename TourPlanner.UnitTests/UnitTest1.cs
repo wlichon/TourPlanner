@@ -3,9 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using TourPlanner.Models;
+using TourPlanner;
+using TourPlanner.Core;
+using System.Configuration;
 
 namespace TourPlanner.UnitTests
 {
+   
     // NAMING CONVENTION: Function_Scenario_ExpectedBehaviour
     // Arrange
     // Act
@@ -321,5 +325,119 @@ namespace TourPlanner.UnitTests
 
 
 
+    }
+
+    [TestFixture]
+
+    public class StaticMapApiTests
+    {
+        [Test]
+
+        public void IsJpeg_OneCheckSumCorrect_ReturnsFalse()
+        {
+            //Arrange
+
+            var dp = new DirectionsProcessor();
+            byte[] NotJpeg = { 0xFF, 0xFF, 0xCD, 0x00 };
+
+            //Act
+
+            bool result = dp.IsJpeg(NotJpeg);
+
+            //Assert
+
+            Assert.IsFalse(result);
+        }
+
+        [Test]
+
+        public void IsJpeg_CorrectChecksumShortJpeg_ReturnsTrue()
+        {
+            var dp = new DirectionsProcessor();
+            byte[] IsJpeg = { 0xFF, 0xD8, 0x00, 0x01, 0x02, 0xFF, 0xD9 };
+
+            bool result = dp.IsJpeg(IsJpeg);
+
+            Assert.IsTrue(result);
+        }
+
+        [Test]
+
+        public void IsJpeg_OneCheckSumWrong_ReturnsFalse()
+        {
+            var dp = new DirectionsProcessor();
+            byte[] IsJpeg = { 0xFF, 0xD8, 0x00, 0x01, 0x02, 0xFF, 0xD8 };
+
+            bool result = dp.IsJpeg(IsJpeg);
+
+            Assert.False(result);
+        }
+
+        [Test]
+
+        public void IsJpeg_TwoCheckSumsWrong_ReturnsTrue()
+        {
+            var dp = new DirectionsProcessor();
+            byte[] IsJpeg = { 0xFF, 0xD9, 0x00, 0x01, 0x02, 0xFF, 0xD8 };
+
+            bool result = dp.IsJpeg(IsJpeg);
+
+            Assert.IsFalse(result);
+        }
+
+        [Test]
+
+        public void IsJpeg_CorrectChecksumLongJpeg_ReturnsTrue()
+        {
+            var dp = new DirectionsProcessor();
+            byte[] IsJpeg = { 0xFF, 0xD9, 0x00, 0x01, 0x02, 0x00, 0x01, 0x02, 0x00, 0x01,
+                0x02, 0x00, 0x01, 0x02, 0x00, 0x01, 0x02, 0x02, 0x02, 0x00, 0x01, 0x02, 0x00,
+                0x00, 0x01, 0xFF, 0xD8 };
+
+            bool result = dp.IsJpeg(IsJpeg);
+
+            Assert.IsFalse(result);
+        }
+
+        [Test]
+
+        public void IsJpeg_NullArray_ReturnsFalse()
+        {
+            var dp = new DirectionsProcessor();
+            byte[] NotJpeg = null;
+
+            bool result = dp.IsJpeg(NotJpeg);
+
+            Assert.IsFalse(result);
+        }
+    }
+
+
+    [TestFixture]
+
+    public class ConstantsTests
+    {
+        [Test]
+
+        public void MapQuestDirectionsSuffix_ValidParameters_ReturnsCorrectString()
+        {
+            var generatedSuffix = Constants.MapQuestDirectionsSuffix("Wien", "Paris", "fastest");
+            var trueSuffix = $"/directions/v2/route?key={ConfigurationManager.AppSettings["ApiKey"]}&from=Wien&to=Paris&routeType=fastest";
+
+            Assert.AreEqual(generatedSuffix, trueSuffix);
+
+        }
+
+
+        [Test]
+
+        public void MapQuestMapSuffix_ValidParameters_ReturnsCorrectString()
+        {
+            var generatedSuffix = Constants.MapQuestMapSuffix("Wien", "Paris");
+            var trueSuffix = $"/staticmap/v5/map?start=Wien&end=Paris&size={ConfigurationManager.AppSettings["ImageWidth"]}," +
+                $"{ConfigurationManager.AppSettings["ImageHeight"]}@2x&key={ConfigurationManager.AppSettings["ApiKey"]}";
+
+            Assert.AreEqual(generatedSuffix, trueSuffix);
+        }
     }
 }

@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using log4net;
 using Newtonsoft.Json;
 
@@ -21,7 +23,7 @@ namespace TourPlanner.Core
             try
             {
                 string suffix = Constants.MapQuestMapSuffix(from, to);
-                response = await ApiHelper.ApiClient.GetAsync(Constants.MapQuestBaseUrl+suffix);
+                response = await ApiHelper.ApiClient.GetAsync(ConfigurationManager.AppSettings["MapQuestUrl"] +suffix);
 
                 response.EnsureSuccessStatusCode();
 
@@ -47,6 +49,11 @@ namespace TourPlanner.Core
                     {
                         await stream.CopyToAsync(memoryStream);
                         var jpegMap = memoryStream.ToArray();
+                        if (!IsJpeg(jpegMap))
+                        {
+                            return (jpegMap, "The received byte array is not a jpeg");
+                        }
+
                         return (jpegMap, "Map loaded from api");
 
 
@@ -62,6 +69,18 @@ namespace TourPlanner.Core
 
 
             
+        }
+
+        public bool IsJpeg(byte[] jpegMap)
+        {
+            if (jpegMap == null)
+                return false;
+            if (jpegMap.Length < 2)
+                return false;
+
+            var len = jpegMap.Length;
+
+            return jpegMap[0] == 0xFF && jpegMap[1] == 0xD8 && jpegMap[len-2] == 0xFF && jpegMap[len-1] == 0xD9; //all jpeg's start with 255, 216 and end with 255, 217
         }
 
         struct DirectionsInfo
@@ -80,7 +99,7 @@ namespace TourPlanner.Core
             try
             {
                 string suffix = Constants.MapQuestDirectionsSuffix(from, to, transportType);
-                response = await ApiHelper.ApiClient.GetAsync(Constants.MapQuestBaseUrl + suffix);
+                response = await ApiHelper.ApiClient.GetAsync(ConfigurationManager.AppSettings["MapQuestUrl"] + suffix);
 
                 response.EnsureSuccessStatusCode();
 

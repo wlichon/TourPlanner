@@ -129,6 +129,7 @@ namespace TourPlanner.Models
             return obj1.TourId == obj2.TourId;
         }
 
+
         public static bool operator !=(Tour obj1, Tour obj2)
         {
             return !(obj1 == obj2);

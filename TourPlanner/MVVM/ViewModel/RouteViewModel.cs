@@ -53,7 +53,7 @@ namespace TourPlanner.MVVM.ViewModel
                 if (_selectedTour != value)
                 {
                     _selectedTour = value;
-                    FilteredLogs = SelectedTour.TourLogs;
+                    FilteredLogs = SelectedTour?.TourLogs;
                     LoadMap();
                     OnPropertyChanged();
                 }
@@ -63,6 +63,8 @@ namespace TourPlanner.MVVM.ViewModel
 
         public void MediatorRefreshMap()
         {
+
+
             using (MemoryStream memory = new MemoryStream())
             {
 
@@ -81,8 +83,10 @@ namespace TourPlanner.MVVM.ViewModel
             var dp = new DirectionsProcessor();
             string message = "Map loaded from memory";
 
+            /*
             if (SelectedTour.TourInfo.ImageData == null && SelectedTour.TourInfo.From != null && SelectedTour.TourInfo.To != null) // enter when Imagedata is null but From and To are set
                 (SelectedTour.TourInfo.ImageData, message) = await dp.LoadMap(SelectedTour.TourInfo.From, SelectedTour.TourInfo.To);
+            */
 
             if (SelectedTour.TourInfo.ImageData == null) // enter when either From or To or both are null
             {
@@ -90,6 +94,9 @@ namespace TourPlanner.MVVM.ViewModel
                 MessageBox.Show("Cannot load route image since insufficient data");
                 return;
             }
+
+            
+
             using (MemoryStream memory = new MemoryStream())
             {
 

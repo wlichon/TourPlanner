@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "zj2VfGqTsoVljbiVwUJkMBBupat+gZsRg+csTvpiVIlH4px/9RAfTDyROCqGd+VBrcw+E7jdcmpgoKA2Ni9+yg==",
+  "dgSpecHash": "TDi4oHIxIKzW6FRBRGDkGPoSwIzsvWZZYinXlCX01nDJWHRtaVySNoiD3iK88gGFZBED19apx3kcY9hWI8evzg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\wikto\\Desktop\\GitProjects\\TourPlanner\\TourPlanner\\TourPlanner.csproj",
+  "projectFilePath": "C:\\Users\\wikto\\Desktop\\FH\\4-semester\\GitProjects\\TourPlanner\\TourPlanner\\TourPlanner.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\wikto\\.nuget\\packages\\log4net\\2.0.15\\log4net.2.0.15.nupkg.sha512",
     "C:\\Users\\wikto\\.nuget\\packages\\microsoft.netcore.platforms\\2.0.0\\microsoft.netcore.platforms.2.0.0.nupkg.sha512",

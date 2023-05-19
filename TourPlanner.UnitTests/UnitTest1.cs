@@ -9,11 +9,13 @@ using System.Configuration;
 
 namespace TourPlanner.UnitTests
 {
-   
+    // UNIT TESTS
+
     // NAMING CONVENTION: Function_Scenario_ExpectedBehaviour
     // Arrange
     // Act
     // Assert
+    
 
 
     [TestFixture]
@@ -277,7 +279,7 @@ namespace TourPlanner.UnitTests
 
                 // Act
 
-                var result = tour.ChildFriendly();
+                var result = tour.ChildFriendly(); 
 
                 // Assert
 

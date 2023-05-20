@@ -13,11 +13,15 @@ using System.Runtime.Intrinsics.Arm;
 using System.IO;
 using System.Windows.Media.Imaging;
 using TourPlanner.MVVM.View;
+using PdfSharp.Drawing;
+using PdfSharp.Pdf;
+
 
 namespace TourPlanner.MVVM.ViewModel
 {
     public class RouteViewModel : BaseComponent
     {
+
         private Tour _selectedTour;
         private BitmapImage? _routeImage;
 
@@ -123,6 +127,8 @@ namespace TourPlanner.MVVM.ViewModel
         public RelayCommand RemoveSelectedLogButton { get; set; }
 
         public RelayCommand EditSelectedLogButton { get; set; }
+
+        public RelayCommand GeneratePdf { get; set; }
         public RelayCommand Load { get; set; }
 
         private ObservableCollection<TourLog> _filteredLogs;
@@ -171,7 +177,96 @@ namespace TourPlanner.MVVM.ViewModel
             
             RouteImage = new BitmapImage();
 
+           
 
+            GeneratePdf = new RelayCommand(async o =>
+            {
+                PdfDocument document = new PdfDocument();
+                try
+                {
+                    System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
+
+
+                    PdfPage page = document.AddPage();
+
+                    XGraphics gfx = XGraphics.FromPdfPage(page);
+
+
+                    gfx.DrawString(SelectedTour.TourName, new XFont("Arial", 40, XFontStyle.Bold), XBrushes.Blue, new XPoint(200, 70));
+
+                    gfx.DrawLine(new XPen(XColor.FromArgb(50, 30, 200)), new XPoint(100, 100), new XPoint(500, 100));
+
+                    XImage image;
+
+                    if (SelectedTour.TourInfo.ImageData == null)
+                    {
+                        gfx.DrawString("Route image not available", new XFont("Arial", 20, XFontStyle.Bold), XBrushes.Red, new XPoint(200, 150));
+                    }
+                    else
+                    {
+                        using (var stream = new System.IO.MemoryStream(SelectedTour.TourInfo.ImageData))
+                        {
+                            image = XImage.FromStream(stream);
+                            gfx.DrawImage(image, 50, 150, 500, 250);
+                        }
+                    }
+
+                    int yPos_vals = 420;
+                    int yPos_line = 427;
+                    var font = new XFont("Arial", 15, XFontStyle.Regular);
+
+                    gfx.DrawString("From: ", font, XBrushes.Black, new XPoint(100, yPos_vals));
+                    gfx.DrawString(SelectedTour.TourInfo.From, font, XBrushes.Black, new XPoint(250, yPos_vals));
+                    gfx.DrawLine(new XPen(XColor.FromArgb(0, 0, 0)), new XPoint(50, yPos_line), new XPoint(500, yPos_line));
+
+                    yPos_vals += 20;
+                    yPos_line += 20;
+
+                    gfx.DrawString("To: ", font, XBrushes.Black, new XPoint(100, yPos_vals));
+                    gfx.DrawString(SelectedTour.TourInfo.To, font, XBrushes.Black, new XPoint(250, yPos_vals));
+                    gfx.DrawLine(new XPen(XColor.FromArgb(0, 0, 0)), new XPoint(50, yPos_line), new XPoint(500, yPos_line));
+
+                    yPos_vals += 20;
+                    yPos_line += 20;
+
+                    gfx.DrawString("Description: ", font, XBrushes.Black, new XPoint(100, yPos_vals));
+                    gfx.DrawString(SelectedTour.TourInfo.Description, font, XBrushes.Black, new XPoint(250, yPos_vals));
+                    gfx.DrawLine(new XPen(XColor.FromArgb(0, 0, 0)), new XPoint(50, yPos_line), new XPoint(500, yPos_line));
+
+                    yPos_vals += 20;
+                    yPos_line += 20;
+
+                    gfx.DrawString("Distance: ", font, XBrushes.Black, new XPoint(100, yPos_vals));
+                    gfx.DrawString($"{SelectedTour.TourInfo.Distance.ToString()}km", font, XBrushes.Black, new XPoint(250, yPos_vals));
+                    gfx.DrawLine(new XPen(XColor.FromArgb(0, 0, 0)), new XPoint(50, yPos_line), new XPoint(500, yPos_line));
+
+                    yPos_vals += 20;
+                    yPos_line += 20;
+
+                    gfx.DrawString("Time: ", font, XBrushes.Black, new XPoint(100, yPos_vals));
+                    gfx.DrawString($"{SelectedTour.TourInfo.EstimatedTime.ToString()} minutes", font, XBrushes.Black, new XPoint(250, yPos_vals));
+                    gfx.DrawLine(new XPen(XColor.FromArgb(0, 0, 0)), new XPoint(50, yPos_line), new XPoint(500, yPos_line));
+           
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Pdf generation failed");
+                    return;
+                }
+                try
+                {
+                    document.Save($"{SelectedTour.TourName}_report.pdf");
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Pdf generation failed, likely because the file is opened in another process");
+                    return;
+                }
+
+                MessageBox.Show("Pdf generated!");
+            });
 
             ShowAddLogWindowButton = new RelayCommand(async o =>
             {

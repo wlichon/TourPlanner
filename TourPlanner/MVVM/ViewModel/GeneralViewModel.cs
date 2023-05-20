@@ -280,6 +280,7 @@ namespace TourPlanner.MVVM.ViewModel
                 }
 
                 _selectedTour.TourName = ChangedName;
+               
                 
                 _selectedTour.TourInfo.TourInfoId = _changedInfo.TourInfoId;
                 _selectedTour.TourInfo.Distance = _changedInfo.Distance;
@@ -299,6 +300,7 @@ namespace TourPlanner.MVVM.ViewModel
                 if (success)
                 {
                     MessageBox.Show(updateMessage);
+                    
                 }
                 else
                 {

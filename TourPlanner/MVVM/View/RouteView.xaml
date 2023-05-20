@@ -51,7 +51,7 @@
 
 
                     <Border Margin="0"
-                                Width="600">
+                                Width="500">
                         <TextBox 
                                 Tag="add or remove"
                                 Text="{Binding TourLogBoxContent, UpdateSourceTrigger=PropertyChanged}"
@@ -81,6 +81,12 @@
                                 Foreground="WhiteSmoke" 
                                 BorderThickness="0"
                                 Command="{Binding EditSelectedLogButton}"/>
+
+                    <Button Content="Export"
+                            Background="Transparent" 
+                            Foreground="WhiteSmoke"
+                            Command="{Binding GeneratePdf}"
+                        />
                 </StackPanel>
                 
                 <!-- Tour logs-->

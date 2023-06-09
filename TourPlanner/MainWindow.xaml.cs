@@ -11,6 +11,8 @@ using System.Net.Http;
 using System.Text;
 using TourPlanner.MVVM.ViewModel;
 using TourPlanner.Core;
+using System.Windows.Controls;
+using System.Diagnostics;
 
 namespace TourPlanner
 {
@@ -29,7 +31,31 @@ namespace TourPlanner
             //Task.Run(() => GetTours());
         }
 
-        
+        private void FilterComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBox comboBox = (ComboBox)sender;
+            ComboBoxItem selectedItem = (ComboBoxItem)comboBox.SelectedItem;
+
+            if (selectedItem != null)
+            {
+                string selectedContent = selectedItem.Content.ToString();
+                MessageBox.Show(selectedContent);
+                var mainViewModel = (MainViewModel)Application.Current.MainWindow.DataContext;
+
+                if(selectedContent == "Popularity")
+                {
+                    mainViewModel.FilterByPopularity = true; 
+
+                }
+                else
+                {
+                    mainViewModel.FilterByPopularity = false;
+                }
+
+            }
+        }
+
+
         private async void WhenLoaded(object sender, EventArgs e)
         {
             var mainViewModel = (MainViewModel)Application.Current.MainWindow.DataContext;

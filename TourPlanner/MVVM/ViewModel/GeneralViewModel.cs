@@ -15,6 +15,7 @@ using System.IO;
 using System.Windows.Media.Imaging;
 using System.ComponentModel;
 using System.Runtime.Intrinsics.Arm;
+using System.Windows.Data;
 
 namespace TourPlanner.MVVM.ViewModel
 {

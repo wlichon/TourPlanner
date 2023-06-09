@@ -120,7 +120,7 @@
                 <Grid.RowDefinitions>
 
                     <RowDefinition Height="40"/>
-                    <RowDefinition/>
+                    <RowDefinition Height="*"/>
 
                 </Grid.RowDefinitions>
 
@@ -160,12 +160,17 @@
                                 Margin="0 0 0 7"
                                 Command="{Binding RemoveTourButton}"                                
                                 VerticalAlignment="Center"/>
-                        <Button Height="20" 
+                        <ComboBox 
+                                x:Name="FilterComboBox"
+                                SelectionChanged="FilterComboBox_SelectionChanged"
+                                Height="20" 
                                 Width="20" 
-                                Content="..." 
                                 Background="Transparent" 
                                 Foreground="WhiteSmoke" 
-                                BorderThickness="0"/>
+                                BorderThickness="0">
+                            <ComboBoxItem>Popularity</ComboBoxItem>
+                            <ComboBoxItem>Child Friendliness</ComboBoxItem>
+                        </ComboBox>
                     </StackPanel>
 
                 </Border>
@@ -175,7 +180,7 @@
                         Margin="8,0,8,8"
                         CornerRadius="5"
                         BorderBrush="White"
-                        BorderThickness="2" Height="614" VerticalAlignment="Bottom">
+                        BorderThickness="2" Height="614" VerticalAlignment="Top">
                     <ListView ItemsSource="{Binding FilteredTours}"
                               Background="Transparent"
                               BorderThickness="0"

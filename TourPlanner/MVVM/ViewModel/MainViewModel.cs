@@ -73,10 +73,30 @@ namespace TourPlanner.MVVM.ViewModel
             }
         }
 
+        private bool _filterByPopularity;
+
+        public bool FilterByPopularity
+        {
+            get { return _filterByPopularity; }
+            set { 
+                _filterByPopularity = value;
+                if(_filterByPopularity == true)
+                {
+                    FilteredTours = new ObservableCollection<Tour>(Tours.OrderByDescending(obj => obj.TourPopularity()).ToList());
+                }
+                else
+                {
+                    FilteredTours = FilteredTours = new ObservableCollection<Tour>(_tours.Where(item => item.ChildFriendly() == true));
+                }
+            }
+        }
+
         public RelayCommand SearchCommand { get; set; }
 
         public RelayCommand AddTourButton { get; set; }
         public RelayCommand RemoveTourButton { get; set; }
+
+        
         public RelayCommand GeneralViewCommand { get; set; }
 
         public RelayCommand RouteViewCommand { get; set; }
@@ -92,7 +112,6 @@ namespace TourPlanner.MVVM.ViewModel
         private TourMediator TourMediator { get; set; }
 
         
-
         public ObservableCollection<Tour> Tours {
             get { return _tours; }
         }
@@ -208,8 +227,7 @@ namespace TourPlanner.MVVM.ViewModel
             }
             else
             {
-                
-                FilteredTours = new ObservableCollection<Tour>(_tours.Where(item => item.TourName.Contains(TourBoxContent)));
+                    FilteredTours = new ObservableCollection<Tour>(_tours.Where(item => item.TourName.Contains(TourBoxContent)));
             }
         }
 

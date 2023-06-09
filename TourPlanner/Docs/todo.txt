@@ -1,7 +1,0 @@
-﻿- Check if OnPropertyChanged can be removed from subviewmodels
-
-- Check if bytearray is jpeg
-
-- Service Dictionary? for backend api
-
-- cancellation token, cancel async functions like LoadMap or others when no longer necessary (when changing selectedTour before map is loaded for example)

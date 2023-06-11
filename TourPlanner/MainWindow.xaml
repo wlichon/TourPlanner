@@ -168,8 +168,8 @@
                                 Background="Transparent" 
                                 Foreground="WhiteSmoke" 
                                 BorderThickness="0">
-                            <ComboBoxItem>Popularity</ComboBoxItem>
-                            <ComboBoxItem>Child Friendliness</ComboBoxItem>
+                            <ComboBoxItem Foreground="Black">Popularity</ComboBoxItem>
+                            <ComboBoxItem Foreground="Black">Child Friendliness</ComboBoxItem>
                         </ComboBox>
                     </StackPanel>
 

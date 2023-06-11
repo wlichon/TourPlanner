@@ -85,7 +85,6 @@ namespace TourPlanner.MVVM.ViewModel
         public async Task LoadMap()
         {
             var dp = new DirectionsProcessor();
-            string message = "Map loaded from memory";
 
             /*
             if (SelectedTour.TourInfo.ImageData == null && SelectedTour.TourInfo.From != null && SelectedTour.TourInfo.To != null) // enter when Imagedata is null but From and To are set
@@ -116,7 +115,6 @@ namespace TourPlanner.MVVM.ViewModel
 
 
 
-            MessageBox.Show(message);
 
 
 
@@ -142,7 +140,7 @@ namespace TourPlanner.MVVM.ViewModel
                 _tourLogBoxContent = value;
                 Search();
             }
-        }
+            }
 
         public ObservableCollection<TourLog> FilteredLogs { 
             get
